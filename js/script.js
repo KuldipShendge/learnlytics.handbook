@@ -3373,3 +3373,34 @@ function openExploreAllHandbooks() {
 
 }
 
+
+
+/* ==========================================
+   MOBILE SIDEBAR DRAWER TRIGGERS (ADDED)
+   ========================================== */
+
+function toggleMobileSidebar(isOpen) {
+  const sidebar = document.querySelector('.dashboard-sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (sidebar && overlay) {
+    if (isOpen) {
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden'; // prevent background scrolling
+    } else {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = ''; // restore background scrolling
+    }
+  }
+}
+
+// Automatically close the mobile sidebar drawer when a navigation item is clicked
+document.addEventListener('DOMContentLoaded', () => {
+  const navItems = document.querySelectorAll('.dashboard-nav-item, .sidebar-help-btn');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      toggleMobileSidebar(false);
+    });
+  });
+});
