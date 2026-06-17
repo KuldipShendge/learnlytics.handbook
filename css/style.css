@@ -6269,13 +6269,13 @@ body {
   -webkit-backdrop-filter: blur(4px);
   z-index: 9999;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .sidebar-overlay.active {
   opacity: 1;
-  pointer-events: auto;
+  visibility: visible;
 }
 
 /* -- Mobile Responsive Overrides (Under 940px) -- */
@@ -6383,5 +6383,14 @@ body {
   .explore-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
+  }
+}
+
+
+/* 4. Fix Mobile Body Scrolling Freeze */
+@media (max-width: 940px) {
+  html, body {
+    overflow: auto !important;
+    height: auto !important;
   }
 }
