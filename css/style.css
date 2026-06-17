@@ -6321,3 +6321,67 @@ body {
     padding-left: 0 !important;
   }
 }
+
+
+/* ==========================================
+   MOBILE VIEW LAYOUT BUGFIXES (ADDED)
+   ========================================== */
+
+/* 1. Reorder Homepage Dashboard Grid Panels on Mobile */
+@media (max-width: 940px) {
+  .dashboard-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .side-panel-stack {
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .popular-panel {
+    order: 2 !important;
+    margin-top: 20px !important;
+  }
+}
+
+/* 2. Responsive Stat Badges inside Course Bundles page to prevent cutting off */
+@media (max-width: 940px) {
+  .courses-header-right {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 16px !important;
+  }
+  .courses-header-right .header-stat-badge {
+    margin: 0 !important;
+  }
+  .courses-header-right .header-stat-badge:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .courses-header-right {
+    grid-template-columns: 1fr !important;
+  }
+  .courses-header-right .header-stat-badge:nth-child(3) {
+    grid-column: span 1 !important;
+  }
+}
+
+/* 3. Responsive Explore Grid for All Handbooks to prevent column squeeze */
+@media (max-width: 1024px) {
+  .explore-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .explore-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
