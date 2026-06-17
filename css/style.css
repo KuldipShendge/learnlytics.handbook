@@ -6330,7 +6330,7 @@ body {
 /* 1. Reorder Homepage Dashboard Grid Panels on Mobile */
 @media (max-width: 940px) {
   .dashboard-grid {
-    display: flex !important;
+    display: flex;
     flex-direction: column !important;
   }
   .side-panel-stack {
