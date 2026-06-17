@@ -3404,3 +3404,247 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+/* ==========================================
+   CLIENT-SIDE ROUTING & CLEAN URL PATHS
+   ========================================== */
+
+let isNavigatingFromRouter = false;
+
+function safePushState(url) {
+  if (!isNavigatingFromRouter && window.location.pathname !== url) {
+    window.history.pushState(null, '', url);
+  }
+}
+
+function handleRouting(path) {
+  isNavigatingFromRouter = true;
+  try {
+    const cleanPath = path.replace(/\/index\.html$/, '') || '/';
+    const decodedPath = decodeURIComponent(cleanPath);
+    const normalizedPath = decodedPath.toLowerCase().trim().replace(/\s+/g, '-');
+    
+    if (normalizedPath === '/' || normalizedPath === '') {
+      showDashboard();
+    } else if (normalizedPath === '/course-bundles') {
+      openCoursesMenu();
+    } else if (normalizedPath === '/course-bundles/data-bi-analyst-bundle') {
+      openDetail('data-analyst');
+    } else if (
+      normalizedPath === '/course-bundles/data-bi-analyst-bundle/data-scientist-genai-engineer-bundle' ||
+      normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle'
+    ) {
+      openDetail('data-science');
+    } else if (normalizedPath === '/course-bundles/data-bi-analyst-bundle/interview-questions') {
+      openDetail('data-analyst-questions');
+    } else if (
+      normalizedPath === '/course-bundles/data-bi-analyst-bundle/data-scientist-genai-engineer-bundle/interview-questions' ||
+      normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle/interview-questions'
+    ) {
+      openDetail('data-science-questions');
+    } else if (normalizedPath === '/whats-inside') {
+      showSection('inside');
+    } else if (normalizedPath === '/tools-tech') {
+      showSection('tools');
+    } else if (normalizedPath === '/free-download') {
+      showSection('free');
+    } else if (normalizedPath === '/review') {
+      showSection('reviews');
+    } else if (normalizedPath === '/all-handbook-page') {
+      openExploreAllHandbooks();
+    } else if (normalizedPath === '/all-handbook-page/math-stats') {
+      openMathHandbook();
+    } else if (normalizedPath === '/all-handbook-page/math-stats-ds') {
+      openMathDsHandbook();
+    } else if (normalizedPath === '/all-handbook-page/python') {
+      openPythonHandbook();
+    } else if (normalizedPath === '/all-handbook-page/python-ds') {
+      openPythonDsHandbook();
+    } else if (normalizedPath === '/all-handbook-page/sql') {
+      openSqlHandbook();
+    } else if (normalizedPath === '/all-handbook-page/excel') {
+      openExcelHandbook();
+    } else if (normalizedPath === '/all-handbook-page/bi-tools') {
+      openBiHandbook();
+    } else if (normalizedPath === '/all-handbook-page/de') {
+      openDeHandbook();
+    } else if (normalizedPath === '/all-handbook-page/ai-era') {
+      openAiHandbook();
+    } else if (normalizedPath === '/all-handbook-page/domain') {
+      openDomainHandbook();
+    }
+  } catch (e) {
+    console.error('Routing transition error:', e);
+  } finally {
+    isNavigatingFromRouter = false;
+  }
+}
+
+// Wrapper interceptions for Page Open triggers
+if (typeof showDashboard === 'function') {
+  const originalShowDashboard = showDashboard;
+  showDashboard = function(...args) {
+    originalShowDashboard.apply(this, args);
+    safePushState('/');
+  };
+}
+
+if (typeof openCoursesMenu === 'function') {
+  const originalOpenCoursesMenu = openCoursesMenu;
+  openCoursesMenu = function(...args) {
+    originalOpenCoursesMenu.apply(this, args);
+    safePushState('/course-bundles');
+  };
+}
+
+if (typeof openDetail === 'function') {
+  const originalOpenDetail = openDetail;
+  openDetail = function(courseId, ...args) {
+    originalOpenDetail.apply(this, [courseId, ...args]);
+    if (courseId === 'data-analyst') {
+      safePushState('/course-bundles/data-BI-Analyst-Bundle');
+    } else if (courseId === 'data-science') {
+      safePushState('/course-bundles/data-BI-Analyst-Bundle/Data-Scientist-GenAI-Engineer-Bundle');
+    } else if (courseId === 'data-analyst-questions') {
+      safePushState('/course-bundles/data-BI-Analyst-Bundle/interview-questions');
+    } else if (courseId === 'data-science-questions') {
+      safePushState('/course-bundles/data-BI-Analyst-Bundle/Data-Scientist-GenAI-Engineer-Bundle/interview-questions');
+    }
+  };
+}
+
+if (typeof showSection === 'function') {
+  const originalShowSection = showSection;
+  showSection = function(section, ...args) {
+    originalShowSection.apply(this, [section, ...args]);
+    if (section === 'inside') {
+      safePushState('/whats-inside');
+    } else if (section === 'tools') {
+      safePushState('/tools-tech');
+    } else if (section === 'free') {
+      safePushState('/free-download');
+    } else if (section === 'reviews') {
+      safePushState('/review');
+    }
+  };
+}
+
+if (typeof openExploreAllHandbooks === 'function') {
+  const originalOpenExploreAllHandbooks = openExploreAllHandbooks;
+  openExploreAllHandbooks = function(...args) {
+    originalOpenExploreAllHandbooks.apply(this, args);
+    safePushState('/all-handbook-page');
+  };
+}
+
+if (typeof openMathHandbook === 'function') {
+  const originalOpenMathHandbook = openMathHandbook;
+  openMathHandbook = function(...args) {
+    originalOpenMathHandbook.apply(this, args);
+    safePushState('/all-handbook-page/math-stats');
+  };
+}
+
+if (typeof openMathDsHandbook === 'function') {
+  const originalOpenMathDsHandbook = openMathDsHandbook;
+  openMathDsHandbook = function(...args) {
+    originalOpenMathDsHandbook.apply(this, args);
+    safePushState('/all-handbook-page/math-stats-ds');
+  };
+}
+
+if (typeof openPythonHandbook === 'function') {
+  const originalOpenPythonHandbook = openPythonHandbook;
+  openPythonHandbook = function(...args) {
+    originalOpenPythonHandbook.apply(this, args);
+    safePushState('/all-handbook-page/python');
+  };
+}
+
+if (typeof openPythonDsHandbook === 'function') {
+  const originalOpenPythonDsHandbook = openPythonDsHandbook;
+  openPythonDsHandbook = function(...args) {
+    originalOpenPythonDsHandbook.apply(this, args);
+    safePushState('/all-handbook-page/python-ds');
+  };
+}
+
+if (typeof openSqlHandbook === 'function') {
+  const originalOpenSqlHandbook = openSqlHandbook;
+  openSqlHandbook = function(...args) {
+    originalOpenSqlHandbook.apply(this, args);
+    safePushState('/all-handbook-page/sql');
+  };
+}
+
+if (typeof openExcelHandbook === 'function') {
+  const originalOpenExcelHandbook = openExcelHandbook;
+  openExcelHandbook = function(...args) {
+    originalOpenExcelHandbook.apply(this, args);
+    safePushState('/all-handbook-page/excel');
+  };
+}
+
+if (typeof openBiHandbook === 'function') {
+  const originalOpenBiHandbook = openBiHandbook;
+  openBiHandbook = function(...args) {
+    originalOpenBiHandbook.apply(this, args);
+    safePushState('/all-handbook-page/bi-tools');
+  };
+}
+
+if (typeof openDeHandbook === 'function') {
+  const originalOpenDeHandbook = openDeHandbook;
+  openDeHandbook = function(...args) {
+    originalOpenDeHandbook.apply(this, args);
+    safePushState('/all-handbook-page/de');
+  };
+}
+
+if (typeof openAiHandbook === 'function') {
+  const originalOpenAiHandbook = openAiHandbook;
+  openAiHandbook = function(...args) {
+    originalOpenAiHandbook.apply(this, args);
+    safePushState('/all-handbook-page/ai-era');
+  };
+}
+
+if (typeof openDomainHandbook === 'function') {
+  const originalOpenDomainHandbook = openDomainHandbook;
+  openDomainHandbook = function(...args) {
+    originalOpenDomainHandbook.apply(this, args);
+    safePushState('/all-handbook-page/domain');
+  };
+}
+
+// Wrapper interceptions for Page Close triggers to restore Home URL
+const closeHandlers = [
+  'closePythonHandbook', 'closePythonDsHandbook', 'closeMathHandbook',
+  'closeMathDsHandbook', 'closeSqlHandbook', 'closeBiHandbook',
+  'closeDeHandbook', 'closeDomainHandbook', 'closeAiHandbook', 'closeExcelHandbook'
+];
+closeHandlers.forEach(handlerName => {
+  if (typeof window[handlerName] === 'function') {
+    const originalClose = window[handlerName];
+    window[handlerName] = function(...args) {
+      originalClose.apply(this, args);
+      safePushState('/');
+    };
+  }
+});
+
+// Setup popstate and DOMContentLoaded routing listeners
+window.addEventListener('popstate', () => {
+  handleRouting(window.location.pathname);
+});
+
+// Perform routing on initial load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    handleRouting(window.location.pathname);
+  });
+} else {
+  handleRouting(window.location.pathname);
+}
+
