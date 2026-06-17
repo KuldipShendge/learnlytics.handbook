@@ -6354,7 +6354,7 @@ body {
     order: 1 !important;
   }
   .dashboard-grid {
-    display: flex !important;
+    display: flex;
     flex-direction: column !important;
     gap: 24px !important;
     order: 2 !important;
