@@ -561,71 +561,74 @@
 
     <section class="dashboard-grid">
 
-      <article class="dashboard-panel popular-panel">
+      <!-- Left Column Stack -->
+      <div class="left-panel-stack">
 
-        <div class="panel-heading">
+        <article class="dashboard-panel popular-panel" id="popularHandbooksPanel">
 
-          <h2>Popular Handbooks</h2>
+          <div class="panel-heading">
 
-          <button type="button" onclick="openExploreAllHandbooks()">View All <span>-></span></button>
+            <h2>Popular Handbooks</h2>
 
-        </div>
+            <button type="button" onclick="openExploreAllHandbooks()">View All <span>-></span></button>
 
-        <div class="handbook-grid">
+          </div>
 
-          <button class="handbook-card" type="button" onclick="openMathHandbook()">
+          <div class="handbook-grid">
 
-            <img class="handbook-cover-img" src="images/Math-Handbook-Cover-DA.png" alt="Mathematics & Statistics Handbook">
+            <button class="handbook-card" type="button" onclick="openMathHandbook()">
 
-            <strong>Mathematics &amp; Statistics For Data Analyst</strong>
+              <img class="handbook-cover-img" src="images/Math-Handbook-Cover-DA.png" alt="Mathematics & Statistics Handbook">
 
-            <small><b>₹199</b><span>⭐ 4.8 (1.2K)</span></small>
+              <strong>Mathematics &amp; Statistics For Data Analyst</strong>
+
+              <small><b>₹199</b><span>⭐ 4.8 (1.2K)</span></small>
+
+            </button>
+
+            <button class="handbook-card" type="button" onclick="openPythonHandbook()">
+
+              <img class="handbook-cover-img" src="images/Python-Handbook-Cover.png" alt="Python for Data Professionals">
+
+              <strong>Python for Data Analyst</strong>
+
+              <small><b>₹199</b><span>⭐ 4.7 (892)</span></small>
+
+            </button>
+
+            <button class="handbook-card" type="button" onclick="openDetail('data-science')">
+
+              <img class="handbook-cover-img" src="images/Machine-Deep-learning--Handbook-Cover.png" alt="Classical Machine Learning">
+
+              <strong>Classical Machine Learning</strong>
+
+              <small><b>₹199</b><span>⭐ 4.6 (756)</span></small>
+
+            </button>
+
+            <button class="handbook-card" type="button" onclick="openDetail('data-science')">
+
+              <img class="handbook-cover-img" src="images/Deep-learning--Handbook-Cover.png" alt="Deep Learning Fundamentals">
+
+              <strong>Deep Learning Fundamentals</strong>
+
+              <small><b>₹199</b><span>⭐ 4.6 (643)</span></small>
+
+            </button>
+
+          </div>
+
+          <button class="explore-handbooks" type="button" onclick="openExploreAllHandbooks()">
+
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H21"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H21v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path></svg>
+
+            Explore All Handbooks
 
           </button>
 
-          <button class="handbook-card" type="button" onclick="openPythonHandbook()">
+        </article>
 
-            <img class="handbook-cover-img" src="images/Python-Handbook-Cover.png" alt="Python for Data Professionals">
-
-            <strong>Python for Data Analyst</strong>
-
-            <small><b>₹199</b><span>⭐ 4.7 (892)</span></small>
-
-          </button>
-
-          <button class="handbook-card" type="button" onclick="openDetail('data-science')">
-
-            <img class="handbook-cover-img" src="images/Machine-Deep-learning--Handbook-Cover.png" alt="Classical Machine Learning">
-
-            <strong>Classical Machine Learning</strong>
-
-            <small><b>₹199</b><span>⭐ 4.6 (756)</span></small>
-
-          </button>
-
-          <button class="handbook-card" type="button" onclick="openDetail('data-science')">
-
-            <img class="handbook-cover-img" src="images/Deep-learning--Handbook-Cover.png" alt="Deep Learning Fundamentals">
-
-            <strong>Deep Learning Fundamentals</strong>
-
-            <small><b>₹199</b><span>⭐ 4.6 (643)</span></small>
-
-          </button>
-
-        </div>
-
-        <button class="explore-handbooks" type="button" onclick="openExploreAllHandbooks()">
-
-          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H21"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H21v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path></svg>
-
-          Explore All Handbooks
-
-        </button>
-
-
-
-        <div class="inside-inline" id="insideHandbookPanel">
+        <article class="dashboard-panel popular-panel inside-inline-card" id="insideHandbookPanel">
 
           <div class="panel-heading">
 
@@ -645,11 +648,9 @@
 
           </div>
 
-        </div>
+        </article>
 
-      </article>
-
-
+      </div>
 
       <div class="side-panel-stack">
 
@@ -687,7 +688,7 @@
 
 
 
-        <article class="dashboard-panel free-card free-card-ml">
+        <article class="dashboard-panel free-card free-card-ml" id="freeMLHandbookPanel">
 
           <div class="panel-heading">
 
@@ -10692,6 +10693,25 @@
           <div><span>3 Star</span><div class="bar-track"><div class="bar-fill" style="width: 6%; background: #0059ff;"></div></div><span>6%</span></div>
           <div><span>2 Star</span><div class="bar-track"><div class="bar-fill" style="width: 1%; background: #e91e63;"></div></div><span>1%</span></div>
           <div><span>1 Star</span><div class="bar-track"><div class="bar-fill" style="width: 1%; background: #f44336;"></div></div><span>1%</span></div>
+        </div>
+      </div>
+
+      <!-- Explore Reviews Grid -->
+      <div class="explore-reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
+        <div class="review-card" style="background: var(--box-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; box-shadow: 0 4px 20px rgba(3, 27, 78, 0.03); display: flex; flex-direction: column;">
+          <div class="stars" style="color: #f59e0b; font-size: 20px; margin-bottom: 16px; letter-spacing: 2px;">★★★★★</div>
+          <p class="review-text" style="font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 24px; font-weight: 500; flex: 1;">"The structured handbook for SQL and Power BI saved me hours of confusing tutorials. Directly to the point and highly practical. I cleared my first technical round easily."</p>
+          <div class="review-author" style="font-weight: 800; color: var(--navy); font-size: 15px;">Rahul S.</div>
+        </div>
+        <div class="review-card" style="background: var(--box-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; box-shadow: 0 4px 20px rgba(3, 27, 78, 0.03); display: flex; flex-direction: column;">
+          <div class="stars" style="color: #f59e0b; font-size: 20px; margin-bottom: 16px; letter-spacing: 2px;">★★★★★</div>
+          <p class="review-text" style="font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 24px; font-weight: 500; flex: 1;">"The 2000+ interview questions are a goldmine. I faced exact scenario-based questions from Phase 3 in my data analyst interview."</p>
+          <div class="review-author" style="font-weight: 800; color: var(--navy); font-size: 15px;">Priya K.</div>
+        </div>
+        <div class="review-card" style="background: var(--box-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; box-shadow: 0 4px 20px rgba(3, 27, 78, 0.03); display: flex; flex-direction: column;">
+          <div class="stars" style="color: #f59e0b; font-size: 20px; margin-bottom: 16px; letter-spacing: 2px;">★★★★★</div>
+          <p class="review-text" style="font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 24px; font-weight: 500; flex: 1;">"I bought the complete bundle. Best investment for my career transition. The Math and Statistics handbook alone is completely worth the full price."</p>
+          <div class="review-author" style="font-weight: 800; color: var(--navy); font-size: 15px;">Amit V.</div>
         </div>
       </div>
     </section>
