@@ -1,6 +1,0 @@
-{
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/((?!css|js|images|pdfs|robots\\.txt|sitemap\\.xml).*)$", "destination": "/index.html" }
-  ]
-}
