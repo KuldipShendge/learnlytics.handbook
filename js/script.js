@@ -306,6 +306,11 @@ function goToFreeML() {
 }
 
 function openDetail(courseId) {
+  if (courseId === 'data-analyst' || courseId === 'data-analyst-questions') {
+    loadLazyIframe('sqlQuestionsIframe');
+  } else if (courseId === 'data-science' || courseId === 'data-science-questions') {
+    loadLazyIframe('mlQuestionsIframe');
+  }
 
   if (courseId === 'data-analyst' || courseId === 'data-analyst-questions' || courseId === 'data-science' || courseId === 'data-science-questions') {
 
@@ -876,6 +881,7 @@ function showSection(section) {
 function showDashboardSection(section) { showSection(section); }
 
 function openPythonHandbook() {
+  loadLazyIframe('pythonSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -1058,6 +1064,7 @@ function closePythonHandbook() {
 }
 
 function openPythonDsHandbook() {
+  loadLazyIframe('pythonDsSyllabusIframe');
   // Hide main dashboard homepage elements
   const statsGrid = document.querySelector('.stats-grid');
   const dashGrid = document.querySelector('.dashboard-grid');
@@ -1153,6 +1160,7 @@ function closePythonDsHandbook() {
 }
 
 function openMathHandbook() {
+  loadLazyIframe('mathSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -1335,6 +1343,7 @@ function closeMathHandbook() {
 }
 
 function openMathDsHandbook() {
+  loadLazyIframe('mathDsSyllabusIframe');
   // Hide main dashboard homepage elements
   const statsGrid = document.querySelector('.stats-grid');
   const dashGrid = document.querySelector('.dashboard-grid');
@@ -1451,6 +1460,7 @@ function closeMathDsHandbook() {
 }
 
 function openSqlHandbook() {
+  loadLazyIframe('sqlSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -1633,6 +1643,7 @@ function closeSqlHandbook() {
 }
 
 function openBiHandbook() {
+  loadLazyIframe('biSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -1815,6 +1826,7 @@ function closeBiHandbook() {
 }
 
 function openDeHandbook() {
+  loadLazyIframe('deSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -1997,6 +2009,7 @@ function closeDeHandbook() {
 }
 
 function openDomainHandbook() {
+  loadLazyIframe('domainSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -2179,6 +2192,7 @@ function closeDomainHandbook() {
 }
 
 function openAiHandbook() {
+  loadLazyIframe('aiSyllabusIframe');
 
   // Hide main dashboard homepage elements
 
@@ -2361,6 +2375,7 @@ function closeAiHandbook() {
 }
 
 function openExcelHandbook() {
+  loadLazyIframe('excelSyllabusIframe');
   // Hide main dashboard homepage elements
   const statsGrid = document.querySelector('.stats-grid');
   const dashGrid = document.querySelector('.dashboard-grid');
@@ -3405,6 +3420,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+function loadLazyIframe(id) {
+  const iframe = document.getElementById(id);
+  if (iframe && iframe.dataset.src && !iframe.src) {
+    iframe.src = iframe.dataset.src;
+  }
+}
 
 /* ==========================================
    CLIENT-SIDE ROUTING & CLEAN URL PATHS
