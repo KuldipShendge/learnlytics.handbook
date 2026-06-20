@@ -4015,3 +4015,28 @@ if (document.readyState === 'loading') {
   handleRouting(window.location.pathname);
 }
 
+// Automatically sync mobile home content visibility with stats-grid visibility
+document.addEventListener('DOMContentLoaded', function() {
+  var statsGrid = document.querySelector('.stats-grid');
+  var mobileHome = document.querySelector('.mobile-home-content');
+  if (statsGrid && mobileHome) {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'style') {
+          if (statsGrid.style.display === 'none') {
+            mobileHome.classList.add('hide-mobile-home');
+          } else {
+            mobileHome.classList.remove('hide-mobile-home');
+          }
+        }
+      });
+    });
+    observer.observe(statsGrid, { attributes: true, attributeFilter: ['style'] });
+    
+    // Initial check in case stats-grid is already hidden
+    if (statsGrid.style.display === 'none') {
+      mobileHome.classList.add('hide-mobile-home');
+    }
+  }
+});
+
