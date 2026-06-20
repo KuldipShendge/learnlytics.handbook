@@ -3420,6 +3420,351 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* ==========================================
+   GLOBAL SEARCH
+   ========================================== */
+
+const SEARCH_INDEX = [
+  // ── Course Bundles ──
+  {
+    name: "Data BI Analyst Bundle",
+    keywords: ["data analyst", "da bundle", "analyst bundle", "data analyst bundle", "bundle", "bi analyst", "data bi", "course bundle"],
+    category: "Course Bundle",
+    categoryClass: "cat-bundle",
+    price: "₹699",
+    icon: "📦",
+    iconClass: "type-bundle",
+    type: "bundle",
+    action: function() { openDetail('data-analyst'); }
+  },
+  {
+    name: "Data Scientist & GenAI Engineer Bundle",
+    keywords: ["data scientist", "ds bundle", "scientist bundle", "data science bundle", "bundle", "genai bundle", "gen ai bundle", "course bundle"],
+    category: "Course Bundle",
+    categoryClass: "cat-bundle",
+    price: "₹699",
+    icon: "📦",
+    iconClass: "type-bundle",
+    type: "bundle",
+    action: function() { openDetail('data-science'); }
+  },
+  // ── Active Handbooks ──
+  {
+    name: "Mathematics & Statistics For Data Analyst",
+    keywords: ["math", "stats", "statistics", "data analyst", "da", "maths", "mathematics", "probability"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openMathHandbook(); }
+  },
+  {
+    name: "Python for Data Analyst",
+    keywords: ["python", "py", "data analyst", "da", "analytics", "pandas", "numpy"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openPythonHandbook(); }
+  },
+  {
+    name: "SQL & Databases",
+    keywords: ["sql", "database", "db", "queries", "free", "mysql", "postgres", "query"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "Free",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openSqlHandbook(); }
+  },
+  {
+    name: "Excel & Google Sheets",
+    keywords: ["excel", "sheets", "google sheets", "spreadsheet", "vlookup", "pivot"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openExcelHandbook(); }
+  },
+  {
+    name: "Business Intelligence & Dashboards",
+    keywords: ["bi", "power bi", "tableau", "dashboard", "dashboards", "business intelligence", "visualization"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openBiHandbook(); }
+  },
+  {
+    name: "Data Engineering Fundamentals",
+    keywords: ["de", "data engineering", "etl", "pipeline", "spark", "airflow", "engineering"],
+    category: "Data Engineering",
+    categoryClass: "cat-de",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openDeHandbook(); }
+  },
+  {
+    name: "Storytelling, Communication & Domain Knowledge",
+    keywords: ["storytelling", "domain", "communication", "soft skills", "presentation", "business"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openDomainHandbook(); }
+  },
+  {
+    name: "AI-Era Analytics",
+    keywords: ["ai", "artificial intelligence", "ai-era", "ai era", "analytics", "chatgpt", "copilot"],
+    category: "Data Analytics",
+    categoryClass: "cat-da",
+    price: "₹199",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() { openAiHandbook(); }
+  },
+  // ── Coming Soon Handbooks ──
+  {
+    name: "Mathematics & Statistics For Data Science",
+    keywords: ["math", "stats", "statistics", "data science", "ds", "maths", "mathematics", "linear algebra", "calculus"],
+    category: "Data Science",
+    categoryClass: "cat-ds",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "Python For Data Science",
+    keywords: ["python", "py", "data science", "ds", "scikit", "sklearn", "machine learning python"],
+    category: "Data Science",
+    categoryClass: "cat-ds",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "Classical Machine Learning",
+    keywords: ["ml", "machine learning", "classical ml", "regression", "classification", "clustering", "supervised"],
+    category: "Machine Learning",
+    categoryClass: "cat-mle",
+    price: "Part 01 Free",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "Deep Learning Fundamentals",
+    keywords: ["dl", "deep learning", "neural network", "cnn", "rnn", "transformer"],
+    category: "Deep Learning",
+    categoryClass: "cat-mle",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "Generative AI & LLM Integration",
+    keywords: ["genai", "gen ai", "llm", "chatgpt", "generative", "gpt", "large language model", "prompt"],
+    category: "Generative AI",
+    categoryClass: "cat-mle",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "EDA & Feature Engineering",
+    keywords: ["eda", "feature engineering", "exploratory", "data analysis", "feature selection"],
+    category: "Data Science",
+    categoryClass: "cat-ds",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "Model Evaluation, Selection & Tuning",
+    keywords: ["model", "evaluation", "tuning", "hyperparameter", "cross validation", "model selection"],
+    category: "Data Science",
+    categoryClass: "cat-ds",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  },
+  {
+    name: "MLOps & Model Deployment",
+    keywords: ["mlops", "deployment", "ci/cd", "model ops", "docker", "kubernetes", "production"],
+    category: "MLOps",
+    categoryClass: "cat-mle",
+    price: "₹199",
+    icon: "🔜",
+    iconClass: "type-coming",
+    type: "coming",
+    action: function() { alert('Coming July 20'); }
+  }
+];
+
+function filterSearch(query) {
+  if (!query) return [];
+  const q = query.toLowerCase().trim();
+  if (q.length < 1) return [];
+  return SEARCH_INDEX.filter(function(item) {
+    // Check item name
+    if (item.name.toLowerCase().includes(q)) return true;
+    // Check keywords
+    return item.keywords.some(function(kw) { return kw.includes(q); });
+  });
+}
+
+function renderSearchResults(results, query) {
+  var dropdown = document.getElementById('searchDropdown');
+  if (!dropdown) return;
+
+  if (!query || query.trim().length < 1) {
+    dropdown.classList.remove('active');
+    dropdown.innerHTML = '';
+    return;
+  }
+
+  if (results.length === 0) {
+    dropdown.innerHTML = '<div class="search-no-results"><span>🔍</span>No results found for "' + query + '"</div>';
+    dropdown.classList.add('active');
+    return;
+  }
+
+  // Group results
+  var bundles = results.filter(function(r) { return r.type === 'bundle'; });
+  var handbooks = results.filter(function(r) { return r.type === 'handbook'; });
+  var coming = results.filter(function(r) { return r.type === 'coming'; });
+
+  var html = '';
+
+  if (bundles.length > 0) {
+    html += '<div class="search-dropdown-group">📦 Course Bundles</div>';
+    bundles.forEach(function(item) {
+      html += buildSearchItem(item);
+    });
+  }
+
+  if (handbooks.length > 0) {
+    if (bundles.length > 0) html += '<div class="search-dropdown-divider"></div>';
+    html += '<div class="search-dropdown-group">📘 Handbooks</div>';
+    handbooks.forEach(function(item) {
+      html += buildSearchItem(item);
+    });
+  }
+
+  if (coming.length > 0) {
+    if (bundles.length > 0 || handbooks.length > 0) html += '<div class="search-dropdown-divider"></div>';
+    html += '<div class="search-dropdown-group">🔜 Coming Soon</div>';
+    coming.forEach(function(item) {
+      html += buildSearchItem(item);
+    });
+  }
+
+  dropdown.innerHTML = html;
+  dropdown.classList.add('active');
+
+  // Attach click handlers
+  var items = dropdown.querySelectorAll('.search-dropdown-item');
+  items.forEach(function(el) {
+    el.addEventListener('click', function() {
+      var idx = parseInt(el.getAttribute('data-index'));
+      var searchInput = document.getElementById('globalSearchInput');
+      if (searchInput) { searchInput.value = ''; }
+      dropdown.classList.remove('active');
+      dropdown.innerHTML = '';
+      if (SEARCH_INDEX[idx]) SEARCH_INDEX[idx].action();
+    });
+  });
+}
+
+function buildSearchItem(item) {
+  var idx = SEARCH_INDEX.indexOf(item);
+  var priceHtml = '';
+  if (item.type === 'coming') {
+    priceHtml = '<span class="search-item-coming">Coming July 20</span>';
+  } else if (item.price === 'Free' || item.price === 'Part 01 Free') {
+    priceHtml = '<span class="search-item-price free">' + item.price + '</span>';
+  } else {
+    priceHtml = '<span class="search-item-price">' + item.price + '</span>';
+  }
+  return '<button class="search-dropdown-item" data-index="' + idx + '" type="button">' +
+    '<div class="search-item-icon ' + item.iconClass + '">' + item.icon + '</div>' +
+    '<div class="search-item-body">' +
+      '<div class="search-item-name">' + item.name + '</div>' +
+      '<div class="search-item-meta">' +
+        '<span class="search-item-badge ' + item.categoryClass + '">' + item.category + '</span>' +
+      '</div>' +
+    '</div>' +
+    priceHtml +
+  '</button>';
+}
+
+// ── Search Event Listeners ──
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.getElementById('globalSearchInput');
+  var dropdown = document.getElementById('searchDropdown');
+  if (!searchInput || !dropdown) return;
+
+  // Live search on typing
+  searchInput.addEventListener('input', function() {
+    var query = searchInput.value;
+    var results = filterSearch(query);
+    renderSearchResults(results, query);
+  });
+
+  // Re-open on focus if there is text
+  searchInput.addEventListener('focus', function() {
+    var query = searchInput.value;
+    if (query && query.trim().length > 0) {
+      var results = filterSearch(query);
+      renderSearchResults(results, query);
+    }
+  });
+
+  // Close on Escape
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('active');
+      dropdown.innerHTML = '';
+      searchInput.blur();
+    }
+  });
+
+  // Close on click outside
+  document.addEventListener('click', function(e) {
+    if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('active');
+      dropdown.innerHTML = '';
+    }
+  });
+});
+
 
 function loadLazyIframe(id) {
   const iframe = document.getElementById(id);
