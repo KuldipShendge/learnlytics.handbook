@@ -6959,4 +6959,33 @@ body {
     color: #94a3b8;
     text-align: center;
   }
+
+  /* Mobile header layout adjustments */
+  .mobile-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-header-socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mobile-header-socials a {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 6px !important;
+    transform: none !important;
+  }
+
+  .mobile-header-socials svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Navigation hiding for mobile homepage content */
+  .mobile-home-content.hide-mobile-home {
+    display: none !important;
+  }
 }
