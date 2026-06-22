@@ -3512,15 +3512,7 @@ textarea:focus { border-color: var(--cyan); }
   }
 
   .dots {
-    display: flex !important;
-    right: 5px !important;
-    top: 52% !important;
-    gap: 8px !important;
-    padding: 8px 5px;
-    border-radius: 999px;
-    background: rgba(244, 246, 248, 0.78);
-    backdrop-filter: blur(8px);
-    z-index: 2600;
+    display: none !important;
   }
 
   .dot {
@@ -6564,6 +6556,18 @@ body {
   }
   .courses-header-right .header-stat-badge:nth-child(3) {
     grid-column: span 1 !important;
+  }
+}
+
+/* 2.1. Responsive Trust Footer inside Course Bundles page to prevent horizontal overflow */
+@media (max-width: 768px) {
+  .courses-trust-footer {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  .trust-footer-badge {
+    justify-content: flex-start !important;
   }
 }
 
