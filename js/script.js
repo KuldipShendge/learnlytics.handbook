@@ -56,12 +56,16 @@ function goTo(n) {
 
 }
 
+let wheelThrottled = false;
 window.addEventListener('wheel', e => {
 
+  if (wheelThrottled) return;
   if (!track || !detailView) return;
 
   if (detailView.classList.contains('open') || document.getElementById('coursesMenuSection')?.style.display === 'block') return;
 
+  wheelThrottled = true;
+  setTimeout(() => { wheelThrottled = false; }, 100);
   goTo(current + (e.deltaY > 0 ? 1 : -1));
 
 }, { passive: true });
@@ -513,7 +517,7 @@ function openDetail(courseId) {
 
   detailView.scrollTop = 0; 
 
-  window.location.hash = courseId;
+  // window.location.hash = courseId; // Removed: routing system uses pushState
 
   var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
 
@@ -1021,11 +1025,11 @@ function closePythonHandbook() {
 
   const dashBottom = document.querySelector('.dashboard-bottom');
 
-  if (statsGrid) statsGrid.style.display = 'grid';
+  if (statsGrid) statsGrid.style.display = '';
 
-  if (dashGrid) dashGrid.style.display = 'grid';
+  if (dashGrid) dashGrid.style.display = '';
 
-  if (dashBottom) dashBottom.style.display = 'grid';
+  if (dashBottom) dashBottom.style.display = '';
 
   // Hide Python details section
 
@@ -2547,6 +2551,8 @@ function togglePhase(id) {
 
   const card = document.getElementById(id);
 
+  if (!card) return;
+
   card.classList.toggle('open');
 
 }
@@ -2679,13 +2685,17 @@ function openModal(type) {
 
   // Swap modal DOM values
 
-  document.getElementById('modal-title').innerText = currentModalConfig.title;
-
-  document.getElementById('modal-sub').innerHTML = currentModalConfig.sub;
-
-  document.getElementById('modal-success-msg').innerText = currentModalConfig.successMsg;
-
+  const titleEl = document.getElementById('modal-title');
+  const subEl = document.getElementById('modal-sub');
+  const successEl = document.getElementById('modal-success-msg');
   const dlBtn = document.getElementById('modal-download-btn');
+  if (!titleEl || !subEl || !dlBtn) return;
+
+  titleEl.innerText = currentModalConfig.title;
+
+  subEl.innerHTML = currentModalConfig.sub;
+
+  if (successEl) successEl.innerText = currentModalConfig.successMsg;
 
   dlBtn.href = currentModalConfig.fileLink;
 
@@ -2741,7 +2751,7 @@ function submitModalForm() {
 
   const wa = document.getElementById('inp-wa').value.trim();
 
-  if (!name || !email.includes('@') || wa.replace(/\D/g,'').length < 10) { 
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || wa.replace(/\D/g,'').length < 10) { 
 
       alert('Please fill out all fields correctly.'); return; 
 
@@ -2901,7 +2911,7 @@ window.addEventListener('keydown', e => {
 
       closeCoursesMenu();
 
-    } else if (detailView.classList.contains('open')) {
+    } else if (detailView && detailView.classList.contains('open')) {
 
       closeDetail();
 
@@ -2917,7 +2927,7 @@ window.addEventListener('keydown', e => {
 
   const isCoursesOpen = coursesSection && coursesSection.style.display === 'block';
 
-  if (detailView.classList.contains('open') || document.getElementById('modal').classList.contains('open') || isCoursesOpen || (reviewModal && reviewModal.classList.contains('open'))) return;
+  if ((detailView && detailView.classList.contains('open')) || document.getElementById('modal')?.classList.contains('open') || isCoursesOpen || (reviewModal && reviewModal.classList.contains('open'))) return;
 
   if (!track) return;
 
@@ -3651,7 +3661,14 @@ function renderSearchResults(results, query) {
   }
 
   if (results.length === 0) {
-    dropdown.innerHTML = '<div class="search-no-results"><span>🔍</span>No results found for "' + query + '"</div>';
+    var noResultDiv = document.createElement('div');
+    noResultDiv.className = 'search-no-results';
+    var iconSpan = document.createElement('span');
+    iconSpan.textContent = '🔍';
+    noResultDiv.appendChild(iconSpan);
+    noResultDiv.appendChild(document.createTextNode('No results found for "' + query + '"'));
+    dropdown.innerHTML = '';
+    dropdown.appendChild(noResultDiv);
     dropdown.classList.add('active');
     return;
   }
@@ -3732,10 +3749,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!searchInput || !dropdown) return;
 
   // Live search on typing
+  var searchDebounceTimer;
   searchInput.addEventListener('input', function() {
-    var query = searchInput.value;
-    var results = filterSearch(query);
-    renderSearchResults(results, query);
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(function() {
+      var query = searchInput.value;
+      var results = filterSearch(query);
+      renderSearchResults(results, query);
+    }, 150);
   });
 
   // Re-open on focus if there is text
@@ -3768,7 +3789,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadLazyIframe(id) {
   const iframe = document.getElementById(id);
-  if (iframe && iframe.dataset.src && !iframe.src) {
+  if (iframe && iframe.dataset.src && !iframe.getAttribute('src')) {
     iframe.src = iframe.dataset.src;
   }
 }
@@ -3870,13 +3891,13 @@ if (typeof openDetail === 'function') {
   openDetail = function(courseId, ...args) {
     originalOpenDetail.apply(this, [courseId, ...args]);
     if (courseId === 'data-analyst') {
-      safePushState('/course-bundles/data-BI-Analyst-Bundle');
+      safePushState('/course-bundles/data-bi-analyst-bundle');
     } else if (courseId === 'data-science') {
-      safePushState('/course-bundles/data-BI-Analyst-Bundle/Data-Scientist-GenAI-Engineer-Bundle');
+      safePushState('/course-bundles/data-scientist-genai-engineer-bundle');
     } else if (courseId === 'data-analyst-questions') {
-      safePushState('/course-bundles/data-BI-Analyst-Bundle/interview-questions');
+      safePushState('/course-bundles/data-bi-analyst-bundle/interview-questions');
     } else if (courseId === 'data-science-questions') {
-      safePushState('/course-bundles/data-BI-Analyst-Bundle/Data-Scientist-GenAI-Engineer-Bundle/interview-questions');
+      safePushState('/course-bundles/data-scientist-genai-engineer-bundle/interview-questions');
     }
   };
 }
