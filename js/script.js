@@ -2623,19 +2623,19 @@ function openModal(type) {
 
     currentModalConfig = {
 
-      title: "Get Free Machine Learning Handbook",
+      title: "Get Free ML Part-01 Handbook",
 
-      sub: "Enter your details below &mdash; we will send the handbook preview directly to your inbox.",
+      sub: "Enter your details below &mdash; we will send the handbook directly to your inbox. No spam, we promise.",
 
-      successMsg: "We just sent the free handbook preview directly to your inbox (check your spam folder just in case!).",
+      successMsg: "We just sent the free handbook directly to your inbox (check your spam folder just in case!).",
 
-      downloadText: "📄 Download ML Part-01 Handbook Now",
+      downloadText: "📄 Download Free ML Part-01 Handbook Now",
 
-      fileLink: baseLink + "/pdfs/ML-part01-handbook.pdf",
+      fileLink: "https://drive.google.com/file/d/1uWMZyKNwhMUyzIqkj-_0-kBxJ-o5KmoF/view?usp=sharing",
 
-      subject: "📄 Your Free Machine Learning Handbook Sample — Learnlytics.handbook",
+      subject: "📄 Your Free ML Part-01 Handbook — Learnlytics.handbook",
 
-      emailTitle: "Free Machine Learning Handbook Sample"
+      emailTitle: "Free ML Part-01 Handbook"
 
     };
 
@@ -2717,6 +2717,16 @@ function openModal(type) {
 
     }
 
+  }
+
+  // Update whatsapp bonus link text dynamically
+  const waBtn = document.getElementById('modal-whatsapp-btn');
+  if (waBtn) {
+    if (type === 'ds-handbook' || type === 'ds-questions') {
+      waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20ML%20bonus!";
+    } else {
+      waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20SQL%20bonus!";
+    }
   }
 
   document.getElementById('modal').classList.add('open');
@@ -4060,4 +4070,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// Function to update recent order dates dynamically relative to today's date
+function updateRecentOrderDates() {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  
+  const today = new Date();
+  const todayStr = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+  
+  // Local ISO Date: YYYY-MM-DD
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const todayIso = `${year}-${month}-${day}`;
+  
+  // Today minus 3 days
+  const minus3 = new Date();
+  minus3.setDate(today.getDate() - 3);
+  const minus3Str = `${months[minus3.getMonth()]} ${minus3.getDate()}, ${minus3.getFullYear()}`;
+  const m3Year = minus3.getFullYear();
+  const m3Month = String(minus3.getMonth() + 1).padStart(2, '0');
+  const m3Day = String(minus3.getDate()).padStart(2, '0');
+  const minus3Iso = `${m3Year}-${m3Month}-${m3Day}`;
+  
+  // Update elements
+  document.querySelectorAll('.recent-order-time-today').forEach(el => {
+    el.textContent = todayStr;
+    el.setAttribute('datetime', todayIso);
+  });
+  
+  document.querySelectorAll('.recent-order-time-minus-3').forEach(el => {
+    el.textContent = minus3Str;
+    el.setAttribute('datetime', minus3Iso);
+  });
+}
+
+// Perform initial update on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateRecentOrderDates);
+} else {
+  updateRecentOrderDates();
+}
 
