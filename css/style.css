@@ -224,32 +224,7 @@ body {
 .stat-badge-icon-svg.badge-icon-purple { background: rgba(168, 85, 247, 0.08); }
 .stat-badge-icon-svg.badge-icon-pink { background: rgba(236, 72, 153, 0.08); }
 
-.header-stat-badge {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--box-bg);
-  border: 1px solid var(--border);
-  padding: 10px 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(3, 27, 78, 0.02);
-}
 
-.stat-badge-icon-svg {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.stat-badge-icon-svg svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.2px;
-}
 .header-stat-badge-legacy {
   display: flex;
   align-items: center;
@@ -326,12 +301,7 @@ body {
   display: block;
 }
 
-.sidebar-illustration-fallback {
-  display: none;
-  position: relative;
-  width: 100%;
-  height: 190px;
-}
+
 
 .paper-plane {
   position: absolute;
@@ -1414,15 +1384,7 @@ button.stat-card {
   }
 }
 
-html, body { 
-  height: 100%; 
-  overflow: hidden; 
-  background-color: var(--outer-bg); 
-  background-image: linear-gradient(rgba(3, 27, 78, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(3, 27, 78, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  color: var(--text); 
-  font-family: 'DM Sans', sans-serif; 
-}
+
 
 /* -- PERSISTENT OUTER NAV -- */
 .outer-nav {
@@ -1701,39 +1663,7 @@ html, body {
   gap: 16px;
 }
 
-.header-stat-badge-legacy {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--box-bg);
-  border: 1px solid var(--border);
-  padding: 12px 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(3, 27, 78, 0.02);
-}
 
-.stat-badge-icon {
-  font-size: 20px;
-}
-
-.stat-badge-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-badge-info strong {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1.1;
-}
-
-.stat-badge-info span {
-  font-size: 11px;
-  color: var(--muted);
-  font-weight: 600;
-}
 
 /* 4 Column Cards Grid */
 .courses-cards-grid-4col {
@@ -2077,7 +2007,7 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .courses-trust-footer {
+  .courses-trust-footer-legacy {
     flex-direction: column;
     gap: 16px;
   }
@@ -2177,7 +2107,7 @@ html, body {
   font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700;
   letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center;
 }
-.detail-left h1 {
+.detail-left h1, .detail-left h2 {
   font-family: 'DM Sans', sans-serif; font-size: clamp(40px, 5vw, 60px); 
   font-weight: 800; line-height: 1.1; margin-bottom: 20px;
 }
@@ -2349,7 +2279,7 @@ html, body {
   font-size: 34px;
   margin-bottom: 24px;
 }
-.download-success h1 {
+.download-success h1, .download-success h2 {
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 800;
@@ -3034,7 +2964,7 @@ textarea:focus { border-color: var(--cyan); }
 
 /* 1. Laptops and Smaller Monitors */
 @media (max-width: 1366px), (max-height: 850px) {
-  .detail-left h1 {
+  .detail-left h1, .detail-left h2 {
     font-size: 38px !important; /* Overrides the massive 60px text */
     line-height: 1.15 !important;
     margin-bottom: 16px !important;
@@ -3057,7 +2987,7 @@ textarea:focus { border-color: var(--cyan); }
 
 /* 2. Mobile Phones (Extra Shrink) */
 @media (max-width: 768px) {
-  .detail-left h1 {
+  .detail-left h1, .detail-left h2 {
     font-size: 32px !important;
   }
   .phases-title {
@@ -3194,7 +3124,7 @@ textarea:focus { border-color: var(--cyan); }
   flex-shrink: 0;
 }
 
-.help-faq-hero h1 {
+.help-faq-hero h1, .help-faq-hero h2 {
   margin: 0 0 12px;
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(24px, 3vw, 32px);
@@ -3203,7 +3133,7 @@ textarea:focus { border-color: var(--cyan); }
   color: var(--navy);
 }
 
-.help-faq-hero h1 strong {
+.help-faq-hero h1 strong, .help-faq-hero h2 strong {
   color: var(--blue);
 }
 
@@ -3351,7 +3281,7 @@ textarea:focus { border-color: var(--cyan); }
     border-radius: 12px;
   }
 
-  .help-faq-hero h1 {
+  .help-faq-hero h1, .help-faq-hero h2 {
     font-size: clamp(22px, 5vw, 28px);
   }
 
@@ -3567,22 +3497,7 @@ textarea:focus { border-color: var(--cyan); }
     height: 8px !important;
   }
 
-  .scroll-hint {
-    display: none !important;
-    flex-direction: row !important;
-    left: 50% !important;
-    bottom: 96px !important;
-    padding: 7px 12px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid var(--border2);
-    box-shadow: 0 8px 24px rgba(3, 27, 78, 0.08);
-    color: var(--navy);
-    font-size: 10px !important;
-    gap: 6px !important;
-    z-index: 2700;
-    pointer-events: none;
-  }
+
 
   .scroll-hint .arrow {
     line-height: 1;
@@ -3649,7 +3564,7 @@ textarea:focus { border-color: var(--cyan); }
     min-width: 0 !important;
   }
 
-  .detail-left h1,
+  .detail-left h1, .detail-left h2,
   .detail-left p,
   .highlight-box,
   .btn-quick,
@@ -3951,14 +3866,7 @@ body {
   background-image: none;
 }
 
-.outer-nav,
-#main-stage,
-.side-highlights,
-.dots,
-.scroll-hint,
-#homeFooter {
-  display: none !important;
-}
+
 
 /* ── PYTHON HANDBOOK STYLES ── */
 .python-detail-section {
@@ -4143,7 +4051,7 @@ body {
   margin-bottom: 12px;
 }
 
-.py-hero-info h1 {
+.py-hero-info h1, .py-hero-info h2 {
   font-size: 28px;
   font-weight: 800;
   color: #031b4e;
@@ -5222,7 +5130,7 @@ body {
     margin-top: 12px;
   }
   
-  .py-hero-info h1 {
+  .py-hero-info h1, .py-hero-info h2 {
     font-size: 22px;
   }
   
@@ -5542,7 +5450,7 @@ body {
   flex-shrink: 0;
 }
 
-.da-hero-copy h1 {
+.da-hero-copy h1, .da-hero-copy h2 {
   margin: 0;
   max-width: 520px;
   font-family: 'DM Sans', sans-serif;
@@ -5552,7 +5460,7 @@ body {
   letter-spacing: -0.01em;
 }
 
-.da-hero-copy h1 strong {
+.da-hero-copy h1 strong, .da-hero-copy h2 strong {
   display: block;
   color: var(--da-cyan);
 }
@@ -6056,7 +5964,7 @@ body {
     padding: 18px;
   }
 
-  .da-hero-copy h1 {
+  .da-hero-copy h1, .da-hero-copy h2 {
     font-size: 24px;
   }
 
