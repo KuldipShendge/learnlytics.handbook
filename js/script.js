@@ -2707,26 +2707,14 @@ function openModal(type) {
 
   if (bonusMsg) {
 
-    if (type === 'ds-handbook' || type === 'ds-questions') {
-
-      bonusMsg.textContent = 'Want Machine Learning Part 01 Interview Question Set? Message us on WhatsApp to get it instantly.';
-
-    } else {
-
-      bonusMsg.textContent = 'Want our SQL Interview Question Set? Message us on WhatsApp to get it instantly.';
-
-    }
+    bonusMsg.textContent = 'Want our Interview Question Set? Message us on WhatsApp to get it instantly.';
 
   }
 
-  // Update whatsapp bonus link text dynamically
+  // Update whatsapp bonus link (unified message for all handbooks)
   const waBtn = document.getElementById('modal-whatsapp-btn');
   if (waBtn) {
-    if (type === 'ds-handbook' || type === 'ds-questions') {
-      waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20ML%20bonus!";
-    } else {
-      waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20SQL%20bonus!";
-    }
+    waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20Bonus!";
   }
 
   document.getElementById('modal').classList.add('open');
@@ -3406,6 +3394,17 @@ function openExploreAllHandbooks() {
 
   document.querySelectorAll('.dashboard-nav-item').forEach(item => item.classList.remove('active'));
 
+  // Reset the topbar back to the homepage "Welcome to Learnlytics" title
+  var topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
+  if (topbarLeft && topbarLeft.dataset.originalHtml) {
+    topbarLeft.innerHTML = topbarLeft.dataset.originalHtml;
+  }
+  var h1 = document.querySelector('.dashboard-topbar h1');
+  var p = document.querySelector('.dashboard-topbar p');
+  if (h1) h1.innerHTML = 'Welcome to Learn<span class="brand-lytics">lytics</span>';
+  if (p) p.innerHTML = 'Your one-stop hub for high-quality handbooks to <strong>learn, practice &amp; grow.</strong>';
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 
