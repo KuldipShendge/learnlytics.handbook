@@ -3235,9 +3235,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // --- EXPLORE ALL HANDBOOKS LOGIC ---
 
-const popularityOrder = ['hb-math', 'hb-math-ds', 'hb-python', 'hb-python-ds', 'hb-ml', 'hb-dl', 'hb-genai', 'hb-sql', 'hb-mlops', 'hb-bi', 'hb-de', 'hb-ai', 'hb-domain', 'hb-eda', 'hb-model', 'hb-excel'];
+const popularityOrder = ['hb-math', 'hb-math-ds', 'hb-python', 'hb-python-ds', 'hb-ml', 'hb-dl', 'hb-genai', 'hb-sql', 'hb-mlops', 'hb-bi', 'hb-de', 'hb-ai', 'hb-domain', 'hb-eda', 'hb-model', 'hb-excel', 'hb-ai-playbook'];
 
-const analyticsOrder = ['hb-math', 'hb-excel', 'hb-sql', 'hb-python', 'hb-bi', 'hb-de', 'hb-domain', 'hb-ai'];
+const analyticsOrder = ['hb-math', 'hb-excel', 'hb-sql', 'hb-python', 'hb-bi', 'hb-de', 'hb-domain', 'hb-ai', 'hb-ai-playbook'];
 
 const scienceOrder = ['hb-math-ds', 'hb-python-ds', 'hb-eda', 'hb-ml', 'hb-model', 'hb-dl', 'hb-mlops', 'hb-genai'];
 
@@ -3555,6 +3555,23 @@ const SEARCH_INDEX = [
     iconClass: "type-handbook",
     type: "handbook",
     action: function() { openAiHandbook(); }
+  },
+  {
+    name: "AI PLAYBOOK BUNDLE",
+    keywords: ["ai playbook", "ai playbook bundle", "playbook", "artificial intelligence bundle", "ai bundle", "prompting", "generative ai"],
+    category: "AI Playbook",
+    categoryClass: "cat-da",
+    price: "₹119",
+    icon: "📘",
+    iconClass: "type-handbook",
+    type: "handbook",
+    action: function() {
+      openExploreAllHandbooks();
+      setTimeout(function() {
+        var card = document.getElementById('hb-ai-playbook');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
   },
   // -- Coming Soon Handbooks --
   {
