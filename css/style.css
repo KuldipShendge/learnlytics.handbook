@@ -9765,3 +9765,155 @@ body.standalone-da-page #course-data-analyst .dakit-page {
     padding: 14px 16px 20px;
   }
 }
+
+/* DA interview kit — responsive polish */
+#detail-view:has(#course-data-analyst.active) {
+  background: #f1f5f9;
+  padding: 12px;
+}
+
+.detail-inner:has(#course-data-analyst.active) {
+  background: transparent;
+}
+
+#course-data-analyst .dakit-page {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+#course-data-analyst .dakit-hero-icons-mobile,
+.dakit-mobile-offer-timer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #detail-view:has(#course-data-analyst.active) {
+    padding: 10px;
+  }
+
+  .detail-inner:has(#course-data-analyst.active) {
+    border-radius: 16px !important;
+    overflow: visible;
+  }
+
+  #course-data-analyst .dakit-page {
+    border-radius: 16px;
+  }
+
+  #course-data-analyst .dakit-hero {
+    margin: 0;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 16px 18px;
+  }
+
+  #course-data-analyst .dakit-hero-image-col {
+    order: -1;
+    width: 100%;
+    margin: 0 0 16px;
+    align-items: center;
+  }
+
+  #course-data-analyst .dakit-hero-image {
+    width: min(100%, 360px);
+  }
+
+  #course-data-analyst .dakit-hero-icons-desktop {
+    display: none;
+  }
+
+  #course-data-analyst .dakit-hero-icons-mobile {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(100%, 360px);
+    max-width: 360px;
+    gap: 6px;
+    margin: 10px auto 0;
+  }
+
+  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card {
+    min-height: 60px;
+    padding: 6px 2px;
+  }
+
+  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card img {
+    width: 26px;
+    height: 26px;
+  }
+
+  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card span {
+    font-size: 8px;
+  }
+
+  #course-data-analyst .dakit-hero-trust-box {
+    position: static;
+    width: min(100%, 360px);
+    margin: 10px auto 0;
+  }
+
+  #course-data-analyst .dakit-trusted-logos {
+    width: calc(100% + 20px);
+    max-width: none;
+    margin-left: -10px;
+    margin-bottom: 24px;
+  }
+
+  #course-data-analyst .dakit-testimonial-wrap {
+    display: block;
+  }
+
+  #course-data-analyst .dakit-nav-btn {
+    display: none;
+  }
+
+  #course-data-analyst .dakit-testimonials-carousel {
+    gap: 16px;
+    padding: 4px 2px 12px;
+    scroll-behavior: smooth;
+  }
+
+  #course-data-analyst .dakit-testimonial-card {
+    flex: 0 0 min(82vw, 320px);
+    min-width: 0;
+  }
+
+  .dashboard-shell,
+  body.standalone-da-page .dashboard-shell {
+    background: #f1f5f9;
+  }
+
+  .dakit-mobile-offer-timer {
+    position: fixed;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: 12px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 8px 14px;
+    border: 1px solid rgba(254, 202, 202, 0.55);
+    border-radius: 999px;
+    background: rgba(127, 29, 29, 0.96);
+    box-shadow: 0 10px 24px rgba(69, 10, 10, 0.32);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .dakit-mobile-offer-timer strong {
+    min-width: 48px;
+    color: #fef08a;
+    font-size: 16px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (max-width: 380px) {
+  #course-data-analyst .dakit-hero-icons-mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
