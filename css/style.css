@@ -8475,7 +8475,11 @@ body {
     gap: 12px;
     padding: 24px 20px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    background:
+      radial-gradient(circle at 57% 50%, rgba(21, 151, 67, 0.42) 0 10%, rgba(8, 67, 34, 0.64) 26%, rgba(2, 10, 7, 0) 47%),
+      linear-gradient(90deg, #020806 0%, #05120d 34%, #082d18 59%, #020806 100%);
+    border: 1px solid rgba(74, 222, 128, 0.22);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25), 0 0 35px rgba(45, 138, 78, 0.12);
     color: #fff;
     overflow: hidden;
     position: relative;
