@@ -215,7 +215,7 @@ function openCoursesMenu() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -452,7 +452,7 @@ function openDetail(courseId) {
 
         topbarLeft.innerHTML = `
 
-          <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+          <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
             <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -476,7 +476,7 @@ function openDetail(courseId) {
 
         topbarLeft.innerHTML = `
 
-          <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+          <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
             <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -1005,7 +1005,7 @@ function openPythonHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closePythonHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -1130,7 +1130,7 @@ function openPythonDsHandbook() {
       topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
     }
     topbarLeft.innerHTML = `
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
         <span onclick="closePythonDsHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
         <span style="color:var(--muted);margin:0 8px;">&gt;</span>
         <span style="color:var(--navy);font-weight:700;">Python For Data Science Handbook</span>
@@ -1284,7 +1284,7 @@ function openMathHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeMathHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -1430,7 +1430,7 @@ function openMathDsHandbook() {
       topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
     }
     topbarLeft.innerHTML = `
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
         <span onclick="closeMathDsHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
         <span style="color:var(--muted);margin:0 8px;">&gt;</span>
         <span style="color:var(--navy);font-weight:700;">Mathematics &amp; Statistics For Data Science Handbook</span>
@@ -1584,7 +1584,7 @@ function openSqlHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeSqlHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -1767,7 +1767,7 @@ function openBiHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeBiHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -1950,7 +1950,7 @@ function openDeHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeDeHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -2133,7 +2133,7 @@ function openDomainHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeDomainHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -2316,7 +2316,7 @@ function openAiHandbook() {
 
     topbarLeft.innerHTML = `
 
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
 
         <span onclick="closeAiHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
 
@@ -2480,7 +2480,7 @@ function openExcelHandbook() {
       topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
     }
     topbarLeft.innerHTML = `
-      <div class="breadcrumbs" style="font-family:'JetBrains Mono', monospace;font-size:14px;font-weight:600;display:flex;align-items:center;">
+      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
         <span onclick="closeExcelHandbook()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
         <span style="color:var(--muted);margin:0 8px;">&gt;</span>
         <span style="color:var(--navy);font-weight:700;">Excel &amp; Google Sheets Handbook</span>
