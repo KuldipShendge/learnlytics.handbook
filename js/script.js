@@ -4127,8 +4127,8 @@ if (document.readyState === 'loading') {
 
 /* ═══ DA INTERVIEW KIT — 1-HOUR COUNTDOWN TIMER ═══ */
 (function() {
-  var STORAGE_KEY = 'dakit_countdown_end';
-  var DURATION_MS = 60 * 60 * 1000; // 1 hour
+  var STORAGE_KEY = 'dakit_countdown_end_30m';
+  var DURATION_MS = 30 * 60 * 1000;
 
   function getEndTime() {
     var stored = localStorage.getItem(STORAGE_KEY);
@@ -4145,6 +4145,8 @@ if (document.readyState === 'loading') {
     var hrsEl = document.getElementById('dakitHrs');
     var minsEl = document.getElementById('dakitMins');
     var secsEl = document.getElementById('dakitSecs');
+    var mobileMinsEl = document.getElementById('dakitMobileMins');
+    var mobileSecsEl = document.getElementById('dakitMobileSecs');
     if (!hrsEl || !minsEl || !secsEl) return;
 
     var endTime = getEndTime();
@@ -4164,6 +4166,8 @@ if (document.readyState === 'loading') {
     hrsEl.textContent = hrs.toString().padStart(2, '0');
     minsEl.textContent = mins.toString().padStart(2, '0');
     secsEl.textContent = secs.toString().padStart(2, '0');
+    if (mobileMinsEl) mobileMinsEl.textContent = Math.floor(totalSecs / 60).toString().padStart(2, '0');
+    if (mobileSecsEl) mobileSecsEl.textContent = secs.toString().padStart(2, '0');
   }
 
   function startCountdown() {
@@ -4191,6 +4195,49 @@ function dakitSlideTestimonials(direction) {
   newScroll = Math.max(0, Math.min(newScroll, maxScroll));
   track.scrollTo({ left: newScroll, behavior: 'smooth' });
 }
+
+/* ═══ DA INTERVIEW KIT — MOBILE TESTIMONIAL AUTO-SCROLL ═══ */
+(function() {
+  var autoScrollTimer;
+
+  function stopAutoScroll() {
+    window.clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+
+  function startAutoScroll() {
+    var track = document.getElementById('dakitTestiTrack');
+    if (!track || !window.matchMedia('(max-width: 768px)').matches || autoScrollTimer) return;
+
+    autoScrollTimer = window.setInterval(function() {
+      var card = track.querySelector('.dakit-testimonial-card');
+      if (!card) return;
+      var cardWidth = card.offsetWidth + 24;
+      var isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      track.scrollTo({ left: isAtEnd ? 0 : track.scrollLeft + cardWidth, behavior: 'smooth' });
+    }, 3500);
+  }
+
+  function setupMobileTestimonials() {
+    var track = document.getElementById('dakitTestiTrack');
+    if (!track) return;
+    startAutoScroll();
+    track.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    track.addEventListener('touchend', function() {
+      window.setTimeout(startAutoScroll, 1800);
+    }, { passive: true });
+    window.addEventListener('resize', function() {
+      stopAutoScroll();
+      startAutoScroll();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileTestimonials);
+  } else {
+    setupMobileTestimonials();
+  }
+})();
 
 
 /* ═══ DA INTERVIEW KIT — FAQ TOGGLE ICON ═══ */
