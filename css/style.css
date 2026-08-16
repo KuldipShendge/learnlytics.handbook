@@ -342,7 +342,6 @@
   text-align: left;
   background-color: #f4fbf5;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-  will-change: transform;
 }
 
 #course-data-analyst .dakit-inside-icon {
@@ -369,15 +368,16 @@
   max-width: 1180px;
   gap: 22px;
   padding: 10px 6px 4px;
+  overflow: hidden;
 }
 
 #course-data-analyst .dakit-sample-img {
-  flex-basis: 240px;
+  flex: unset;
   width: 240px;
-  max-width: 240px;
+  max-width: 100%;
+  min-width: 0;
   border-radius: 5px;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.13);
-  will-change: transform;
 }
 
 #course-data-analyst .dakit-samples-actions {
@@ -608,8 +608,8 @@
   }
 
   #course-data-analyst .dakit-hero {
-    margin: 0;
-    border-radius: 16px 16px 0 0;
+    margin: 10px;
+    border-radius: 16px;
     padding: 24px 16px 20px;
   }
 
@@ -7229,7 +7229,7 @@ body {
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-  transition: all 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .dakit-inside-card:hover {
   transform: translateY(-5px);
@@ -7299,7 +7299,7 @@ body {
   transform: none;
 }
 .dakit-sample-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   z-index: 10;
   box-shadow: 0 12px 32px rgba(0,0,0,0.20);
 }
@@ -8952,6 +8952,10 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   background: #ffffff;
 }
 
+#course-data-analyst .dakit-samples {
+  overflow: hidden;
+}
+
 #course-data-analyst .dakit-section-title {
   margin: 0 auto 20px;
   color: #111827;
@@ -9049,12 +9053,14 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   max-width: 1180px;
   gap: 22px;
   padding: 10px 6px 4px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 #course-data-analyst .dakit-sample-img {
+  flex: unset;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   border-radius: 5px;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.13);
 }
@@ -9345,8 +9351,10 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   }
 
   #course-data-analyst .dakit-sample-img {
+    flex: unset;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
 
   #course-data-analyst .dakit-samples-actions .dakit-btn-primary,
@@ -9693,8 +9701,8 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   }
 
   #course-data-analyst .dakit-hero {
-    margin: 0;
-    border-radius: 16px 16px 0 0;
+    margin: 10px;
+    border-radius: 16px;
     padding: 20px 16px 18px;
   }
 
