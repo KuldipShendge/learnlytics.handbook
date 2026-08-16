@@ -2595,9 +2595,9 @@ let currentModalConfig = {
 
   successMsg: "We just sent the free handbook directly to your inbox (check your spam folder just in case!).",
 
-  downloadText: "📄 Download Free SQL Handbook Now",
+  downloadText: "📄 Download Free SQL Kit Now",
 
-  fileLink: "https://drive.google.com/file/d/1tg1D9w3WbXnH8scho_HbKwbqV6SG8tq0/view?usp=sharing",
+  fileLink: "https://drive.google.com/file/d/1-LIhEGSuNyCqY2zj2eg-sCxyU3Dnoyu2/view?usp=drive_link",
 
   subject: "📄 Your Free SQL Database Handbook — Learnlytics.handbook",
 
@@ -2621,7 +2621,7 @@ function openModal(type) {
 
       downloadText: "📄 Download Free SQL Questions Now",
 
-      fileLink: "https://drive.google.com/file/d/1tg1D9w3WbXnH8scho_HbKwbqV6SG8tq0/view?usp=sharing",
+      fileLink: "https://drive.google.com/file/d/1-LIhEGSuNyCqY2zj2eg-sCxyU3Dnoyu2/view?usp=drive_link",
 
       subject: "📄 Your Free SQL Questions Set — Learnlytics.handbook",
 
@@ -2681,9 +2681,9 @@ function openModal(type) {
 
       successMsg: "We just sent the free handbook directly to your inbox (check your spam folder just in case!).",
 
-      downloadText: "📄 Download Free SQL Handbook Now",
+      downloadText: "📄 Download Free SQL Kit Now",
 
-      fileLink: "https://drive.google.com/file/d/1tg1D9w3WbXnH8scho_HbKwbqV6SG8tq0/view?usp=sharing",
+      fileLink: "https://drive.google.com/file/d/1-LIhEGSuNyCqY2zj2eg-sCxyU3Dnoyu2/view?usp=drive_link",
 
       subject: "📄 Your Free SQL Database Handbook — Learnlytics.handbook",
 
@@ -2711,21 +2711,6 @@ function openModal(type) {
 
   dlBtn.innerText = currentModalConfig.downloadText;
 
-  // Update bonus message based on type (DA = SQL, DS = ML)
-
-  var bonusMsg = document.getElementById('modal-bonus-msg');
-
-  if (bonusMsg) {
-
-    bonusMsg.textContent = 'Want our Interview Question Set? Message us on WhatsApp to get it instantly.';
-
-  }
-
-  // Update whatsapp bonus link (unified message for all handbooks)
-  const waBtn = document.getElementById('modal-whatsapp-btn');
-  if (waBtn) {
-    waBtn.href = "https://wa.me/919326778036?text=Hi%20Learnlytics,%20send%20me%20the%20Bonus!";
-  }
 
   document.getElementById('modal').classList.add('open');
 
@@ -4127,8 +4112,8 @@ if (document.readyState === 'loading') {
 
 /* ═══ DA INTERVIEW KIT — 1-HOUR COUNTDOWN TIMER ═══ */
 (function() {
-  var STORAGE_KEY = 'dakit_countdown_end_30m';
-  var DURATION_MS = 30 * 60 * 1000;
+  var STORAGE_KEY = 'dakit_countdown_end_60m';
+  var DURATION_MS = 60 * 60 * 1000;
 
   function getEndTime() {
     var stored = localStorage.getItem(STORAGE_KEY);
