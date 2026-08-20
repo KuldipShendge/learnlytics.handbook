@@ -2994,6 +2994,20 @@ const ASIA_COUNTRY_CODES = new Set([
 
 ]);
 
+const AFRICA_COUNTRY_CODES = new Set([
+
+  'DZ', 'AO', 'BJ', 'BW', 'BF', 'BI', 'CV', 'CM', 'CF', 'TD', 'KM',
+
+  'CG', 'CD', 'CI', 'DJ', 'EG', 'GQ', 'ER', 'SZ', 'ET', 'GA', 'GM',
+
+  'GH', 'GN', 'GW', 'KE', 'LS', 'LR', 'LY', 'MG', 'MW', 'ML', 'MR',
+
+  'MU', 'MA', 'MZ', 'NA', 'NE', 'NG', 'RW', 'ST', 'SN', 'SC', 'SL',
+
+  'SO', 'ZA', 'SS', 'SD', 'TZ', 'TG', 'TN', 'UG', 'ZM', 'ZW'
+
+]);
+
 function getCourseRoots(courseIds) {
 
   return courseIds
@@ -3077,6 +3091,110 @@ function applyDataAnalystMarket(useInternationalCheckout) {
     REGIONAL_CHECKOUT.dataAnalyst.international.bundle
 
   );
+
+}
+
+function applyDaKitPricing(countryCode) {
+
+  if (!countryCode) return;
+
+  // Tier 3: Asia + Africa → keep INR defaults (same as India)
+  if (ASIA_COUNTRY_CODES.has(countryCode) || AFRICA_COUNTRY_CODES.has(countryCode)) return;
+
+  var tier;
+
+  if (countryCode === 'US') {
+
+    // Tier 1: United States
+    tier = {
+      kitDisplay: '$9.99',
+      kitStrikeDisplay: '$24.99',
+      upgradeDisplay: '+ $4.99',
+      upgradeStrikeDisplay: '$19.99',
+      upgradeDescHTML: 'Add <strong>8 Premium Handbooks</strong> in Just $4.99',
+      totalDisplay: '$14.98',
+      offLabel: '60% OFF',
+      kitLink: 'https://rzp.io/rzp/kGokl24y',
+      bundleLink: 'https://rzp.io/rzp/ro1v8df',
+      bundleCardPrice: '$14.99',
+      bundleCardStrike: '$29.99',
+      bundleCardOff: '50% OFF'
+    };
+
+  } else {
+
+    // Tier 2: Europe, Australia, Russia & everyone else
+    tier = {
+      kitDisplay: '$7.99',
+      kitStrikeDisplay: '$24.99',
+      upgradeDisplay: '+ $3.99',
+      upgradeStrikeDisplay: '$19.99',
+      upgradeDescHTML: 'Add <strong>8 Premium Handbooks</strong> in Just $3.99',
+      totalDisplay: '$11.98',
+      offLabel: '68% OFF',
+      kitLink: 'https://rzp.io/rzp/jQi4GPl',
+      bundleLink: 'https://rzp.io/rzp/D7r6WGq',
+      bundleCardPrice: '$11.99',
+      bundleCardStrike: '$24.99',
+      bundleCardOff: '52% OFF'
+    };
+
+  }
+
+  // Update the global config so toggleDaUpgrade() uses correct values
+  if (typeof daKitConfig !== 'undefined') {
+    daKitConfig.kitDisplay = tier.kitDisplay;
+    daKitConfig.totalDisplay = tier.totalDisplay;
+    daKitConfig.kitLink = tier.kitLink;
+    daKitConfig.bundleLink = tier.bundleLink;
+  }
+
+  // Update hero section prices
+  var heroOld = document.getElementById('dakitHeroOld');
+  var heroNew = document.getElementById('dakitHeroNew');
+  var heroBadge = document.getElementById('dakitHeroBadge');
+  if (heroOld) heroOld.textContent = tier.kitStrikeDisplay;
+  if (heroNew) heroNew.textContent = tier.kitDisplay;
+  if (heroBadge) heroBadge.textContent = tier.offLabel;
+
+  // Update bottom CTA prices
+  var ctaOld = document.getElementById('dakitCtaOld');
+  var ctaNew = document.getElementById('dakitCtaNew');
+  var ctaBadge = document.getElementById('dakitCtaBadge');
+  if (ctaOld) ctaOld.textContent = tier.kitStrikeDisplay;
+  if (ctaNew) ctaNew.textContent = tier.kitDisplay;
+  if (ctaBadge) ctaBadge.textContent = tier.offLabel;
+
+  // Update checkout modal upgrade section
+  var upgradeStrike = document.getElementById('dakitUpgradeStrike');
+  var upgradePrice = document.getElementById('dakitUpgradePrice');
+  var upgradeDesc = document.getElementById('dakitUpgradeDesc');
+  if (upgradeStrike) upgradeStrike.textContent = tier.upgradeStrikeDisplay;
+  if (upgradePrice) upgradePrice.textContent = tier.upgradeDisplay;
+  if (upgradeDesc) upgradeDesc.innerHTML = tier.upgradeDescHTML;
+
+  // Update checkout pay button and link
+  var payPrice = document.getElementById('daPayPrice');
+  if (payPrice) payPrice.textContent = tier.kitDisplay;
+
+  // Reset the payment link
+  if (typeof daPayLink !== 'undefined') {
+    daPayLink = tier.kitLink;
+  }
+
+  // Reset upgrade checkbox state
+  var cb = document.getElementById('daUpgradeCheck');
+  if (cb) cb.checked = false;
+  var card = document.getElementById('daUpgradeCard');
+  if (card) card.classList.remove('active');
+
+  // Update Course Bundles card (Home page)
+  var bundlePrice = document.getElementById('bundleDaPrice');
+  var bundleStrike = document.getElementById('bundleDaStrike');
+  var bundleBadge = document.getElementById('bundleDaBadge');
+  if (bundlePrice) bundlePrice.textContent = tier.bundleCardPrice;
+  if (bundleStrike) bundleStrike.textContent = tier.bundleCardStrike;
+  if (bundleBadge) bundleBadge.textContent = tier.bundleCardOff;
 
 }
 
@@ -3201,6 +3319,8 @@ async function localizePrices() {
   applyDataAnalystMarket(useInternationalAnalystCheckout);
 
   applyDataScienceMarket(useAsianScienceCheckout);
+
+  applyDaKitPricing(countryCode);
 
 }
 
