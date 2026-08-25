@@ -819,163 +819,252 @@ body {
   #course-data-analyst .dakit-hero {
     margin: 10px;
     border-radius: 16px;
-    padding: 24px 16px 20px;
+    padding: 22px 14px 20px;
   }
 
   #course-data-analyst .dakit-hero-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   #course-data-analyst .dakit-hero-left,
   #course-data-analyst .dakit-hero-image-col {
-    display: contents;
+    display: contents !important;
   }
 
   /* 1. 2026 EDITION */
   #course-data-analyst .dakit-hero-badge {
-    order: 1;
-    margin: 0 auto 10px;
+    order: 1 !important;
+    margin: 0 auto 10px !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    padding: 4px 12px !important;
+    display: inline-block !important;
   }
 
-  /* 2. Data Analyst 2026 title */
+  /* 2. Crack Your Data Analyst Interview in 2026 🚀 */
   #course-data-analyst .dakit-hero-title {
-    order: 2;
-    font-size: clamp(26px, 7.5vw, 34px);
-    margin: 0 auto 12px;
-    text-align: center;
+    order: 2 !important;
+    font-size: clamp(24px, 6.8vw, 32px) !important;
+    line-height: 1.18 !important;
+    margin: 0 auto 10px !important;
+    text-align: center !important;
+    max-width: 360px !important;
+    color: #ffffff !important;
   }
 
-  /* 3. 2,000+ Real Interview Questions */
+  /* 3. 🔥 2,000+ Real Interview Questions */
   #course-data-analyst .dakit-hero-subtitle {
-    order: 3;
-    font-size: 16px;
-    margin: 0 auto 10px;
-    text-align: center;
+    order: 3 !important;
+    font-size: 14.5px !important;
+    font-weight: 800 !important;
+    margin: 0 auto 10px !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    color: #ffd84b !important;
+    background: rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(37, 139, 45, 0.7) !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
   }
 
   /* 4. 1200 Technical + 800 Scenario-Based Questions... */
   #course-data-analyst .dakit-hero-desc {
-    order: 4;
-    font-size: 13px;
-    margin: 0 auto 16px;
-    text-align: center;
+    order: 4 !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    margin: 0 auto 14px !important;
+    text-align: center !important;
+    max-width: 340px !important;
+    color: #e2e8f0 !important;
   }
 
-  /* 5. Hero Image of kit */
+  /* 5. Hero Section Image */
   #course-data-analyst .dakit-hero-image {
-    order: 5;
-    width: min(100%, 340px);
-    margin: 0 auto 0;
+    order: 5 !important;
+    width: min(100%, 330px) !important;
+    max-width: 330px !important;
+    height: auto !important;
+    margin: 0 auto 14px !important;
+    display: block !important;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5)) !important;
   }
 
-  /* 6. Trusted badge under image */
-  #course-data-analyst .dakit-hero-trust-box {
-    order: 6;
-    position: relative;
-    margin-top: -28px;
-    margin-bottom: 16px;
-    width: min(100%, 320px);
-    display: flex;
-    justify-content: center;
-  }
-  #course-data-analyst .dakit-hero-trust-box img {
-    width: min(100%, 320px);
-    height: auto;
-  }
-
-  /* 7. Price and Limited time offer */
+  /* 6. Price and Limited time offer */
   #course-data-analyst .dakit-hero-price-timer-row {
-    order: 7;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 12px;
-    margin: 0 auto 14px;
+    order: 6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: min(100%, 340px) !important;
+    gap: 10px !important;
+    margin: 0 auto 12px !important;
   }
 
   #course-data-analyst .dakit-hero-pricing {
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #course-data-analyst .dakit-hero-pricing-new {
+    font-size: 38px !important;
+    color: #ffffff !important;
   }
 
   #course-data-analyst .dakit-hero-timer {
-    width: min(100%, 340px);
-    min-width: 0;
+    width: 100% !important;
+    max-width: 340px !important;
+    min-width: 0 !important;
   }
 
-  /* 8. Lifetime Access, Updated 2026, Instant Download, 7-Day Refund */
+  /* 7. Lifetime Access, Instant Download, Updated 2026, 7-Day Refund */
   #course-data-analyst .dakit-hero-badges {
-    order: 8;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    width: min(100%, 340px);
-    margin: 0 auto 14px;
+    order: 7 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    width: min(100%, 340px) !important;
+    margin: 0 auto 12px !important;
   }
 
-  /* 9. GET INSTANT ACCESS button */
+  #course-data-analyst .dakit-hero-badge-item {
+    font-size: 11.5px !important;
+    padding: 6px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* 8. GET INSTANT ACCESS CTA Button */
   #course-data-analyst .dakit-hero-cta-wrap {
-    order: 9;
-    width: min(100%, 340px);
-    margin: 0 auto 10px;
-    align-items: center;
+    order: 8 !important;
+    width: min(100%, 340px) !important;
+    margin: 0 auto 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
-  /* 10. Download SQL 250+ FREE Button */
-  #course-data-analyst .dakit-sql-addon-btn {
-    order: 10;
-    width: min(100%, 340px);
-    font-size: 15px;
-    font-weight: 800;
-    padding: 13px 16px;
-    margin: 0 auto 14px;
+  #course-data-analyst .dakit-hero-cta {
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 13px 18px !important;
+    font-weight: 800 !important;
+    justify-content: center !important;
   }
 
-  /* 11. Delivery steps */
-  #course-data-analyst .dakit-delivery-steps {
-    order: 11;
-    width: min(100%, 340px);
-    margin: 0 auto 10px;
+  /* 9. Live Counter & WhatsApp Row */
+  #course-data-analyst .dakit-hero-support-row {
+    order: 9 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: min(100%, 340px) !important;
+    margin: 0 auto 14px !important;
   }
 
-  /* 12. Live counter */
   #course-data-analyst .dakit-live-counter {
-    order: 12;
-    margin: 0 auto 16px;
+    margin: 0 auto !important;
+    font-size: 11.5px !important;
+    text-align: center !important;
   }
 
-  /* 13. Subjects Icon (all 8) */
+  #course-data-analyst .dakit-hero-wa-btn {
+    margin: 0 auto !important;
+    font-size: 11.5px !important;
+    padding: 5px 14px !important;
+  }
+
+  /* 10. Download Free SQL Handbook → */
+  #course-data-analyst .dakit-sql-addon-btn {
+    order: 10 !important;
+    width: min(100%, 340px) !important;
+    font-size: 13.5px !important;
+    font-weight: 800 !important;
+    padding: 12px 16px !important;
+    margin: 0 auto 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* 11. SHOW ME COMPLETE DATA ANALYST KIT → */
+  #course-data-analyst .dakit-complete-bundle-btn {
+    order: 11 !important;
+    width: min(100%, 340px) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    padding: 12px 16px !important;
+    margin: 0 auto 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* 12. Subject Icons */
   #course-data-analyst .dakit-hero-icons-desktop {
-    display: none;
+    display: none !important;
   }
 
   #course-data-analyst .dakit-hero-icons-mobile {
-    order: 13;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: min(100%, 360px);
-    max-width: 360px;
-    gap: 6px;
-    margin: 0 auto 16px;
+    order: 12 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: min(100%, 340px) !important;
+    max-width: 340px !important;
+    gap: 6px !important;
+    margin: 0 auto 10px !important;
   }
 
   #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card {
-    min-height: 60px;
-    padding: 6px 2px;
+    min-height: 54px !important;
+    padding: 4px 2px !important;
   }
 
   #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card img {
-    width: 26px;
-    height: 26px;
+    width: 24px !important;
+    height: 24px !important;
   }
 
   #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card span {
-    font-size: 8px;
+    font-size: 8.5px !important;
+    line-height: 1.1 !important;
   }
 
+  /* 13. Trusted By 10000+ rating image */
+  #course-data-analyst .dakit-hero-trust-box {
+    order: 13 !important;
+    position: static !important;
+    width: min(100%, 310px) !important;
+    margin: 0 auto 14px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
 
+  #course-data-analyst .dakit-hero-trust-box img {
+    width: min(100%, 310px) !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* 14. Delivery Steps (1 Pay Securely, 2 Instant Download, 3 Also Sent to Email) */
+  #course-data-analyst .dakit-delivery-steps-vertical,
+  #course-data-analyst .dakit-delivery-steps {
+    order: 14 !important;
+    width: min(100%, 340px) !important;
+    margin: 0 auto 8px !important;
+  }
 }
   #course-data-analyst .dakit-trusted-logos {
   margin-bottom: 14px;
@@ -10400,56 +10489,6 @@ body.standalone-da-page #course-data-analyst .dakit-page {
 
   #course-data-analyst .dakit-page {
     border-radius: 16px;
-  }
-
-  #course-data-analyst .dakit-hero {
-    margin: 10px;
-    border-radius: 16px;
-    padding: 20px 16px 18px;
-  }
-
-  #course-data-analyst .dakit-hero-image-col {
-    order: -1;
-    width: 100%;
-    margin: 0 0 16px;
-    align-items: center;
-  }
-
-  #course-data-analyst .dakit-hero-image {
-    width: min(100%, 360px);
-  }
-
-  #course-data-analyst .dakit-hero-icons-desktop {
-    display: none;
-  }
-
-  #course-data-analyst .dakit-hero-icons-mobile {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: min(100%, 360px);
-    max-width: 360px;
-    gap: 6px;
-    margin: 10px auto 0;
-  }
-
-  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card {
-    min-height: 60px;
-    padding: 6px 2px;
-  }
-
-  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card img {
-    width: 26px;
-    height: 26px;
-  }
-
-  #course-data-analyst .dakit-hero-icons-mobile .dakit-hero-icon-card span {
-    font-size: 8px;
-  }
-
-  #course-data-analyst .dakit-hero-trust-box {
-    position: static;
-    width: min(100%, 360px);
-    margin: 10px auto 0;
   }
 
   #course-data-analyst .dakit-trusted-logos {
