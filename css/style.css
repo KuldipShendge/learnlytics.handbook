@@ -1,5 +1,5 @@
 html {
-  font-size: 16px;
+  font-size: 18px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -8,8 +8,8 @@ html {
 
 body {
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 15.5px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--text);
   background: var(--outer-bg);
 }
@@ -3164,28 +3164,28 @@ button.stat-card {
 }
 .menu-card:hover { border-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 180, 216, 0.1); }
 .menu-card .c-icon { font-size: 40px; margin-bottom: 20px; }
-.menu-card h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 8px; line-height: 1.2;}
-.menu-card p { font-size: 15px; color: var(--muted); font-weight: 500; margin-bottom: 24px; }
+.menu-card h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.25;}
+.menu-card p { font-size: 16px; color: var(--muted); font-weight: 500; margin-bottom: 24px; line-height: 1.5; }
 
 .card-tech-logos {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: auto; margin-bottom: 24px;
 }
 .tech-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700;
-  padding: 6px 12px; border-radius: 6px; background: var(--box-bg2);
+  font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700;
+  padding: 7px 14px; border-radius: 8px; background: var(--box-bg2);
   border: 1px solid var(--border2); color: var(--navy);
 }
-.tech-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+.tech-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 .badge.live-now {
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 14px; font-family: 'Manrope', sans-serif; font-weight: 700;
-  background: var(--navy); color: #fff; padding: 10px 20px; border-radius: 99px;
+  font-size: 15px; font-family: 'Manrope', sans-serif; font-weight: 700;
+  background: var(--navy); color: #fff; padding: 12px 24px; border-radius: 99px;
 }
 .badge.coming-soon {
-  display: inline-block; font-size: 11px; font-family: 'Manrope', sans-serif;
-  background: var(--box-bg2); padding: 8px 16px; border-radius: 6px; color: var(--blue); font-weight: 700;
+  display: inline-block; font-size: 13px; font-family: 'Manrope', sans-serif;
+  background: var(--box-bg2); padding: 9px 18px; border-radius: 8px; color: var(--blue); font-weight: 700;
 }
 
 /* ── FULL WEBSITE COURSE DETAIL VIEW ── */
@@ -6945,31 +6945,37 @@ body {
 }
 
 #da-sample-pdfs .da-section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-bottom: 22px;
 }
 
 #da-sample-pdfs .da-section-heading h2 {
   color: #78350f !important;
-  font-size: 26px;
+  font-size: clamp(20px, 3.5vw, 26px);
   font-weight: 800;
   margin: 0 0 4px 0;
+  line-height: 1.25;
 }
 
 #da-sample-pdfs .da-section-heading h2 span,
 #da-sample-pdfs .da-samples-sub-badge {
   color: #b45309 !important;
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
   font-weight: 800;
-  margin: 4px 0 8px;
+  margin: 2px 0 6px;
   display: block;
 }
 
 #da-sample-pdfs .da-section-heading p {
   color: #92400e !important;
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 660px;
+  line-height: 1.45;
 }
 
 #da-sample-pdfs .da-samples-pdf-grid {
@@ -7089,21 +7095,26 @@ body {
   margin: 0 0 16px;
   color: var(--da-navy);
   font-family: 'Manrope', sans-serif;
-  font-size: 17px;
+  font-size: clamp(20px, 3.5vw, 26px);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .da-section-heading {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  gap: 18px;
+  text-align: center;
+  margin-bottom: 24px;
+  width: 100%;
 }
 
 .da-section-heading h2 span {
+  display: block;
+  font-size: clamp(13.5px, 2.4vw, 15.5px);
+  font-weight: 700;
   color: var(--da-blue);
-  font-size: 14px;
+  margin-top: 4px;
 }
 
 .da-handbook-grid {
@@ -8310,21 +8321,25 @@ body {
   text-align: center;
 }
 .dakit-section-title {
-  font-size: 32px;
+  font-size: clamp(22px, 3.5vw, 30px);
   font-weight: 800;
-  margin-bottom: 40px;
+  margin: 0 auto 36px;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
+  color: #0f172a;
+  line-height: 1.25;
 }
 .dakit-section-title::before,
 .dakit-section-title::after {
   content: '';
   height: 3px;
-  width: 40px;
+  width: 32px;
   background-color: var(--dakit-btn-green);
   border-radius: 2px;
+  flex-shrink: 0;
 }
 .dakit-trusted-logos {
   max-width: 1200px;
@@ -12386,48 +12401,50 @@ body.standalone-da-page #course-data-analyst .dakit-page {
 .dakit-social-toast {
   position: fixed;
   bottom: 80px;
-  left: 16px;
+  left: 20px;
   z-index: 9998;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  gap: 12px;
+  padding: 14px 22px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.16), 0 0 0 1.5px rgba(34, 197, 94, 0.2);
   font-family: var(--font-family);
-  font-size: 13px;
+  font-size: 14.5px;
   font-weight: 600;
-  color: #1a1a1a;
+  line-height: 1.4;
+  color: #0f172a;
   transform: translateX(-120%);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  max-width: 320px;
+  max-width: 380px;
 }
 .dakit-social-toast.show {
   transform: translateX(0);
 }
 .dakit-social-toast-icon {
-  font-size: 20px;
+  font-size: 24px;
   flex-shrink: 0;
 }
 .dakit-social-toast-close {
   position: absolute;
-  top: 4px; right: 8px;
+  top: 6px; right: 10px;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   color: #94a3b8;
   cursor: pointer;
   padding: 4px;
 }
 @media (max-width: 768px) {
   .dakit-social-toast {
-    bottom: 72px;
-    left: 8px;
-    right: 8px;
+    bottom: 74px;
+    left: 12px;
+    right: 12px;
     max-width: none;
-    font-size: 12px;
-    padding: 10px 14px;
+    font-size: 13.5px;
+    padding: 12px 18px;
+    gap: 10px;
   }
 }
 
