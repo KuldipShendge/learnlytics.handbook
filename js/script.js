@@ -3267,32 +3267,72 @@ function loadLazyIframe(id) {
 let isNavigatingFromRouter = false;
 
 function safePushState(url) {
+  try {
+    sessionStorage.setItem('lastLearnyticsUrl', url);
+  } catch (e) {}
   if (!isNavigatingFromRouter && window.location.pathname !== url) {
-    window.history.pushState(null, '', url);
+    try {
+      window.history.pushState(null, '', url);
+    } catch (e) {}
   }
 }
 
 function handleRouting(path) {
   isNavigatingFromRouter = true;
   try {
-    const cleanPath = path.replace(/\/index\.html$/, '') || '/';
+    let checkPath = path;
+    if (!checkPath || checkPath === '/' || checkPath === '/index.html') {
+      if (window.location.hash) {
+        const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase().trim();
+        if (hash === 'data-analyst-complete' || hash === 'data-bi-analyst-complete-bundle') {
+          checkPath = '/course-bundles/data-bi-analyst-complete-bundle';
+        } else if (hash === 'data-analyst' || hash === 'data-bi-analyst-interview-kit' || hash === 'data-bi-analyst-bundle') {
+          checkPath = '/course-bundles/data-bi-analyst-interview-kit';
+        } else if (hash === 'ai-automation' || hash === 'ai-automation-bundle') {
+          checkPath = '/course-bundles/ai-automation-bundle';
+        } else if (hash === 'data-science' || hash === 'data-scientist-genai-engineer-bundle') {
+          checkPath = '/course-bundles/data-scientist-genai-engineer-bundle';
+        } else if (hash === 'free' || hash === 'free-handbooks' || hash === 'free-download') {
+          checkPath = '/free-download';
+        } else if (hash === 'reviews' || hash === 'review') {
+          checkPath = '/review';
+        }
+      }
+      if (!checkPath || checkPath === '/' || checkPath === '/index.html') {
+        try {
+          const saved = sessionStorage.getItem('lastLearnyticsUrl');
+          if (saved && saved !== '/' && saved !== '/index.html') {
+            checkPath = saved;
+          }
+        } catch (e) {}
+      }
+    }
+
+    const cleanPath = (checkPath || '').replace(/\/index\.html$/, '') || '/';
     const decodedPath = decodeURIComponent(cleanPath);
     const normalizedPath = decodedPath.toLowerCase().trim().replace(/\s+/g, '-');
     
-    if (normalizedPath === '/' || normalizedPath === '') {
-      showDashboard();
-    } else if (normalizedPath === '/course-bundles') {
-      openCoursesMenu();
-    } else if (normalizedPath === '/course-bundles/data-bi-analyst-bundle') {
+    if (
+      normalizedPath === '/course-bundles/data-bi-analyst-complete-bundle' ||
+      normalizedPath === '/course-bundles/data-bi-analyst-complete'
+    ) {
+      openDetail('data-analyst-complete');
+    } else if (
+      normalizedPath === '/course-bundles/data-bi-analyst-interview-kit' ||
+      normalizedPath === '/course-bundles/data-bi-analyst-bundle' ||
+      normalizedPath === '/course-bundles/data-bi-analyst'
+    ) {
       openDetail('data-analyst');
     } else if (
       normalizedPath === '/course-bundles/ai-automation-bundle' ||
-      normalizedPath === '/course-bundles/ai-playbook-bundle'
+      normalizedPath === '/course-bundles/ai-playbook-bundle' ||
+      normalizedPath === '/course-bundles/ai-automation'
     ) {
       openDetail('ai-automation');
     } else if (
       normalizedPath === '/course-bundles/data-bi-analyst-bundle/data-scientist-genai-engineer-bundle' ||
-      normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle'
+      normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle' ||
+      normalizedPath === '/course-bundles/data-science'
     ) {
       openDetail('data-science');
     } else if (normalizedPath === '/course-bundles/data-bi-analyst-bundle/interview-questions') {
@@ -3304,8 +3344,20 @@ function handleRouting(path) {
       openDetail('data-science-questions');
     } else if (normalizedPath === '/help') {
       openDetail('help');
-    } else if (normalizedPath === '/free-download' || normalizedPath === '/free-handbooks') {
+    } else if (
+      normalizedPath === '/free-download' ||
+      normalizedPath === '/free-handbooks' ||
+      normalizedPath === '/free'
+    ) {
       showSection('free');
+    } else if (normalizedPath === '/review' || normalizedPath === '/reviews') {
+      showSection('reviews');
+    } else if (normalizedPath === '/whats-inside' || normalizedPath === '/inside') {
+      showSection('inside');
+    } else if (normalizedPath === '/tools-tech' || normalizedPath === '/tools') {
+      showSection('tools');
+    } else if (normalizedPath === '/course-bundles') {
+      openCoursesMenu();
     } else {
       showDashboard();
     }
