@@ -7511,51 +7511,441 @@ body {
   }
 }
 
-@media (max-width: 560px) {
+/* ── HIDE 35+ STATS ON MOBILE HOME PAGE ── */
+@media (max-width: 768px) {
+  .courses-header-right {
+    display: none !important;
+  }
+}
+
+/* ── PREVENT DRAGGING & COMPREHENSIVE DA COMPLETE KIT MOBILE SYSTEM ── */
+@media (max-width: 768px) {
+  #course-data-analyst-complete,
+  #course-data-analyst,
   .da-bundle-page,
-  .ds-bundle-page {
-    gap: 16px;
+  .dakit-page,
+  .detail-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
 
-  .da-hero-panel,
-  .da-section {
-    padding: 18px;
+  /* DA COMPLETE HERO PANEL MOBILE FLEX LAYOUT & SEQUENTIAL ORDERING */
+  #course-data-analyst-complete .da-hero-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 22px 14px 20px !important;
+    margin: 10px !important;
+    border-radius: 16px !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .da-hero-copy h1, .da-hero-copy h2 {
-    font-size: 24px;
+  #course-data-analyst-complete .da-hero-copy,
+  #course-data-analyst-complete .da-hero-art {
+    display: contents !important;
   }
 
-  .da-roadmap-section img {
-    max-height: 260px;
+  /* 1. 2026 EDITION */
+  #course-data-analyst-complete .dakit-hero-badge {
+    order: 1 !important;
+    margin: 0 auto 8px !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    padding: 4px 12px !important;
+    display: inline-block !important;
   }
 
-  .da-tagline {
-    font-size: 15px;
+  /* 2. Premium Data & ML Professional Bundle */
+  #course-data-analyst-complete .da-kicker {
+    order: 2 !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    color: #cbd5e1 !important;
+    margin: 0 auto 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    text-align: center !important;
   }
 
-  .da-stats-row {
-    grid-template-columns: repeat(2, 1fr);
+  /* 3. Become Job-Ready Data & BI Analyst */
+  #course-data-analyst-complete .da-hero-copy h1 {
+    order: 3 !important;
+    font-size: clamp(23px, 6.5vw, 30px) !important;
+    line-height: 1.2 !important;
+    margin: 0 auto 10px !important;
+    text-align: center !important;
+    max-width: 360px !important;
+    color: #ffffff !important;
   }
 
-  .da-stats-row div:last-child {
-    grid-column: 1 / -1;
+  /* 4. 🔥 2,000+ Real Interview Questions */
+  #course-data-analyst-complete .dakit-hero-subtitle {
+    order: 4 !important;
+    font-size: 14.5px !important;
+    font-weight: 800 !important;
+    margin: 0 auto 10px !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
   }
 
-  .da-hero-actions .da-btn {
-    width: 100%;
+  /* 5. Your complete roadmap to Master Data Analysis... */
+  #course-data-analyst-complete .dakit-hero-desc {
+    order: 5 !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    margin: 0 auto 14px !important;
+    text-align: center !important;
+    max-width: 340px !important;
+    color: #e2e8f0 !important;
   }
 
-  .da-handbook-grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* 6. 8 Handbooks, 1600+ Pages, 2000+ I QA, 50+ Ex, 20+ Projects */
+  #course-data-analyst-complete .da-stats-row {
+    order: 6 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    width: min(100%, 340px) !important;
+    max-width: 340px !important;
+    margin: 0 auto 14px !important;
   }
 
-  .da-get-grid {
-    grid-template-columns: 1fr;
+  #course-data-analyst-complete .da-stats-row div {
+    padding: 8px 6px !important;
+    border-radius: 8px !important;
+    text-align: center !important;
   }
 
-  .da-trust-row {
-    padding: 14px 18px;
+  #course-data-analyst-complete .da-stats-row div:last-child {
+    grid-column: 1 / -1 !important;
+  }
+
+  #course-data-analyst-complete .da-stats-row strong {
+    font-size: 16px !important;
+  }
+
+  #course-data-analyst-complete .da-stats-row span {
+    font-size: 10.5px !important;
+  }
+
+  /* 7. Hero Section Image */
+  #course-data-analyst-complete .da-hero-art img {
+    order: 7 !important;
+    width: min(100%, 320px) !important;
+    max-width: 320px !important;
+    height: auto !important;
+    margin: 0 auto 14px !important;
+    display: block !important;
+  }
+
+  /* 8. Price & Limited Time Offer */
+  #course-data-analyst-complete .dakit-hero-price-timer-row {
+    order: 8 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: min(100%, 340px) !important;
+    gap: 10px !important;
+    margin: 0 auto 12px !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-pricing {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-pricing-new {
+    font-size: 38px !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-timer {
+    width: 100% !important;
+    max-width: 340px !important;
+    min-width: 0 !important;
+  }
+
+  /* 9. GET INSTANT ACCESS CTA Button */
+  #course-data-analyst-complete .dakit-hero-cta-wrap {
+    order: 9 !important;
+    width: min(100%, 340px) !important;
+    margin: 0 auto 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-cta {
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 13px 18px !important;
+    font-weight: 800 !important;
+    justify-content: center !important;
+  }
+
+  /* 10. Download Free SQL Handbook Button */
+  #course-data-analyst-complete .dakit-sql-addon-btn {
+    order: 10 !important;
+    width: min(100%, 340px) !important;
+    font-size: 13.5px !important;
+    font-weight: 800 !important;
+    padding: 12px 16px !important;
+    margin: 0 auto 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* DA COMPLETE TRUST ROW (Instant Download, Lifetime Access, Secure Payment) */
+  #course-data-analyst-complete .da-trust-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    margin: 12px auto !important;
+    padding: 14px 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .da-trust-row div {
+    font-size: 13px !important;
+    justify-content: center !important;
+  }
+
+  /* BEFORE BUY TRY ONE SAMPLE UNIT SECTION */
+  #course-data-analyst-complete #da-sample-pdfs.da-samples-section,
+  #da-sample-pdfs.da-samples-section {
+    padding: 20px 14px !important;
+    margin: 16px 10px !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+  }
+
+  #da-sample-pdfs .da-section-heading h2 {
+    font-size: 20px !important;
+  }
+
+  #da-sample-pdfs .da-samples-pdf-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  #da-sample-pdfs .da-pdf-sample-card {
+    padding: 12px 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #da-sample-pdfs .da-pdf-card-info h4 {
+    font-size: 13.5px !important;
+  }
+
+  /* STATS SUMMARY SECTION */
+  #course-data-analyst-complete .dakit-stats-section {
+    padding: 0 10px !important;
+  }
+
+  #course-data-analyst-complete .dakit-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  #course-data-analyst-complete .dakit-stat-card {
+    padding: 12px 8px !important;
+  }
+
+  #course-data-analyst-complete .dakit-stat-number {
+    font-size: 18px !important;
+  }
+
+  #course-data-analyst-complete .dakit-stat-label {
+    font-size: 11px !important;
+  }
+
+  /* 8 HANDBOOKS CURRICULUM SECTION */
+  #course-data-analyst-complete #da-bundle-handbooks.da-section,
+  #course-data-analyst-complete .da-section {
+    padding: 18px 12px !important;
+    margin: 16px 10px !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .da-section-heading h2 {
+    font-size: 20px !important;
+  }
+
+  #course-data-analyst-complete .da-handbook-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  #course-data-analyst-complete .da-handbook-card {
+    padding: 10px !important;
+  }
+
+  #course-data-analyst-complete .da-handbook-card h3 {
+    font-size: 12.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  #course-data-analyst-complete .da-card-footer-row {
+    font-size: 10px !important;
+  }
+
+  /* WHAT YOU'LL GET SECTION */
+  #course-data-analyst-complete .da-get-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* COMPARISON TABLE: HOW WE ARE DIFFERENT (NO OVERFLOW / DRAGGING) */
+  #course-data-analyst-complete .dakit-comparison,
+  #course-data-analyst .dakit-comparison {
+    padding: 18px 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  #course-data-analyst-complete .dakit-comparison-container,
+  #course-data-analyst .dakit-comparison-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-table-wrap,
+  #course-data-analyst .dakit-comp-table-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-table,
+  #course-data-analyst .dakit-comp-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-table th,
+  #course-data-analyst-complete .dakit-comp-table td,
+  #course-data-analyst .dakit-comp-table th,
+  #course-data-analyst .dakit-comp-table td {
+    padding: 8px 6px !important;
+    font-size: 11.5px !important;
+    word-break: break-word !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-card,
+  #course-data-analyst .dakit-comp-card {
+    width: 100% !important;
+    padding: 16px 12px !important;
+    border-width: 2px 0 0 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-card-title,
+  #course-data-analyst .dakit-comp-card-title {
+    font-size: 15px !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-list li,
+  #course-data-analyst .dakit-comp-list li {
+    font-size: 12px !important;
+    padding: 5px 0 !important;
+    gap: 6px !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-list li svg,
+  #course-data-analyst .dakit-comp-list li svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* FAQ SECTION */
+  #course-data-analyst-complete .da-faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* BOTTOM CTA BAR (NO DRAGGING) */
+  #course-data-analyst-complete .dakit-bottom-cta,
+  #course-data-analyst .dakit-bottom-cta {
+    padding: 0 10px 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-box,
+  #course-data-analyst .dakit-cta-box {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px 14px !important;
+    gap: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-left h2,
+  #course-data-analyst .dakit-cta-left h2 {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-left p,
+  #course-data-analyst .dakit-cta-left p {
+    text-align: center !important;
+    font-size: 12.5px !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-center,
+  #course-data-analyst .dakit-cta-center {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-right,
+  #course-data-analyst .dakit-cta-right {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #course-data-analyst-complete .dakit-cta-right .dakit-btn-primary,
+  #course-data-analyst .dakit-cta-right .dakit-btn-primary {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 13px 18px !important;
+    justify-content: center !important;
   }
 }
 
