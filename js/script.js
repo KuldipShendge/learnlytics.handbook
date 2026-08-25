@@ -91,154 +91,11 @@ buildDots();
 // -- FULL WEBSITE MENU & DETAIL VIEWS --
 
 function openCoursesMenu() {
-
-        if (document.getElementById('pythonDetailSection')?.style.display === 'block') {
-    closePythonHandbook();
-  }
-  if (document.getElementById('pythonDsDetailSection')?.style.display === 'block') {
-    closePythonDsHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  // Hide main dashboard homepage elements
-
-  const statsGrid = document.querySelector('.stats-grid');
-
-  const dashGrid = document.querySelector('.dashboard-grid');
-
-  const dashBottom = document.querySelector('.dashboard-bottom');
-
-  if (statsGrid) statsGrid.style.display = 'none';
-
-  if (dashGrid) dashGrid.style.display = 'none';
-
-  if (dashBottom) dashBottom.style.display = 'none';
-
-  // Hide all sections first
-
-  hideAllSections();
-
-  // Show Courses section
-
-  const cms = document.getElementById('coursesMenuSection');
-
-  if (cms) cms.style.display = 'block';
-
-  // Update sidebar active states
-
-  document.querySelectorAll('.dashboard-nav-item').forEach(item => item.classList.remove('active'));
-
-  const courseNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
-
-    .find(item => item.textContent.includes('Course Handbook Bundle'));
-
-  if (courseNavItem) courseNavItem.classList.add('active');
-
-  // Update topbar header text to breadcrumbs
-
-  const topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
-
-  if (topbarLeft) {
-
-    if (!topbarLeft.dataset.originalHtml) {
-
-      topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
-
-    }
-
-    topbarLeft.innerHTML = `
-
-      <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
-
-        <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
-
-        <span style="color:var(--muted);margin:0 8px;">&gt;</span>
-
-        <span style="color:var(--navy);font-weight:700;">Course Bundles</span>
-
-      </div>
-
-    `;
-
-  }
-
-  var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
-
-  window.scrollTo({ top: 0, behavior: 'instant' });
-
+  showDashboard();
 }
 
 function closeCoursesMenu() {
-
   showDashboard();
-
 }
 
 // -- HANDBOOK DROPDOWN LOGIC --
@@ -316,219 +173,93 @@ function openDetail(courseId) {
     loadLazyIframe('mlQuestionsIframe');
   }
 
-  if (courseId === 'data-analyst' || courseId === 'data-analyst-questions' || courseId === 'data-science' || courseId === 'data-science-questions' || courseId === 'ai-automation') {
+  // Hide other sections
+  hideAllSections();
 
-                if (document.getElementById('pythonDetailSection')?.style.display === 'block') {
-      closePythonHandbook();
-    }
-    if (document.getElementById('pythonDsDetailSection')?.style.display === 'block') {
-      closePythonDsHandbook();
-    }
-    if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-      closeMathHandbook();
-    }
-    if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-      closeMathDsHandbook();
-    }
-    if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-      closeSqlHandbook();
-    }
-    if (document.getElementById('biDetailSection')?.style.display === 'block') {
-      closeBiHandbook();
-    }
-    if (document.getElementById('deDetailSection')?.style.display === 'block') {
-      closeDeHandbook();
-    }
-    if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-      closeDomainHandbook();
-    }
-    if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-      closeAiHandbook();
-    }
-    if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-      closeExcelHandbook();
-    }
-    if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-      closeMathHandbook();
-    }
-    if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-      closeMathDsHandbook();
-    }
-    if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-      closeSqlHandbook();
-    }
-    if (document.getElementById('biDetailSection')?.style.display === 'block') {
-      closeBiHandbook();
-    }
-    if (document.getElementById('deDetailSection')?.style.display === 'block') {
-      closeDeHandbook();
-    }
-    if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-      closeDomainHandbook();
-    }
-    if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-      closeAiHandbook();
-    }
-    if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-      closeExcelHandbook();
-    }
-    if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-      closeMathHandbook();
-    }
-    if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-      closeSqlHandbook();
-    }
-    if (document.getElementById('biDetailSection')?.style.display === 'block') {
-      closeBiHandbook();
-    }
-    if (document.getElementById('deDetailSection')?.style.display === 'block') {
-      closeDeHandbook();
-    }
-    if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-      closeDomainHandbook();
-    }
-    if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-      closeAiHandbook();
-    }
-    if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-      closeExcelHandbook();
-    }
-    // Hide main dashboard homepage elements
-
-    const statsGrid = document.querySelector('.stats-grid');
-
-    const dashGrid = document.querySelector('.dashboard-grid');
-
-    const dashBottom = document.querySelector('.dashboard-bottom');
-
-    if (statsGrid) statsGrid.style.display = 'none';
-
-    if (dashGrid) dashGrid.style.display = 'none';
-
-    if (dashBottom) dashBottom.style.display = 'none';
-
-    // Hide other sections
-
-    hideAllSections();
-
-    // Show the target section
-
-    const target = document.getElementById('course-' + courseId);
-
-    // Keep DA / AI page inside dashboard layout (don't add standalone-da-page)
-
-    if (target) {
-
-      target.style.display = 'block';
-      target.classList.add('active');
-
-    }
-
-    // Update sidebar active states to 'Course Handbook Bundle'
-
-    document.querySelectorAll('.dashboard-nav-item').forEach(item => item.classList.remove('active'));
-
-    const courseNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
-
-      .find(item => item.textContent.includes('Course Handbook Bundle'));
-
-    if (courseNavItem) courseNavItem.classList.add('active');
-
-    // Update topbar header text to breadcrumbs
-
-    const topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
-
-    if (topbarLeft) {
-
-      if (!topbarLeft.dataset.originalHtml) {
-
-        topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
-
-      }
-
-      if (courseId === 'data-analyst' || courseId === 'data-science' || courseId === 'ai-automation') {
-
-        let title = 'Data &amp; BI Analyst Bundle';
-        if (courseId === 'data-science') {
-          title = 'Data Scientist &amp; Gen AI Engineer Bundle';
-        } else if (courseId === 'ai-automation') {
-          title = '2026 AI Automation Edition';
-        }
-
-        topbarLeft.innerHTML = `
-
-          <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
-
-            <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
-
-            <span style="color:var(--muted);margin:0 8px;">&gt;</span>
-
-            <span onclick="openCoursesMenu()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Course Bundles</span>
-
-            <span style="color:var(--muted);margin:0 8px;">&gt;</span>
-
-            <span style="color:var(--navy);font-weight:700;">${title}</span>
-
-          </div>
-
-        `;
-
-      } else {
-
-        const parentId = courseId === 'data-analyst-questions' ? 'data-analyst' : 'data-science';
-
-        const parentTitle = courseId === 'data-analyst-questions' ? 'Data &amp; BI Analyst Bundle' : 'Data Scientist &amp; Gen AI Engineer Bundle';
-
-        topbarLeft.innerHTML = `
-
-          <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
-
-            <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
-
-            <span style="color:var(--muted);margin:0 8px;">&gt;</span>
-
-            <span onclick="openDetail('${parentId}')" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">${parentTitle}</span>
-
-            <span style="color:var(--muted);margin:0 8px;">&gt;</span>
-
-            <span style="color:var(--navy);font-weight:700;">Interview Questions</span>
-
-          </div>
-
-        `;
-
-      }
-
-    }
-
-    var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
-
-    return;
-
+  // Show the target section
+  const target = document.getElementById('course-' + courseId);
+  if (target) {
+    target.style.display = 'block';
+    target.classList.add('active');
   }
 
-  document.querySelectorAll('.course-container').forEach(el => el.classList.remove('active'));
+  // Update sidebar active states
+  document.querySelectorAll('.dashboard-nav-item').forEach(item => item.classList.remove('active'));
 
-  var course = document.getElementById('course-' + courseId);
+  if (courseId === 'help') {
+    const helpNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
+      .find(item => item.textContent.includes('Help & FAQ') || item.textContent.includes('Help &amp; FAQ'));
+    if (helpNavItem) helpNavItem.classList.add('active');
+  } else if (courseId === 'data-analyst-complete') {
+    const daCompleteNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
+      .find(item => item.textContent.includes('Complete Kit') || item.textContent.includes('Complete Bundle'));
+    if (daCompleteNavItem) daCompleteNavItem.classList.add('active');
+  } else if (courseId === 'data-analyst') {
+    const daNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
+      .find(item => item.textContent.trim().startsWith('Data & BI Analyst Kit') || item.textContent.trim().startsWith('Data &amp; BI Analyst Kit'));
+    if (daNavItem) daNavItem.classList.add('active');
+  } else if (courseId === 'ai-automation') {
+    const aiNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
+      .find(item => item.textContent.includes('AI Automation Edition'));
+    if (aiNavItem) aiNavItem.classList.add('active');
+  } else {
+    const courseNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
+      .find(item => item.textContent.includes('Course Bundles') || item.textContent.includes('Course Handbook Bundle'));
+    if (courseNavItem) courseNavItem.classList.add('active');
+  }
 
-  if (!course || !detailView) return;
+  // Update topbar header text to breadcrumbs
+  const topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
+  if (topbarLeft) {
+    if (!topbarLeft.dataset.originalHtml) {
+      topbarLeft.dataset.originalHtml = topbarLeft.innerHTML;
+    }
 
-  course.classList.add('active');
+    if (courseId === 'help') {
+      topbarLeft.innerHTML = `
+        <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
+          <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
+          <span style="color:var(--muted);margin:0 8px;">&gt;</span>
+          <span style="color:var(--navy);font-weight:700;">Help &amp; FAQ</span>
+        </div>
+      `;
+    } else if (courseId === 'data-analyst' || courseId === 'data-analyst-complete' || courseId === 'data-science' || courseId === 'ai-automation') {
+      let title = 'Data &amp; BI Analyst Interview Kit';
+      if (courseId === 'data-analyst-complete') {
+        title = 'Data &amp; BI Analyst Complete Kit';
+      } else if (courseId === 'data-science') {
+        title = 'Data Scientist &amp; Gen AI Engineer Bundle';
+      } else if (courseId === 'ai-automation') {
+        title = '2026 AI Automation Edition';
+      }
 
-  detailView.classList.add('open');
+      topbarLeft.innerHTML = `
+        <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
+          <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
+          <span style="color:var(--muted);margin:0 8px;">&gt;</span>
+          <span onclick="openCoursesMenu()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Course Bundles</span>
+          <span style="color:var(--muted);margin:0 8px;">&gt;</span>
+          <span style="color:var(--navy);font-weight:700;">${title}</span>
+        </div>
+      `;
+    } else {
+      const parentId = courseId === 'data-analyst-questions' ? 'data-analyst' : 'data-science';
+      const parentTitle = courseId === 'data-analyst-questions' ? 'Data &amp; BI Analyst Kit' : 'Data Scientist &amp; Gen AI Engineer Bundle';
 
-  if (homeFooter) homeFooter.style.display = 'none'; 
-
-  document.body.style.overflow = 'hidden'; 
-
-  detailView.scrollTop = 0; 
-
-  // window.location.hash = courseId; // Removed: routing system uses pushState
+      topbarLeft.innerHTML = `
+        <div class="breadcrumbs" style="font-family:'Manrope', sans-serif;font-size:14px;font-weight:600;display:flex;align-items:center;">
+          <span onclick="showDashboard()" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">Home</span>
+          <span style="color:var(--muted);margin:0 8px;">&gt;</span>
+          <span onclick="openDetail('${parentId}')" style="cursor:pointer;color:var(--muted);transition:color 0.2s;">${parentTitle}</span>
+          <span style="color:var(--muted);margin:0 8px;">&gt;</span>
+          <span style="color:var(--navy);font-weight:700;">Interview Questions</span>
+        </div>
+      `;
+    }
+  }
 
   var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
-
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeDetail() {
@@ -557,342 +288,82 @@ function scrollDashboardTop() {
 
 }
 
-// All section IDs that can be toggled
-
-var allSectionIds = ['coursesMenuSection', 'exploreAllHandbooksSection', 'insideHandbookSection', 'toolsTechSection', 'freeHandbooksSection', 'reviewsSection', 'course-data-analyst', 'course-data-analyst-questions', 'course-data-science', 'course-data-science-questions', 'course-ai-automation'];
+var allSectionIds = ['coursesMenuSection', 'freeHandbooksSection', 'reviewsSection', 'course-data-analyst-complete', 'course-data-analyst', 'course-data-science', 'course-data-science-questions', 'course-ai-automation', 'course-data-engineering', 'course-download', 'course-help'];
 
 function hideAllSections() {
-
   allSectionIds.forEach(function(id) {
-
     var el = document.getElementById(id);
-
     if (el) {
       el.style.display = 'none';
       el.classList.remove('active');
     }
-
   });
-
 }
 
 function showDashboard() {
-
   document.body.classList.remove('standalone-da-page');
 
-        if (document.getElementById('pythonDetailSection')?.style.display === 'block') {
-    closePythonHandbook();
-    return;
+  if (typeof closeDetail === 'function') {
+    closeDetail();
   }
-  if (document.getElementById('pythonDsDetailSection')?.style.display === 'block') {
-    closePythonDsHandbook();
-    return;
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-    return;
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-    return;
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-    return;
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-    return;
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-    return;
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-    return;
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-    return;
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-    return;
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-    return;
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-    return;
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-    return;
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-    return;
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-    return;
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-    return;
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-    return;
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-    return;
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-    return;
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-    return;
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-    return;
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-    return;
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-    return;
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-    return;
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-    return;
-  }
+
   hideAllSections();
 
-  // Show main dashboard homepage elements
-
-  var statsGrid = document.querySelector('.stats-grid');
-
-  var dashGrid = document.querySelector('.dashboard-grid');
-
-  var dashBottom = document.querySelector('.dashboard-bottom');
-
-  if (statsGrid) statsGrid.style.display = '';
-
-  if (dashGrid) dashGrid.style.display = '';
-
-  if (dashBottom) dashBottom.style.display = '';
-
-  // Update sidebar active state
-
-  document.querySelectorAll('.dashboard-nav-item').forEach(function(item) { item.classList.remove('active'); });
-
-  var dashBtn = Array.from(document.querySelectorAll('.dashboard-nav-item'))
-
-    .find(function(item) { return item.textContent.includes('Dashboard'); });
-
-  if (dashBtn) dashBtn.classList.add('active');
-
-  // Restore original header content if modified
-
-  const topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
-
-  if (topbarLeft && topbarLeft.dataset.originalHtml) {
-
-    topbarLeft.innerHTML = topbarLeft.dataset.originalHtml;
-
-  } else {
-
-    // Restore topbar header text just in case
-
-    var h1 = document.querySelector('.dashboard-topbar h1');
-
-    var p = document.querySelector('.dashboard-topbar p');
-
-    if (h1 && p) {
-
-      h1.innerHTML = 'Welcome to Learn<span class="brand-lytics">lytics</span>';
-
-      p.innerHTML = 'Your one-stop hub for high-quality handbooks to <strong>learn, practice &amp; grow.</strong>';
-
-    }
-
+  var cms = document.getElementById('coursesMenuSection');
+  if (cms) {
+    cms.style.display = 'block';
   }
 
-  var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = '';
+  // Update sidebar active state
+  document.querySelectorAll('.dashboard-nav-item').forEach(function(item) { item.classList.remove('active'); });
+  var firstNav = document.querySelector('.dashboard-nav-item');
+  if (firstNav) firstNav.classList.add('active');
+
+  // Set topbar header text
+  var topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
+  if (topbarLeft) {
+    topbarLeft.innerHTML = `
+      <h1>Welcome to Learn<span class="brand-lytics">lytics</span></h1>
+      <p>Your one-stop hub for high-quality handbooks to <strong>learn, practice &amp; grow.</strong></p>
+    `;
+  }
 
   window.scrollTo({ top: 0, behavior: 'instant' });
-
 }
 
 var sectionConfig = {
-
-  inside:  { id: 'insideHandbookSection',  title: "What's Inside Handbook", subtitle: 'Discover the 3 powerful files you get in every handbook.' },
-
-  tools:   { id: 'toolsTechSection',        title: 'Tools & Tech Cover',     subtitle: 'Everything you need to succeed in the Data World.' },
-
-  free:    { id: 'freeHandbooksSection',     title: 'Free Handbooks',         subtitle: 'Download high-quality handbooks completely free.' },
-
-  reviews: { id: 'reviewsSection',          title: 'Student Reviews',        subtitle: 'Hear from learners who upgraded their careers.' }
-
+  free:    { id: 'freeHandbooksSection',     title: 'Free Resources',         subtitle: 'Download high-quality handbooks and resources completely free.' },
+  reviews: { id: 'reviewsSection',           title: 'Student Reviews',        subtitle: 'Hear from learners who upgraded their careers.' }
 };
 
 function showSection(section) {
-
-        if (document.getElementById('pythonDetailSection')?.style.display === 'block') {
-    closePythonHandbook();
-  }
-  if (document.getElementById('pythonDsDetailSection')?.style.display === 'block') {
-    closePythonDsHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('mathDsDetailSection')?.style.display === 'block') {
-    closeMathDsHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  if (document.getElementById('mathDetailSection')?.style.display === 'block') {
-    closeMathHandbook();
-  }
-  if (document.getElementById('sqlDetailSection')?.style.display === 'block') {
-    closeSqlHandbook();
-  }
-  if (document.getElementById('biDetailSection')?.style.display === 'block') {
-    closeBiHandbook();
-  }
-  if (document.getElementById('deDetailSection')?.style.display === 'block') {
-    closeDeHandbook();
-  }
-  if (document.getElementById('domainDetailSection')?.style.display === 'block') {
-    closeDomainHandbook();
-  }
-  if (document.getElementById('aiDetailSection')?.style.display === 'block') {
-    closeAiHandbook();
-  }
-  if (document.getElementById('excelDetailSection')?.style.display === 'block') {
-    closeExcelHandbook();
-  }
-  // Restore original header content if it was replaced with breadcrumbs
-
-  var topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
-
-  if (topbarLeft && topbarLeft.dataset.originalHtml) {
-
-    topbarLeft.innerHTML = topbarLeft.dataset.originalHtml;
-
+  if (typeof closeDetail === 'function') {
+    closeDetail();
   }
 
   var config = sectionConfig[section];
-
   if (!config) return;
-
   var target = document.getElementById(config.id);
-
   if (!target) return;
 
-  // Hide dashboard grids
-
-  var statsGrid = document.querySelector('.stats-grid');
-
-  var dashGrid = document.querySelector('.dashboard-grid');
-
-  var dashBottom = document.querySelector('.dashboard-bottom');
-
-  if (statsGrid) statsGrid.style.display = 'none';
-
-  if (dashGrid) dashGrid.style.display = 'none';
-
-  if (dashBottom) dashBottom.style.display = 'none';
-
-  // Hide all sections, then show target
-
   hideAllSections();
-
   target.style.display = 'block';
 
   // Update sidebar active
-
   document.querySelectorAll('.dashboard-nav-item').forEach(function(item) { item.classList.remove('active'); });
-
   var activeButton = Array.from(document.querySelectorAll('.dashboard-nav-item'))
-
     .find(function(item) { var oc = item.getAttribute('onclick'); return oc && oc.includes("'" + section + "'"); });
-
   if (activeButton) activeButton.classList.add('active');
 
-  // Update topbar
-
-  var h1 = document.querySelector('.dashboard-topbar h1');
-
-  var p = document.querySelector('.dashboard-topbar p');
-
-  if (h1 && p) {
-
-    h1.innerHTML = config.title;
-
-    p.innerHTML = config.subtitle;
-
+  // Update topbar header text
+  var topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
+  if (topbarLeft) {
+    topbarLeft.innerHTML = `
+      <h1>${config.title}</h1>
+      <p>${config.subtitle}</p>
+    `;
   }
-
-  var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
-
   window.scrollTo({ top: 0, behavior: 'instant' });
-
 }
 
 // Legacy alias
@@ -3566,15 +3037,26 @@ document.addEventListener('DOMContentLoaded', () => {
 const SEARCH_INDEX = [
   // -- Course Bundles --
   {
-    name: "Data BI Analyst Bundle",
-    keywords: ["data analyst", "da bundle", "analyst bundle", "data analyst bundle", "bundle", "bi analyst", "data bi", "course bundle"],
+    name: "Data & BI Analyst Interview Kit",
+    keywords: ["data analyst", "da bundle", "analyst bundle", "data analyst bundle", "bundle", "bi analyst", "data bi", "interview kit", "sql", "excel", "python", "power bi"],
     category: "Course Bundle",
     categoryClass: "cat-bundle",
-    price: "₹399",
+    price: "₹299",
     icon: "📦",
     iconClass: "type-bundle",
     type: "bundle",
     action: function() { openDetail('data-analyst'); }
+  },
+  {
+    name: "2026 AI Automation Edition",
+    keywords: ["ai", "automation", "ai automation", "ai bundle", "playbook", "edition", "mle", "course bundle"],
+    category: "Course Bundle",
+    categoryClass: "cat-bundle",
+    price: "₹199",
+    icon: "🤖",
+    iconClass: "type-bundle",
+    type: "bundle",
+    action: function() { openDetail('ai-automation'); }
   },
   {
     name: "Data Scientist & GenAI Engineer Bundle",
@@ -3587,183 +3069,38 @@ const SEARCH_INDEX = [
     type: "bundle",
     action: function() { openDetail('data-science'); }
   },
-  // -- Active Handbooks --
   {
-    name: "Mathematics & Statistics For Data Analyst",
-    keywords: ["math", "stats", "statistics", "data analyst", "da", "maths", "mathematics", "probability"],
-    category: "Data Analytics",
+    name: "Data Engineer Bundle",
+    keywords: ["data engineer", "de bundle", "engineer bundle", "data engineering", "pipeline", "etl"],
+    category: "Course Bundle",
+    categoryClass: "cat-bundle",
+    price: "Coming Soon",
+    icon: "📦",
+    iconClass: "type-bundle",
+    type: "coming",
+    action: function() { showDashboard(); }
+  },
+  {
+    name: "Free Resources",
+    keywords: ["free", "resources", "download", "free handbooks", "free resources", "sql free", "ml free", "samples", "sample handbooks", "free sql", "free ml"],
+    category: "Free Resources",
     categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openMathHandbook(); }
+    price: "100% Free",
+    icon: "🎁",
+    iconClass: "type-bundle",
+    type: "free",
+    action: function() { showSection('free'); }
   },
   {
-    name: "Python for Data Analyst",
-    keywords: ["python", "py", "data analyst", "da", "analytics", "pandas", "numpy"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openPythonHandbook(); }
-  },
-  {
-    name: "SQL & Databases",
-    keywords: ["sql", "database", "db", "queries", "free", "mysql", "postgres", "query"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "Free",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openSqlHandbook(); }
-  },
-  {
-    name: "Excel & Google Sheets",
-    keywords: ["excel", "sheets", "google sheets", "spreadsheet", "vlookup", "pivot"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openExcelHandbook(); }
-  },
-  {
-    name: "Business Intelligence & Dashboards",
-    keywords: ["bi", "power bi", "tableau", "dashboard", "dashboards", "business intelligence", "visualization"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openBiHandbook(); }
-  },
-  {
-    name: "Data Engineering Fundamentals",
-    keywords: ["de", "data engineering", "etl", "pipeline", "spark", "airflow", "engineering"],
-    category: "Data Engineering",
-    categoryClass: "cat-de",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openDeHandbook(); }
-  },
-  {
-    name: "Storytelling, Communication & Domain Knowledge",
-    keywords: ["storytelling", "domain", "communication", "soft skills", "presentation", "business"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openDomainHandbook(); }
-  },
-  {
-    name: "AI-Era Analytics",
-    keywords: ["ai", "artificial intelligence", "ai-era", "ai era", "analytics", "chatgpt", "copilot"],
-    category: "Data Analytics",
-    categoryClass: "cat-da",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-handbook",
-    type: "handbook",
-    action: function() { openAiHandbook(); }
-  },
-  // -- Coming Soon Handbooks --
-  {
-    name: "Mathematics & Statistics For Data Science",
-    keywords: ["math", "stats", "statistics", "data science", "ds", "maths", "mathematics", "linear algebra", "calculus"],
-    category: "Data Science",
-    categoryClass: "cat-ds",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "Python For Data Science",
-    keywords: ["python", "py", "data science", "ds", "scikit", "sklearn", "machine learning python"],
-    category: "Data Science",
-    categoryClass: "cat-ds",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "Classical Machine Learning",
-    keywords: ["ml", "machine learning", "classical ml", "regression", "classification", "clustering", "supervised"],
-    category: "Machine Learning",
-    categoryClass: "cat-mle",
-    price: "Part 01 Free",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "Deep Learning Fundamentals",
-    keywords: ["dl", "deep learning", "neural network", "cnn", "rnn", "transformer"],
-    category: "Deep Learning",
-    categoryClass: "cat-mle",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "Generative AI & LLM Integration",
-    keywords: ["genai", "gen ai", "llm", "chatgpt", "generative", "gpt", "large language model", "prompt"],
-    category: "Generative AI",
-    categoryClass: "cat-mle",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "EDA & Feature Engineering",
-    keywords: ["eda", "feature engineering", "exploratory", "data analysis", "feature selection"],
-    category: "Data Science",
-    categoryClass: "cat-ds",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "Model Evaluation, Selection & Tuning",
-    keywords: ["model", "evaluation", "tuning", "hyperparameter", "cross validation", "model selection"],
-    category: "Data Science",
-    categoryClass: "cat-ds",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
-  },
-  {
-    name: "MLOps & Model Deployment",
-    keywords: ["mlops", "deployment", "ci/cd", "model ops", "docker", "kubernetes", "production"],
-    category: "MLOps",
-    categoryClass: "cat-mle",
-    price: "₹119",
-    icon: "📘",
-    iconClass: "type-coming",
-    type: "coming",
-    action: function() { alert('Coming July 20'); }
+    name: "Help & FAQ",
+    keywords: ["help", "faq", "support", "contact", "questions", "refund", "download issue", "privacy", "terms"],
+    category: "Support",
+    categoryClass: "cat-bundle",
+    price: "Support",
+    icon: "❓",
+    iconClass: "type-bundle",
+    type: "help",
+    action: function() { openDetail('help'); }
   }
 ];
 
@@ -3965,36 +3302,12 @@ function handleRouting(path) {
       normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle/interview-questions'
     ) {
       openDetail('data-science-questions');
-    } else if (normalizedPath === '/whats-inside') {
-      showSection('inside');
-    } else if (normalizedPath === '/tools-tech') {
-      showSection('tools');
-    } else if (normalizedPath === '/free-download') {
+    } else if (normalizedPath === '/help') {
+      openDetail('help');
+    } else if (normalizedPath === '/free-download' || normalizedPath === '/free-handbooks') {
       showSection('free');
-    } else if (normalizedPath === '/review') {
-      showSection('reviews');
-    } else if (normalizedPath === '/all-handbook-page') {
-      openExploreAllHandbooks();
-    } else if (normalizedPath === '/all-handbook-page/math-stats') {
-      openMathHandbook();
-    } else if (normalizedPath === '/all-handbook-page/math-stats-ds') {
-      openMathDsHandbook();
-    } else if (normalizedPath === '/all-handbook-page/python') {
-      openPythonHandbook();
-    } else if (normalizedPath === '/all-handbook-page/python-ds') {
-      openPythonDsHandbook();
-    } else if (normalizedPath === '/all-handbook-page/sql') {
-      openSqlHandbook();
-    } else if (normalizedPath === '/all-handbook-page/excel') {
-      openExcelHandbook();
-    } else if (normalizedPath === '/all-handbook-page/bi-tools') {
-      openBiHandbook();
-    } else if (normalizedPath === '/all-handbook-page/de') {
-      openDeHandbook();
-    } else if (normalizedPath === '/all-handbook-page/ai-era') {
-      openAiHandbook();
-    } else if (normalizedPath === '/all-handbook-page/domain') {
-      openDomainHandbook();
+    } else {
+      showDashboard();
     }
   } catch (e) {
     console.error('Routing transition error:', e);
@@ -4025,15 +3338,17 @@ if (typeof openDetail === 'function') {
   openDetail = function(courseId, ...args) {
     originalOpenDetail.apply(this, [courseId, ...args]);
     if (courseId === 'data-analyst') {
-      safePushState('/course-bundles/data-bi-analyst-bundle');
+      safePushState('/course-bundles/data-bi-analyst-interview-kit');
+    } else if (courseId === 'data-analyst-complete') {
+      safePushState('/course-bundles/data-bi-analyst-complete-bundle');
     } else if (courseId === 'ai-automation') {
       safePushState('/course-bundles/ai-automation-bundle');
     } else if (courseId === 'data-science') {
       safePushState('/course-bundles/data-scientist-genai-engineer-bundle');
-    } else if (courseId === 'data-analyst-questions') {
-      safePushState('/course-bundles/data-bi-analyst-bundle/interview-questions');
     } else if (courseId === 'data-science-questions') {
       safePushState('/course-bundles/data-scientist-genai-engineer-bundle/interview-questions');
+    } else if (courseId === 'help') {
+      safePushState('/help');
     }
   };
 }
@@ -4262,9 +3577,11 @@ if (document.readyState === 'loading') {
     var hrsEl = document.getElementById('dakitHrs');
     var minsEl = document.getElementById('dakitMins');
     var secsEl = document.getElementById('dakitSecs');
+    var daHrsEl = document.getElementById('daCompleteHrs');
+    var daMinsEl = document.getElementById('daCompleteMins');
+    var daSecsEl = document.getElementById('daCompleteSecs');
     var mobileMinsEl = document.getElementById('dakitMobileMins');
     var mobileSecsEl = document.getElementById('dakitMobileSecs');
-    if (!hrsEl || !minsEl || !secsEl) return;
 
     var endTime = getEndTime();
     var remaining = Math.max(0, endTime - Date.now());
@@ -4280,11 +3597,20 @@ if (document.readyState === 'loading') {
     var mins = Math.floor((totalSecs % 3600) / 60);
     var secs = totalSecs % 60;
 
-    hrsEl.textContent = hrs.toString().padStart(2, '0');
-    minsEl.textContent = mins.toString().padStart(2, '0');
-    secsEl.textContent = secs.toString().padStart(2, '0');
+    var hrsStr = hrs.toString().padStart(2, '0');
+    var minsStr = mins.toString().padStart(2, '0');
+    var secsStr = secs.toString().padStart(2, '0');
+
+    if (hrsEl) hrsEl.textContent = hrsStr;
+    if (minsEl) minsEl.textContent = minsStr;
+    if (secsEl) secsEl.textContent = secsStr;
+
+    if (daHrsEl) daHrsEl.textContent = hrsStr;
+    if (daMinsEl) daMinsEl.textContent = minsStr;
+    if (daSecsEl) daSecsEl.textContent = secsStr;
+
     if (mobileMinsEl) mobileMinsEl.textContent = Math.floor(totalSecs / 60).toString().padStart(2, '0');
-    if (mobileSecsEl) mobileSecsEl.textContent = secs.toString().padStart(2, '0');
+    if (mobileSecsEl) mobileSecsEl.textContent = secsStr;
   }
 
   function startCountdown() {
@@ -4303,6 +3629,18 @@ if (document.readyState === 'loading') {
 /* ═══ DA INTERVIEW KIT — TESTIMONIAL CAROUSEL ═══ */
 function dakitSlideTestimonials(direction) {
   var track = document.getElementById('dakitTestiTrack');
+  if (!track) return;
+  var cards = track.querySelectorAll('.dakit-testimonial-card');
+  if (!cards.length) return;
+  var cardWidth = cards[0].offsetWidth + 24; // card + gap
+  var maxScroll = track.scrollWidth - track.clientWidth;
+  var newScroll = track.scrollLeft + (direction * cardWidth);
+  newScroll = Math.max(0, Math.min(newScroll, maxScroll));
+  track.scrollTo({ left: newScroll, behavior: 'smooth' });
+}
+
+function daCompleteSlideTestimonials(direction) {
+  var track = document.getElementById('daCompleteTestiTrack');
   if (!track) return;
   var cards = track.querySelectorAll('.dakit-testimonial-card');
   if (!cards.length) return;
@@ -4493,3 +3831,107 @@ function aiSlideTestimonials(direction) {
   }
 })();
 
+// ═══════════════════════════════════════════════
+// CRO CONVERSION OPTIMIZATION — ADDITIONS
+// ═══════════════════════════════════════════════
+
+(function initCROFeatures() {
+  // --- Fix 3: Sticky Mobile CTA (show when hero scrolls out of view) ---
+  var stickyBar = document.getElementById('dakitStickyMobileCta');
+  var heroSection = document.querySelector('#course-data-analyst .dakit-hero');
+
+  if (stickyBar && heroSection) {
+    var stickyObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        // Show sticky bar when hero is NOT visible AND the DA page is active
+        var daPage = document.getElementById('course-data-analyst');
+        if (daPage && daPage.style.display !== 'none' && daPage.classList.contains('active')) {
+          if (!entry.isIntersecting) {
+            stickyBar.classList.add('visible');
+          } else {
+            stickyBar.classList.remove('visible');
+          }
+        } else {
+          stickyBar.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    stickyObserver.observe(heroSection);
+  }
+
+  // --- Social Proof Toast (Triggers every 20s / 3 times a minute across all pages) ---
+  var socialToast = document.getElementById('dakitSocialToast');
+  var toastCountEl = document.getElementById('toastGrabbedCount');
+  var currentGrabbedCount = 556;
+
+  function triggerSocialToast() {
+    if (!socialToast) {
+      socialToast = document.getElementById('dakitSocialToast');
+      if (!socialToast) return;
+    }
+    if (!toastCountEl) {
+      toastCountEl = document.getElementById('toastGrabbedCount');
+    }
+    currentGrabbedCount += Math.floor(Math.random() * 2) + 1;
+    if (toastCountEl) {
+      toastCountEl.textContent = currentGrabbedCount + '+';
+    }
+    socialToast.classList.add('show');
+    setTimeout(function() {
+      if (socialToast) socialToast.classList.remove('show');
+    }, 5500);
+  }
+
+  // Initial trigger after 3.5 seconds, then recurring every 20 seconds (3 times/minute)
+  setTimeout(function() {
+    triggerSocialToast();
+    setInterval(triggerSocialToast, 20000);
+  }, 3500);
+
+  // Close toast button
+  var toastClose = document.getElementById('dakitToastClose');
+  if (toastClose) {
+    toastClose.addEventListener('click', function() {
+      if (socialToast) socialToast.classList.remove('show');
+    });
+  }
+
+
+  // --- Hide sticky bar when navigating away from DA page ---
+  var origShowDashboard = window.showDashboard;
+  if (typeof origShowDashboard === 'function') {
+    window.showDashboard = function() {
+      if (stickyBar) stickyBar.classList.remove('visible');
+      origShowDashboard.apply(this, arguments);
+    };
+  }
+
+})();
+
+// ── Sample Page Lightbox Zoom Modal ──
+function openSamplePageModal(src) {
+  var modal = document.getElementById('samplePageModal');
+  var img = document.getElementById('samplePageModalImg');
+  if (modal && img) {
+    img.src = src;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeSamplePageModal(e) {
+  if (e && e.target && e.target.id !== 'samplePageModal' && !e.target.classList.contains('dakit-sample-modal-close')) {
+    return;
+  }
+  var modal = document.getElementById('samplePageModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSamplePageModal();
+  }
+});
