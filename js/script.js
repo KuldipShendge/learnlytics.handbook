@@ -3678,13 +3678,13 @@ if (document.readyState === 'loading') {
 })();
 
 
-/* ═══ DA INTERVIEW KIT — TESTIMONIAL CAROUSEL ═══ */
+/* ═══ DA INTERVIEW & COMPLETE KIT — UNIVERSAL AUTO-SCROLL TESTIMONIAL CAROUSEL ═══ */
 function dakitSlideTestimonials(direction) {
   var track = document.getElementById('dakitTestiTrack');
   if (!track) return;
   var cards = track.querySelectorAll('.dakit-testimonial-card');
   if (!cards.length) return;
-  var cardWidth = cards[0].offsetWidth + 24; // card + gap
+  var cardWidth = cards[0].offsetWidth + 24;
   var maxScroll = track.scrollWidth - track.clientWidth;
   var newScroll = track.scrollLeft + (direction * cardWidth);
   newScroll = Math.max(0, Math.min(newScroll, maxScroll));
@@ -3696,53 +3696,64 @@ function daCompleteSlideTestimonials(direction) {
   if (!track) return;
   var cards = track.querySelectorAll('.dakit-testimonial-card');
   if (!cards.length) return;
-  var cardWidth = cards[0].offsetWidth + 24; // card + gap
+  var cardWidth = cards[0].offsetWidth + 24;
   var maxScroll = track.scrollWidth - track.clientWidth;
   var newScroll = track.scrollLeft + (direction * cardWidth);
   newScroll = Math.max(0, Math.min(newScroll, maxScroll));
   track.scrollTo({ left: newScroll, behavior: 'smooth' });
 }
 
-/* ═══ DA INTERVIEW KIT — MOBILE TESTIMONIAL AUTO-SCROLL ═══ */
-(function() {
-  var autoScrollTimer;
+(function initUniversalTestimonialsAutoScroll() {
+  function setupTrackAutoScroll(trackId) {
+    var track = document.getElementById(trackId);
+    if (!track) return;
 
-  function stopAutoScroll() {
-    window.clearInterval(autoScrollTimer);
-    autoScrollTimer = null;
-  }
+    var timer = null;
+    var isPaused = false;
 
-  function startAutoScroll() {
-    var track = document.getElementById('dakitTestiTrack');
-    if (!track || !window.matchMedia('(max-width: 768px)').matches || autoScrollTimer) return;
-
-    autoScrollTimer = window.setInterval(function() {
+    function doAutoAdvance() {
+      if (isPaused) return;
       var card = track.querySelector('.dakit-testimonial-card');
       if (!card) return;
       var cardWidth = card.offsetWidth + 24;
-      var isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      var isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
       track.scrollTo({ left: isAtEnd ? 0 : track.scrollLeft + cardWidth, behavior: 'smooth' });
-    }, 3500);
+    }
+
+    function startTimer() {
+      if (!timer) {
+        timer = window.setInterval(doAutoAdvance, 3500);
+      }
+    }
+
+    function stopTimer() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    startTimer();
+
+    // Pause on user interactions
+    track.addEventListener('mouseenter', function() { isPaused = true; }, { passive: true });
+    track.addEventListener('mouseleave', function() { isPaused = false; }, { passive: true });
+    track.addEventListener('touchstart', function() { isPaused = true; }, { passive: true });
+    track.addEventListener('touchend', function() {
+      window.setTimeout(function() { isPaused = false; }, 2000);
+    }, { passive: true });
   }
 
-  function setupMobileTestimonials() {
-    var track = document.getElementById('dakitTestiTrack');
-    if (!track) return;
-    startAutoScroll();
-    track.addEventListener('touchstart', stopAutoScroll, { passive: true });
-    track.addEventListener('touchend', function() {
-      window.setTimeout(startAutoScroll, 1800);
-    }, { passive: true });
-    window.addEventListener('resize', function() {
-      stopAutoScroll();
-      startAutoScroll();
-    });
+  function setupAll() {
+    setupTrackAutoScroll('daCompleteTestiTrack');
+    setupTrackAutoScroll('dakitTestiTrack');
+    setupTrackAutoScroll('aiTestiTrack');
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMobileTestimonials);
+    document.addEventListener('DOMContentLoaded', setupAll);
   } else {
-    setupMobileTestimonials();
+    setupAll();
   }
 })();
 
@@ -3888,14 +3899,13 @@ function aiSlideTestimonials(direction) {
 // ═══════════════════════════════════════════════
 
 (function initCROFeatures() {
-  // --- Fix 3: Sticky Mobile CTA (show when hero scrolls out of view) ---
+  // --- Fix 3: Sticky Mobile CTA for DA Interview Kit ---
   var stickyBar = document.getElementById('dakitStickyMobileCta');
   var heroSection = document.querySelector('#course-data-analyst .dakit-hero');
 
   if (stickyBar && heroSection) {
     var stickyObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        // Show sticky bar when hero is NOT visible AND the DA page is active
         var daPage = document.getElementById('course-data-analyst');
         if (daPage && daPage.style.display !== 'none' && daPage.classList.contains('active')) {
           if (!entry.isIntersecting) {
@@ -3911,10 +3921,32 @@ function aiSlideTestimonials(direction) {
     stickyObserver.observe(heroSection);
   }
 
-  // --- Social Proof Toast (Triggers every 20s / 3 times a minute across all pages) ---
+  // --- Sticky Mobile CTA for DA Complete Kit ---
+  var daCompleteStickyBar = document.getElementById('daCompleteStickyMobileCta');
+  var daCompleteHeroSection = document.querySelector('#course-data-analyst-complete .da-hero-panel');
+
+  if (daCompleteStickyBar && daCompleteHeroSection) {
+    var daCompleteStickyObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var completePage = document.getElementById('course-data-analyst-complete');
+        if (completePage && completePage.style.display !== 'none' && completePage.classList.contains('active')) {
+          if (!entry.isIntersecting) {
+            daCompleteStickyBar.classList.add('visible');
+          } else {
+            daCompleteStickyBar.classList.remove('visible');
+          }
+        } else {
+          daCompleteStickyBar.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    daCompleteStickyObserver.observe(daCompleteHeroSection);
+  }
+
+  // --- Social Proof Toast (Triggers 2 times in 3 minutes = every 90 seconds) ---
   var socialToast = document.getElementById('dakitSocialToast');
   var toastCountEl = document.getElementById('toastGrabbedCount');
-  var currentGrabbedCount = 556;
+  var currentGrabbedCount = 557;
 
   function triggerSocialToast() {
     if (!socialToast) {
@@ -3931,14 +3963,14 @@ function aiSlideTestimonials(direction) {
     socialToast.classList.add('show');
     setTimeout(function() {
       if (socialToast) socialToast.classList.remove('show');
-    }, 5500);
+    }, 6500);
   }
 
-  // Initial trigger after 3.5 seconds, then recurring every 20 seconds (3 times/minute)
+  // Initial trigger after 4 seconds, then recurring every 90 seconds (2 times in 3 minutes)
   setTimeout(function() {
     triggerSocialToast();
-    setInterval(triggerSocialToast, 20000);
-  }, 3500);
+    setInterval(triggerSocialToast, 90000);
+  }, 4000);
 
   // Close toast button
   var toastClose = document.getElementById('dakitToastClose');
@@ -3948,12 +3980,12 @@ function aiSlideTestimonials(direction) {
     });
   }
 
-
-  // --- Hide sticky bar when navigating away from DA page ---
+  // --- Hide sticky bars when navigating away ---
   var origShowDashboard = window.showDashboard;
   if (typeof origShowDashboard === 'function') {
     window.showDashboard = function() {
       if (stickyBar) stickyBar.classList.remove('visible');
+      if (daCompleteStickyBar) daCompleteStickyBar.classList.remove('visible');
       origShowDashboard.apply(this, arguments);
     };
   }
