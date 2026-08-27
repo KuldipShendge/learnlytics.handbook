@@ -4019,3 +4019,27 @@ document.addEventListener('keydown', function(e) {
     closeSamplePageModal();
   }
 });
+
+// ── Author Note Language Switcher ──
+function switchAuthorNoteLang(btn, lang) {
+  var section = btn.closest('.ll-author-note-section');
+  if (!section) return;
+
+  var tabs = section.querySelectorAll('.ll-lang-tab');
+  tabs.forEach(function(t) {
+    if (t.getAttribute('data-lang') === lang) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+  });
+
+  var contents = section.querySelectorAll('.ll-note-content');
+  contents.forEach(function(c) {
+    if (c.classList.contains('ll-note-' + lang)) {
+      c.classList.add('active');
+    } else {
+      c.classList.remove('active');
+    }
+  });
+}
