@@ -2484,6 +2484,8 @@ const AFRICA_COUNTRY_CODES = new Set([
 
 ]);
 
+const USD_DA_KIT_COUNTRY_CODES = new Set(['US', 'GB', 'RU']);
+
 function getCourseRoots(courseIds) {
 
   return courseIds
@@ -2579,27 +2581,28 @@ function applyDaKitPricing(countryCode) {
 
   var tier;
 
-  if (countryCode === 'US') {
+  if (USD_DA_KIT_COUNTRY_CODES.has(countryCode)) {
 
-    // Tier 1: United States
+    // Fixed USD pricing for the United States, United Kingdom, and Russia.
     tier = {
-      kitDisplay: '$9.99',
+      kitDisplay: '$6.99',
       kitStrikeDisplay: '$24.99',
-      upgradeDisplay: '+ $4.99',
+      upgradeDisplay: '+ $3.00',
       upgradeStrikeDisplay: '$19.99',
-      upgradeDescHTML: 'Add <strong>8 Premium Handbooks</strong> in Just $4.99',
-      totalDisplay: '$14.98',
-      offLabel: '60% OFF',
+      upgradeDescHTML: 'Upgrade to the <strong>Complete Kit</strong> for Just $3.00',
+      totalDisplay: '$9.99',
+      offLabel: '72% OFF',
       kitLink: 'https://rzp.io/rzp/kGokl24y',
       bundleLink: 'https://rzp.io/rzp/ro1v8df',
-      bundleCardPrice: '$14.99',
+      bundleCardPrice: '$9.99',
       bundleCardStrike: '$29.99',
-      bundleCardOff: '50% OFF'
+      bundleCardOff: '67% OFF',
+      perResourceDisplay: 'Less than $0.42 per resource • One-time payment'
     };
 
   } else {
 
-    // Tier 2: Europe, Australia, Russia & everyone else
+    // Tier 2: Other international markets
     tier = {
       kitDisplay: '$7.99',
       kitStrikeDisplay: '$24.99',
@@ -2612,7 +2615,8 @@ function applyDaKitPricing(countryCode) {
       bundleLink: 'https://rzp.io/rzp/D7r6WGq',
       bundleCardPrice: '$11.99',
       bundleCardStrike: '$24.99',
-      bundleCardOff: '52% OFF'
+      bundleCardOff: '52% OFF',
+      perResourceDisplay: 'Less than $0.50 per resource • One-time payment'
     };
 
   }
@@ -2668,11 +2672,102 @@ function applyDaKitPricing(countryCode) {
   var bundlePrice = document.getElementById('bundleDaPrice');
   var bundleStrike = document.getElementById('bundleDaStrike');
   var bundleBadge = document.getElementById('bundleDaBadge');
-  if (bundlePrice) bundlePrice.textContent = tier.bundleCardPrice;
-  if (bundleStrike) bundleStrike.textContent = tier.bundleCardStrike;
-  if (bundleBadge) bundleBadge.textContent = tier.bundleCardOff;
+  if (bundlePrice) bundlePrice.textContent = tier.kitDisplay;
+  if (bundleStrike) bundleStrike.textContent = tier.kitStrikeDisplay;
+  if (bundleBadge) bundleBadge.textContent = tier.offLabel;
+
+  // Complete Kit: update its home card, detail page, and checkout buttons.
+  var completeCardButton = document.querySelector('.course-bundle-card button[onclick*="data-analyst-complete"]');
+  var completeCard = completeCardButton && completeCardButton.closest('.course-bundle-card');
+  if (completeCard) {
+    var completeCardPrice = completeCard.querySelector('.bundle-price-large');
+    var completeCardStrike = completeCard.querySelector('.bundle-price-strike');
+    var completeCardBadge = completeCard.querySelector('.bundle-discount-badge');
+    if (completeCardPrice) completeCardPrice.textContent = tier.bundleCardPrice;
+    if (completeCardStrike) completeCardStrike.textContent = tier.bundleCardStrike;
+    if (completeCardBadge) completeCardBadge.textContent = tier.bundleCardOff;
+  }
+
+  var completeRoot = document.getElementById('course-data-analyst-complete');
+  if (completeRoot) {
+    completeRoot.querySelectorAll('.dakit-hero-pricing-new, .cta-price, .dakit-cta-pricing strong, .dakit-sticky-price strong')
+      .forEach(el => el.textContent = tier.bundleCardPrice);
+    completeRoot.querySelectorAll('.dakit-hero-pricing-old, .dakit-cta-pricing del, .dakit-sticky-price del')
+      .forEach(el => el.textContent = tier.bundleCardStrike);
+    completeRoot.querySelectorAll('.dakit-hero-pricing-badge, .dakit-off-badge, .sticky-off')
+      .forEach(el => el.textContent = tier.bundleCardOff);
+    completeRoot.querySelectorAll('.da-per-resource-value')
+      .forEach(el => el.textContent = tier.perResourceDisplay);
+    completeRoot.querySelectorAll('button[onclick*="rzp.io"]')
+      .forEach(button => button.setAttribute('onclick', 'openDaCompleteCheckout()'));
+  }
+
+  window.openDaCompleteCheckout = function() {
+    window.open(tier.bundleLink, '_blank');
+  };
+
+  // The Interview Kit hero and sticky CTA prices do not have individual IDs.
+  var interviewRoot = document.getElementById('course-data-analyst');
+  if (interviewRoot) {
+    interviewRoot.querySelectorAll('.cta-price, .dakit-sticky-price strong')
+      .forEach(el => el.textContent = tier.kitDisplay);
+    interviewRoot.querySelectorAll('.dakit-sticky-price del')
+      .forEach(el => el.textContent = tier.kitStrikeDisplay);
+    interviewRoot.querySelectorAll('.dakit-sticky-price .sticky-off')
+      .forEach(el => el.textContent = tier.offLabel);
+  }
+
+  if (typeof SEARCH_INDEX !== 'undefined') {
+    var interviewSearchItem = SEARCH_INDEX.find(item => item.name === 'Data & BI Analyst Interview Kit');
+    if (interviewSearchItem) interviewSearchItem.price = tier.kitDisplay;
+  }
 
 }
+
+function closeDaCurriculumPreview() {
+  const modal = document.getElementById('daCurriculumPreviewModal');
+  if (modal) modal.remove();
+  document.body.style.overflow = '';
+}
+
+function openDaCurriculumPreview(pdfUrl, title) {
+  closeDaCurriculumPreview();
+  const modal = document.createElement('div');
+  modal.id = 'daCurriculumPreviewModal';
+  modal.className = 'da-curriculum-modal';
+  modal.innerHTML = `
+    <div class="da-curriculum-modal-dialog" role="dialog" aria-modal="true" aria-label="${title}">
+      <div class="da-curriculum-modal-header">
+        <div><strong>${title}</strong><span>Review the curriculum without leaving this page.</span></div>
+        <button type="button" aria-label="Close curriculum preview" onclick="closeDaCurriculumPreview()">&times;</button>
+      </div>
+      <iframe src="${pdfUrl}#toolbar=0" title="${title}"></iframe>
+      <div class="da-curriculum-modal-footer">
+        <a href="${pdfUrl}" download>Download Curriculum</a>
+        <button type="button" onclick="closeDaCurriculumPreview(); document.querySelector('#course-data-analyst-complete .dakit-hero-cta')?.click();">Get All 24 Resources</button>
+      </div>
+    </div>`;
+  modal.addEventListener('click', event => {
+    if (event.target === modal) closeDaCurriculumPreview();
+  });
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const valueStack = document.querySelector('#course-data-analyst-complete .da-cro-value-stack');
+  const authorNote = document.querySelector('#course-data-analyst-complete .ll-author-note-section');
+  if (valueStack && authorNote) {
+    valueStack.appendChild(authorNote);
+  }
+
+  document.querySelectorAll('#da-bundle-handbooks .da-curriculum-card').forEach(card => {
+    card.addEventListener('click', event => {
+      event.preventDefault();
+      openDaCurriculumPreview(card.getAttribute('href'), card.querySelector('h3')?.textContent || 'Module Curriculum');
+    });
+  });
+});
 
 function applyDataScienceMarket(useAsianCheckout) {
 
@@ -2712,6 +2807,53 @@ function applyDataScienceMarket(useAsianCheckout) {
 
   }
 
+}
+
+function applyAiAutomationPricing(countryCode) {
+  if (!USD_DA_KIT_COUNTRY_CODES.has(countryCode)) return;
+
+  const price = '$3.99';
+  const strike = '$9.99';
+  const discount = '60% OFF';
+  const checkoutLink = 'https://rzp.io/rzp/rbubuQPm';
+
+  const aiCardButton = document.querySelector('.course-bundle-card button[onclick*="ai-automation"]');
+  const aiCard = aiCardButton && aiCardButton.closest('.course-bundle-card');
+  if (aiCard) {
+    const cardPrice = aiCard.querySelector('.bundle-price-large');
+    const cardStrike = aiCard.querySelector('.bundle-price-strike');
+    const cardBadge = aiCard.querySelector('.bundle-discount-badge');
+    if (cardPrice) cardPrice.textContent = price;
+    if (cardStrike) cardStrike.textContent = strike;
+    if (cardBadge) cardBadge.textContent = discount;
+  }
+
+  const aiRoot = document.getElementById('course-ai-automation');
+  if (aiRoot) {
+    aiRoot.querySelectorAll('#aiHeroNew, #aiCtaNew, #aiPayPrice')
+      .forEach(el => el.textContent = price);
+    aiRoot.querySelectorAll('#aiHeroOld, #aiCtaOld')
+      .forEach(el => el.textContent = strike);
+    aiRoot.querySelectorAll('#aiHeroBadge, #aiCtaBadge')
+      .forEach(el => el.textContent = discount);
+
+    // The INR-only first-buyer discount is not applicable to fixed USD pricing.
+    const discountCard = document.getElementById('aiDiscountCard');
+    if (discountCard) discountCard.style.display = 'none';
+    const discountCheck = document.getElementById('aiDiscountCheck');
+    if (discountCheck) discountCheck.checked = false;
+  }
+
+  if (typeof aiCheckoutConfig !== 'undefined') {
+    aiCheckoutConfig.regularLink = checkoutLink;
+    aiCheckoutConfig.discountLink = checkoutLink;
+    aiPayLink = checkoutLink;
+  }
+
+  if (typeof SEARCH_INDEX !== 'undefined') {
+    const aiSearchItem = SEARCH_INDEX.find(item => item.name === '2026 AI Automation Edition');
+    if (aiSearchItem) aiSearchItem.price = price;
+  }
 }
 
 async function detectCountryCode() {
@@ -2797,6 +2939,8 @@ async function localizePrices() {
   applyDataScienceMarket(useAsianScienceCheckout);
 
   applyDaKitPricing(countryCode);
+
+  applyAiAutomationPricing(countryCode);
 
 }
 
