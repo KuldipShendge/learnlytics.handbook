@@ -6991,9 +6991,193 @@ body {
 
 #da-sample-pdfs .da-samples-pdf-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 620px);
+  justify-content: center;
   gap: 16px;
   margin-top: 18px;
+}
+
+#da-sample-pdfs .da-pdf-sample-card:not(:first-child) {
+  display: none;
+}
+
+#course-data-analyst-complete .da-per-resource-value {
+  display: block;
+  color: #bbf7d0;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.da-hero-secondary-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.da-hero-secondary-actions a,
+.da-hero-secondary-actions button {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  border-radius: 8px;
+  padding: 9px 13px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.da-includes-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: min(100%, 720px);
+  margin: 8px auto 0;
+}
+
+.da-includes-summary div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+}
+
+.da-includes-summary strong { color: #047857; font-size: 22px; }
+.da-includes-summary span { color: #334155; font-size: 12px; font-weight: 800; }
+
+#course-data-analyst-complete .da-bundle-compact .da-handbook-grid {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 9px;
+}
+
+#course-data-analyst-complete .da-bundle-compact .da-curriculum-card { padding: 6px; }
+#course-data-analyst-complete .da-bundle-compact .da-handbook-card h3 { font-size: 11px; margin-top: 6px; }
+#course-data-analyst-complete .da-bundle-compact .da-handbook-card p,
+#course-data-analyst-complete .da-bundle-compact .da-card-footer-row > span:first-child { display: none; }
+#course-data-analyst-complete .da-bundle-compact .da-view-curriculum-btn { width: 100%; justify-content: center; }
+
+.da-curriculum-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(2, 8, 6, .82);
+  backdrop-filter: blur(5px);
+}
+
+.da-curriculum-modal-dialog {
+  width: min(960px, 100%);
+  height: min(88vh, 820px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+
+.da-curriculum-modal-header,
+.da-curriculum-modal-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; }
+.da-curriculum-modal-header div { display: flex; flex-direction: column; }
+.da-curriculum-modal-header span { color: #64748b; font-size: 12px; margin-top: 2px; }
+.da-curriculum-modal-header > button { border: 0; background: #f1f5f9; border-radius: 50%; width: 36px; height: 36px; font-size: 24px; cursor: pointer; }
+.da-curriculum-modal iframe { width: 100%; height: 100%; border: 0; background: #e2e8f0; }
+.da-curriculum-modal-footer { border-top: 1px solid #e2e8f0; justify-content: flex-end; }
+.da-curriculum-modal-footer a,
+.da-curriculum-modal-footer button { padding: 11px 16px; border-radius: 8px; font-weight: 800; font-size: 13px; text-decoration: none; cursor: pointer; }
+.da-curriculum-modal-footer a { color: #047857; border: 1px solid #10b981; }
+.da-curriculum-modal-footer button { color: #fff; background: #16a34a; border: 0; }
+
+@media (max-width: 900px) {
+  #course-data-analyst-complete .da-bundle-compact .da-handbook-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .da-includes-summary { grid-template-columns: 1fr; }
+  .da-hero-secondary-actions { flex-direction: column; }
+  .da-hero-secondary-actions a, .da-hero-secondary-actions button { text-align: center; width: 100%; }
+  .da-curriculum-modal { padding: 8px; }
+  .da-curriculum-modal-dialog { height: 94vh; }
+  .da-curriculum-modal-footer { display: grid; grid-template-columns: 1fr; }
+  .da-curriculum-modal-footer a, .da-curriculum-modal-footer button { text-align: center; }
+}
+
+/* Complete Kit CRO: one consolidated value card with three inner sections. */
+#course-data-analyst-complete .da-cro-value-stack {
+  width: min(1200px, calc(100% - 32px));
+  margin: 24px auto;
+  padding: 18px;
+  background: linear-gradient(145deg, #ffffff, #f0fdf4);
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  box-shadow: 0 18px 44px rgba(15, 118, 72, .12);
+}
+
+#course-data-analyst-complete .da-cro-value-stack > section {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#course-data-analyst-complete .da-cro-value-stack #da-sample-pdfs {
+  padding: 22px !important;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+#course-data-analyst-complete .da-cro-value-stack .dakit-stats-section {
+  padding: 14px 0 !important;
+}
+
+#course-data-analyst-complete .da-cro-value-stack #da-bundle-handbooks {
+  padding: 20px 0 2px !important;
+  border-top: 1px solid #d1fae5;
+}
+
+#course-data-analyst-complete .dakit-hero-cta.dakit-hero-cta-styled {
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  gap: 8px;
+  font-size: clamp(13px, 1.35vw, 18px);
+  padding-inline: clamp(14px, 2vw, 28px);
+}
+
+#course-data-analyst-complete .dakit-hero-cta.dakit-hero-cta-styled .cta-price,
+#course-data-analyst-complete .dakit-hero-cta.dakit-hero-cta-styled .cta-arrow {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  #course-data-analyst-complete .da-cro-value-stack {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 16px auto;
+  }
+
+  #course-data-analyst-complete .da-cro-value-stack #da-sample-pdfs,
+  #course-data-analyst-complete .da-cro-value-stack #da-bundle-handbooks {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-cta.dakit-hero-cta-styled {
+    font-size: 12px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    letter-spacing: -.15px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -12922,6 +13106,306 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   display: block;
 }
 
+/* Compact, conversion-focused editorial note for the Complete Kit page. */
+#course-data-analyst-complete .ll-author-note-card {
+  max-width: none;
+  width: 100%;
+  margin-inline: auto;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(34, 197, 94, .17), transparent 31%),
+    linear-gradient(145deg, #07150f, #0b2619);
+  border: 1px solid rgba(74, 222, 128, .28);
+  color: #fff;
+  box-shadow: 0 24px 60px rgba(3, 41, 24, .22);
+}
+
+#course-data-analyst-complete .da-cro-value-stack .ll-author-note-section {
+  width: 100%;
+  max-width: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+#course-data-analyst-complete .da-cro-value-stack .ll-author-note-card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+
+#course-data-analyst-complete .ll-note-header {
+  border-bottom-color: rgba(255,255,255,.1);
+}
+
+#course-data-analyst-complete .ll-note-compact-intro {
+  text-align: center;
+  max-width: 790px;
+  margin: 0 auto 22px;
+}
+
+#course-data-analyst-complete .ll-note-eyebrow {
+  display: inline-block;
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  margin-bottom: 9px;
+}
+
+#course-data-analyst-complete .ll-note-main-title {
+  color: #fff;
+  font-size: clamp(25px, 4vw, 40px);
+  line-height: 1.12;
+  margin: 0 0 12px;
+}
+
+#course-data-analyst-complete .ll-note-main-title span { color: #4ade80; }
+
+#course-data-analyst-complete .ll-note-compact-intro p {
+  color: #d1fae5;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+#course-data-analyst-complete .ll-note-compact-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+#course-data-analyst-complete .ll-note-compact-steps > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  padding: 17px;
+  background: rgba(255,255,255,.065);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 13px;
+}
+
+#course-data-analyst-complete .ll-note-compact-steps span {
+  grid-row: 1 / 3;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #052e16;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+#course-data-analyst-complete .ll-note-compact-steps strong { color: #fff; font-size: 15px; }
+#course-data-analyst-complete .ll-note-compact-steps p { color: #bbf7d0; font-size: 12px; line-height: 1.45; margin: 3px 0 0; }
+
+#course-data-analyst-complete .ll-note-compact-method {
+  margin-top: 14px;
+  padding: 17px;
+  text-align: center;
+  background: #f0fdf4;
+  color: #14532d;
+  border-radius: 13px;
+}
+
+#course-data-analyst-complete .ll-note-compact-method > strong { font-size: 14px; }
+#course-data-analyst-complete .ll-note-compact-method > div { display: flex; justify-content: center; align-items: center; gap: 9px; margin: 10px 0 7px; flex-wrap: wrap; }
+#course-data-analyst-complete .ll-note-compact-method span { padding: 5px 9px; border-radius: 5px; background: #dcfce7; font-size: 10px; font-weight: 900; }
+#course-data-analyst-complete .ll-note-compact-method b { color: #22c55e; }
+#course-data-analyst-complete .ll-note-compact-method p { margin: 0; font-size: 12px; line-height: 1.5; }
+
+#course-data-analyst-complete .ll-note-compact-close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+#course-data-analyst-complete .ll-note-compact-close p { color: #d1fae5; font-size: 13px; line-height: 1.55; margin: 0; }
+#course-data-analyst-complete .ll-note-compact-close p strong { color: #fff; font-size: 15px; }
+#course-data-analyst-complete .ll-note-compact-close button { flex: 0 0 auto; border: 0; border-radius: 9px; padding: 13px 18px; background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; font-weight: 900; cursor: pointer; box-shadow: 0 9px 22px rgba(34,197,94,.25); }
+
+@media (max-width: 700px) {
+  #course-data-analyst-complete .ll-note-compact-steps { grid-template-columns: 1fr; }
+  #course-data-analyst-complete .ll-note-compact-close { flex-direction: column; text-align: center; }
+  #course-data-analyst-complete .ll-note-compact-close button { width: 100%; }
+}
+
+/* Complete Kit: centered benefit section and stronger comparison hierarchy. */
+#course-data-analyst-complete .da-what-you-get {
+  width: min(1180px, calc(100% - 32px));
+  margin: 28px auto;
+  padding: 30px 26px;
+  text-align: center;
+  background: linear-gradient(145deg, #f8fffb, #effcf4);
+  border: 1px solid #d1fae5;
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(15, 118, 72, .08);
+}
+
+#course-data-analyst-complete .da-section-kicker,
+#course-data-analyst-complete .dakit-comparison-kicker {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #047857;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+#course-data-analyst-complete .da-what-you-get > h2 {
+  margin: 0;
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+#course-data-analyst-complete .da-section-subcopy,
+#course-data-analyst-complete .dakit-comparison-subcopy {
+  max-width: 650px;
+  margin: 7px auto 22px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#course-data-analyst-complete .da-what-you-get .da-get-grid {
+  gap: 12px;
+}
+
+#course-data-analyst-complete .da-what-you-get .da-get-grid > div {
+  min-height: 150px;
+  padding: 20px 14px;
+  background: #fff;
+  border: 1px solid #dcefe4;
+  border-radius: 14px;
+  box-shadow: 0 7px 20px rgba(15, 118, 72, .07);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+#course-data-analyst-complete .da-what-you-get .da-get-grid > div:hover {
+  transform: translateY(-4px);
+  border-color: #4ade80;
+  box-shadow: 0 13px 28px rgba(15, 118, 72, .13);
+}
+
+#course-data-analyst-complete .da-what-you-get .da-get-grid span {
+  width: 44px;
+  height: 44px;
+  background: #dcfce7;
+  border-radius: 12px;
+  font-size: 21px;
+}
+
+#course-data-analyst-complete .da-what-you-get .da-get-grid h3 {
+  color: #123b29;
+  font-size: 13px;
+}
+
+#course-data-analyst-complete .dakit-comparison {
+  width: min(1180px, calc(100% - 32px));
+  margin: 30px auto;
+  padding: 32px 28px;
+  text-align: center;
+  background: linear-gradient(145deg, #f8fafc, #f0fdf4);
+  border: 1px solid #d1fae5;
+  border-radius: 20px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, .09);
+}
+
+#course-data-analyst-complete .dakit-comparison .dakit-section-title {
+  margin: 0;
+  color: #0f2f22;
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+#course-data-analyst-complete .dakit-comparison-container {
+  gap: 16px;
+  align-items: stretch;
+  text-align: left;
+}
+
+#course-data-analyst-complete .dakit-comp-table-wrap {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15,23,42,.06);
+}
+
+#course-data-analyst-complete .dakit-comp-table th {
+  padding: 15px 17px;
+  background: #fff1f2;
+  color: #9f1239;
+  border-bottom: 1px solid #fecdd3;
+  font-size: 12px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+#course-data-analyst-complete .dakit-comp-table td {
+  padding: 12px 17px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+#course-data-analyst-complete .dakit-comp-table td:first-child { color: #334155; font-weight: 800; }
+#course-data-analyst-complete .dakit-comp-table td:last-child { color: #be123c; font-weight: 700; }
+
+#course-data-analyst-complete .dakit-comp-card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(74,222,128,.2), transparent 34%),
+    linear-gradient(145deg, #052e1d, #0b4a2f);
+  border: 1px solid #22c55e;
+  border-radius: 15px;
+  box-shadow: 0 16px 36px rgba(5, 78, 48, .22);
+}
+
+#course-data-analyst-complete .dakit-comp-best-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 9px;
+  color: #052e16;
+  background: #86efac;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .8px;
+}
+
+#course-data-analyst-complete .dakit-comp-title {
+  color: #facc15 !important;
+  font-size: 23px;
+  font-weight: 900 !important;
+  letter-spacing: -.2px;
+  text-shadow: 0 2px 12px rgba(250, 204, 21, .18);
+}
+
+#course-data-analyst-complete .dakit-comp-list li {
+  color: #dcfce7;
+  border-bottom-color: rgba(255,255,255,.1);
+}
+
+#course-data-analyst-complete .dakit-comp-list svg {
+  color: #4ade80;
+  stroke: #4ade80;
+}
+
+@media (max-width: 700px) {
+  #course-data-analyst-complete .da-what-you-get,
+  #course-data-analyst-complete .dakit-comparison {
+    width: calc(100% - 20px);
+    padding: 22px 14px;
+  }
+
+  #course-data-analyst-complete .da-what-you-get .da-get-grid > div {
+    min-height: 0;
+  }
+}
+
 @keyframes llFadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
@@ -13330,5 +13814,50 @@ body.standalone-da-page #course-data-analyst .dakit-page {
   }
   .dakit-hero-path-badge .path-arrow {
     font-size: 13px;
+  }
+}
+
+/* Final mobile release safeguards — keep last in cascade. */
+@media (max-width: 768px) {
+  .courses-header-right {
+    display: none !important;
+  }
+
+  html,
+  body,
+  #course-data-analyst-complete,
+  #course-data-analyst-complete .da-bundle-page {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  #course-data-analyst-complete .dakit-hero-cta.dakit-hero-cta-styled {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+  }
+
+  #course-data-analyst-complete .da-hero-secondary-actions {
+    order: 11 !important;
+    width: min(100%, 340px) !important;
+    margin: 6px auto 0 !important;
+  }
+
+  #course-data-analyst-complete .da-cro-value-stack,
+  #course-data-analyst-complete .da-what-you-get,
+  #course-data-analyst-complete .dakit-comparison {
+    max-width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+  }
+
+  #course-data-analyst-complete .dakit-comparison-container {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #course-data-analyst-complete .dakit-comp-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
