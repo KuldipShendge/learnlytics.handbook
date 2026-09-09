@@ -1,0 +1,613 @@
+/* Editorial eyebrow must stay readable on the pink note. */
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-eyebrow {
+  color: #713255 !important;
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+/* Both interview pages use one shared Inside layout. */
+:is(#course-data-analyst, #course-ai-automation) .dakit-inside {
+  padding: 24px 52px !important;
+}
+:is(#course-data-analyst, #course-ai-automation) .dakit-inside-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+:is(#course-data-analyst, #course-ai-automation) .dakit-inside-card {
+  padding: 24px !important;
+  text-align: left !important;
+}
+:is(#course-data-analyst, #course-ai-automation) .dakit-inside-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px !important;
+  height: 52px !important;
+  margin: 0 0 14px !important;
+  border-radius: 12px;
+}
+:is(#course-data-analyst, #course-ai-automation) .dakit-inside > .dakit-section-title {
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  margin: 0 auto 24px !important;
+}
+@media (max-width: 768px) {
+  :is(#course-data-analyst, #course-ai-automation) .dakit-inside { padding: 20px 12px !important; }
+  :is(#course-data-analyst, #course-ai-automation) .dakit-inside-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  :is(#course-data-analyst, #course-ai-automation) .dakit-inside-card { padding: 16px !important; }
+  :is(#course-data-analyst, #course-ai-automation) .dakit-inside > .dakit-section-title { max-width: 340px !important; font-size: 21px !important; }
+}
+@media (max-width: 400px) {
+  :is(#course-data-analyst, #course-ai-automation) .dakit-inside-grid { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* Complete Kit uses its own hero and curriculum markup. */
+#course-data-analyst-complete .da-hero-panel {
+  background: linear-gradient(135deg, #fff, #fcf4f9 65%, #f9edf4) !important;
+  border-color: #e9dce5 !important;
+  box-shadow: 0 8px 24px rgba(36,21,37,.05) !important;
+}
+#course-data-analyst-complete .da-hero-panel::before,
+#course-data-analyst-complete .da-hero-panel::after { display: none !important; }
+#course-data-analyst-complete .da-hero-copy h1 {
+  color: #241525 !important; font-weight: 700 !important; text-shadow: none !important;
+}
+#course-data-analyst-complete .da-hero-copy h1 strong { color: #b40982 !important; }
+#course-data-analyst-complete :is(.da-kicker, .da-stats-row span, .da-card-footer-row, .da-handbook-card p, .da-pdf-card-info p, .dakit-hero-secure) { color: #665866 !important; }
+#course-data-analyst-complete :is(.da-stats-row strong, .da-handbook-card h3, .da-pdf-card-info h4, .da-includes-summary strong) { color: #241525 !important; }
+#course-data-analyst-complete :is(.da-stats-row div, .da-handbook-card, .da-pdf-sample-card, .da-includes-summary > div) {
+  background: #fff !important; border: 1px solid #e9e1e7 !important; box-shadow: none !important;
+}
+#course-data-analyst-complete .da-includes-summary span { color: #665866 !important; }
+#course-data-analyst-complete :is(.da-view-curriculum-btn, .da-curriculum-overlay > span) { background: #241525 !important; color: #fff !important; border-color: #241525 !important; }
+#course-data-analyst-complete .da-curriculum-overlay { background: rgba(36,21,37,.18) !important; }
+#course-data-analyst-complete .da-cro-value-stack { background: transparent !important; box-shadow: none !important; }
+
+/* Curriculum dialogs share the same light surfaces as the main content. */
+.math-curriculum-modal .da-curriculum-modal-dialog { background: #f5f0f3 !important; }
+.da-curriculum-modal-header.math-curriculum-header { background: #241525 !important; color: #fff !important; }
+.math-curriculum-header span { color: #f4ddeb !important; }
+.math-curriculum-header .math-curriculum-eyebrow { color: #eab7d7 !important; }
+.math-curriculum-intro { background: #f7eaf2 !important; color: #54213f !important; border-color: #e5cbdc !important; }
+.math-curriculum-intro div span { color: #745769 !important; }
+.math-curriculum-badge { color: #8f286c !important; border-color: #e3c7d8 !important; }
+.math-curriculum-unit { border-color: #e9e1e7 !important; box-shadow: none !important; }
+.math-curriculum-unit[open] { border-color: #c787b0 !important; }
+.math-unit-number { background: #f3e0ed !important; color: #8f286c !important; }
+.math-unit-heading { color: #241525 !important; }
+.math-unit-heading small { color: #745f70 !important; }
+.math-topic-count,.math-topic-grid li span { color: #8f286c !important; }
+.math-topic-grid li { background: #faf5f8 !important; color: #614556 !important; }
+.math-curriculum-footer { border-color: #e9e1e7 !important; color: #614556 !important; }
+.math-curriculum-footer button { background: #241525 !important; color: #fff !important; box-shadow: none !important; }
+
+/* Shared content theme: warm canvas, white surfaces, plum type and pink accents. */
+:root {
+  --ll-ink: #241525;
+  --ll-copy: #665866;
+  --ll-accent: #b40982;
+  --ll-line: #e9e1e7;
+  --ll-tint: #faf4f8;
+}
+
+.dashboard-main { color: var(--ll-copy); }
+.dashboard-topbar h1 span,
+.courses-header-left h2 span { color: var(--ll-ink) !important; }
+.dashboard-topbar p,
+.dashboard-topbar p span,
+.dashboard-topbar p strong { color: var(--ll-copy) !important; }
+
+.courses-header-left h2,
+.courses-menu-title,
+.panel-heading h2,
+.course-bundle-card h3,
+.course-bundle-card h3 span {
+  color: var(--ll-ink) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.4px;
+}
+
+.courses-header-left p,
+.bundle-features li,
+.bundle-stats-row div span {
+  color: var(--ll-copy) !important;
+  font-weight: 400;
+}
+
+.course-bundle-card,
+.header-stat-badge {
+  background: #fff !important;
+  border: 1px solid var(--ll-line) !important;
+  border-radius: 16px;
+  box-shadow: none !important;
+}
+
+.course-bundle-card:hover {
+  border-color: #d19abe !important;
+  box-shadow: 0 6px 20px rgba(36, 21, 37, .05) !important;
+}
+
+.bundle-stats-row {
+  background: #faf7f9 !important;
+  border-color: var(--ll-line) !important;
+}
+
+.bundle-stats-row div strong { color: var(--ll-ink) !important; font-weight: 600; }
+.bundle-price-large { color: var(--ll-accent) !important; font-weight: 700; }
+.bundle-price-strike { color: #817380 !important; }
+.bundle-eyebrow { color: var(--ll-accent) !important; font-weight: 600; }
+.bundle-discount-badge { background: #fbeaf5 !important; color: #930b6b !important; }
+.bundle-btn:not(:disabled) {
+  background: #241525 !important;
+  color: #fff !important;
+  border-color: #241525 !important;
+  box-shadow: none !important;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.bundle-btn:not(:disabled):hover { background: #4c2344 !important; }
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-section-title, .da-section h2, .dakit-inside-card h3, .da-get-grid h3, .dakit-testimonial-name, .dakit-faq-question, .da-faq-section summary) {
+  color: var(--ll-ink) !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  letter-spacing: -.25px;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-inside-card p, .da-get-grid p, .dakit-testimonial-quote, .dakit-testimonial-role, .dakit-faq-answer, .da-section-subcopy, .dakit-comparison-subcopy, .da-faq-section .faq-content) {
+  color: var(--ll-copy) !important;
+  font-weight: 400 !important;
+  line-height: 1.65;
+  text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-stat-card, .dakit-inside-card, .dakit-testimonial-card, .dakit-faq-item, .da-get-grid > div, .da-get-grid > button, .da-faq-section .faq-item, .dakit-comp-table-wrap) {
+  background: #fff !important;
+  border: 1px solid var(--ll-line) !important;
+  border-radius: 14px;
+  box-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-faq-item.active, .dakit-inside-card:hover, .da-get-grid > button:hover, .da-get-grid > div:hover) {
+  border-color: #d19abe !important;
+  box-shadow: 0 4px 16px rgba(36, 21, 37, .04) !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-section-title::before, .dakit-section-title::after) { background: #dccbd6 !important; }
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.da-section-kicker, .dakit-comparison-kicker) {
+  color: var(--ll-accent) !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.3px;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-stat-icon, .dakit-inside-icon, .da-get-grid > div > span:not(.da-get-bonus-badge), .da-get-grid > button > span:not(.da-get-bonus-badge)) {
+  color: var(--ll-accent) !important;
+  background: #fceff8 !important;
+  border-color: #f1e1eb !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-table th {
+  background: #f7f2f5 !important;
+  color: var(--ll-ink) !important;
+  font-weight: 600;
+}
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-table td {
+  background: #fff !important;
+  color: var(--ll-copy) !important;
+  border-color: var(--ll-line) !important;
+}
+
+/* Keep headings crisp while reducing the heavy sales-page typography. */
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero {
+  background: linear-gradient(135deg, #fff 0%, #fcf4f9 65%, #f9edf4 100%) !important;
+  border-color: #e9dce5 !important;
+  box-shadow: 0 8px 24px rgba(36, 21, 37, .05) !important;
+}
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-title {
+  color: var(--ll-ink) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.8px;
+  text-shadow: none !important;
+}
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-highlight { color: var(--ll-accent) !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-desc { color: var(--ll-copy) !important; text-shadow: none !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-subtitle {
+  background: #fbeaf5 !important;
+  color: #930b6b !important;
+  border-color: #ecd3e2 !important;
+  box-shadow: none !important;
+}
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-pricing-new { color: var(--ll-accent) !important; }
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary) {
+  background: #241525 !important;
+  color: #fff !important;
+  border-color: #241525 !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary):hover { background: #4c2344 !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-cta .cta-price { color: #fff !important; }
+
+.dashboard-main :is(button, a, summary):focus-visible {
+  outline: 2px solid #b40982;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-bundle-card { transition: none !important; }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main { width: 100%; max-width: 100%; padding-inline: 12px !important; }
+  #detail-view { padding-inline: 0 !important; min-width: 0; }
+  .detail-inner:has(:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation).active) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-inline: 0 !important;
+  }
+}
+
+/* Complete the plum and pink palette across offers, notes and value cards. */
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-path-badge {
+  background: #f3e3ed !important; border-color: #e3c7d8 !important; color: #3e2036 !important; box-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-path-badge .path-step,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-path-badge .path-arrow {
+  color: #3e2036 !important; text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-title,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-sql-addon-btn,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-close button {
+  background: #241525 !important; color: #fff !important; border-color: #241525 !important; box-shadow: none !important; animation: none !important; text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-sql-addon-btn span,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-sql-addon-btn svg {
+  color: #fff !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-pricing-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-off-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .sticky-off,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .da-get-bonus-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-inline-bonus,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-best-badge {
+  background: #f2d6e8 !important; color: #751051 !important; border-color: #e6bfd7 !important; box-shadow: none !important; text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-hero-timer,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-mobile-offer-timer {
+  background: #f2dce9 !important; border-color: #dfb9d1 !important; color: #54213f !important; box-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-timer-label,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-timer-text,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-timer-bottom,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-countdown-val,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-countdown-label,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-countdown-sep,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-mobile-offer-timer strong {
+  color: #54213f !important; text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-card {
+  background: #faf1f7 !important; border: 1px solid #e5cddc !important; box-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-list li {
+  color: #483442 !important; border-color: #e5cddc !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-comp-list li svg {
+  color: #a80b79 !important; stroke: currentColor !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-author-note-card {
+  background: #f0dce8 !important; color: #3c2735 !important; border-color: #dec1d3 !important; box-shadow: 0 6px 20px rgba(70, 30, 55, .04) !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-author-note-card::before {
+  background: #b66b9b !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-header {
+  border-color: #dcbfd1 !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-lang-tab.active {
+  background: #713255 !important; color: #fff !important; box-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-badge svg {
+  color: #fff !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-lang-switcher {
+  background: #e7cddb !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-lang-tab {
+  color: #54213f;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-main-title,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-main-title span,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-intro strong,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-steps strong,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-close p strong {
+  color: #3c2032 !important; text-shadow: none !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-content p,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-content .ll-note-subheading {
+  color: #614556 !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-steps > div,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-step-card,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-method {
+  background: #fbf4f8 !important; border-color: #e3c8d8 !important; color: #54213f !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-steps span,
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-method span {
+  background: #ecd0e1 !important; color: #713255 !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .ll-note-compact-method b {
+  color: #a80b79 !important;
+}
+
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) .dakit-countdown-unit :is(.dakit-val, small) {
+  color: #54213f !important;
+  text-shadow: none !important;
+}
+
+/* Mobile checkout and learner notification complete the shared theme. */
+.dakit-social-toast,
+.dakit-social-toast *,
+.dakit-sticky-mobile-cta,
+.dakit-sticky-mobile-cta * {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+.dakit-social-toast {
+  background: #faf1f7;
+  color: #665866;
+  border: 1px solid #e5cddc;
+  box-shadow: 0 6px 20px rgba(36, 21, 37, .08);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 14px 40px 14px 16px;
+}
+.dakit-social-toast strong { color: #713255; font-weight: 600; }
+.dakit-social-toast-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #f2d6e8;
+  color: #8f286c;
+}
+.dakit-social-toast-close { color: #713255; width: 32px; height: 32px; }
+.dakit-sticky-mobile-cta {
+  background: #fff !important;
+  border-top: 1px solid #e5cddc !important;
+  box-shadow: 0 -4px 18px rgba(36, 21, 37, .07) !important;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+}
+.dakit-sticky-price { color: #241525; flex-shrink: 0; }
+.dakit-sticky-price del { color: #817380; font-size: 12px; }
+.dakit-sticky-price strong { color: #b40982; font-weight: 700; font-size: 22px; line-height: 1.25; }
+.dakit-sticky-price .sticky-off { padding: 2px 6px; border-radius: 5px; font-size: 10px; }
+.dakit-sticky-btn { min-width: 0; font-size: 13px; line-height: 1.4; padding: 13px 14px; border-radius: 12px; }
+@media (max-width: 768px) {
+  .dakit-social-toast {
+    bottom: calc(118px + env(safe-area-inset-bottom));
+    font-size: 12px;
+    padding: 12px 40px 12px 12px;
+  }
+}
+
+/* Matching product artwork: preserve portrait proportions in cards and heroes. */
+.course-bundle-card .bundle-card-illustration {
+  height: 210px !important;
+  width: 100% !important;
+}
+.course-bundle-card .bundle-card-illustration img[src*="images/light-theme/"] {
+  width: 100%; height: 100%; object-fit: contain; transform: none;
+}
+#course-data-analyst-complete .da-hero-art img[src*="images/light-theme/"] {
+  width: min(100%, 390px) !important; height: auto !important;
+  max-height: 600px; object-fit: contain; margin-inline: auto;
+  filter: drop-shadow(0 8px 12px rgba(70,30,55,.08)) !important;
+}
+@media (max-width: 768px) {
+  #course-data-analyst-complete .da-hero-art img[src*="images/light-theme/"] {
+    width: min(100%, 320px) !important; max-height: 480px;
+  }
+}
+
+/* Four-slide hero GIFs stay still as a frame while their contents animate. */
+:is(#course-data-analyst-complete, #course-data-analyst, #course-ai-automation) img[src$="-hero.gif"] {
+  animation: none !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  border-radius: 14px;
+  filter: none !important;
+}
+
+/* Leave room for the download button after removing the ML trust strip. */
+#course-ai-automation .dakit-hero-image-col > .dakit-hero-image {
+  margin-bottom: 12px !important;
+}
+#course-ai-automation .dakit-sql-addon-btn {
+  margin-top: 12px !important;
+  flex-shrink: 0;
+}
+/* Dashboard navigation and supporting surfaces, September refresh. */
+.about-us-link {
+  border: 1px solid #e7dce5; border-radius: 10px; padding: 10px 16px;
+  background: #fff; color: #241525; font: inherit; font-weight: 600; cursor: pointer;
+  white-space: nowrap;
+}
+.about-us-link:hover { background: #f9edf5; color: #b40982; }
+.blank-dashboard-section { min-height: 55vh; }
+#course-data-analyst-complete .da-per-resource-value { color: #665866 !important; text-shadow: none !important; }
+#course-data-analyst-complete .da-hero-secondary-actions :is(a,button) {
+  color: #85205f !important; background: #fff !important; border: 1px solid #dcbfd3 !important;
+  text-shadow: none !important;
+}
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta {
+  background: linear-gradient(120deg,#fff 0%,#f9edf5 100%) !important;
+  border: 1px solid #e3cfde !important; box-shadow: 0 8px 24px rgba(50,20,40,.05) !important;
+  color: #241525 !important;
+}
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta :is(h2,p,span,strong) {
+  color: #241525 !important; text-shadow: none !important;
+}
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta svg { stroke: #b40982 !important; }
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta del { color: #776977 !important; }
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta .dakit-btn-primary {
+  background: #241525 !important; color: #fff !important; border-color: #241525 !important; box-shadow: none !important;
+}
+:is(#course-data-analyst-complete,#course-data-analyst,#course-ai-automation) .dakit-bottom-cta .dakit-off-badge {
+  background: #f5dfed !important; color: #a00870 !important;
+}
+#freeHandbooksSection .free-card, #reviewsSection .review-card, #reviewsSection .reviews-rating-summary-bar {
+  background: #fff !important; border: 1px solid #e7dce5 !important;
+  box-shadow: 0 4px 18px rgba(45,20,40,.03) !important; color: #241525 !important;
+}
+#freeHandbooksSection :is(h2,p,strong), #reviewsSection :is(h2,.review-text) { color: #241525 !important; }
+#freeHandbooksSection .free-copy span { color: #665866 !important; }
+#freeHandbooksSection .panel-heading button { color: #a00870 !important; }
+#freeHandbooksSection .download-button { background: #241525 !important; color: #fff !important; }
+#freeHandbooksSection .free-card-cover { object-fit: contain !important; border-radius: 10px; }
+.free-resource-card img { object-fit: contain !important; }
+#reviewsSection .stars { color: #b40982 !important; }
+#reviewsSection .btn-primary { background: #241525 !important; color: #fff !important; box-shadow: none !important; }
+#reviewsSection .reviews-rating-summary-bar > div > div > div:first-child { color: #b40982 !important; }
+:is(#course-data-analyst,#course-ai-automation) .dakit-trusted-logos {
+  width: min(100%,960px) !important; max-width: 960px !important; height: auto !important;
+  max-height: none !important; object-fit: contain !important; filter: none !important; border-radius: 16px;
+}
+.sidebar-help-box { background: #faf6f9 !important; border-color: #e7dce5 !important; }
+.sidebar-help-box :is(h3,p,.sidebar-help-btn) { color: #241525 !important; }
+.sidebar-help-btn { background: #fff !important; border-color: #e7dce5 !important; }
+@media(max-width:768px) {
+ .mobile-header .dashboard-brand { display:none !important; }
+ .mobile-header-socials { display:flex !important; align-items:center; gap:10px !important; }
+ .mobile-header-socials .about-us-link { padding:8px 10px; font-size:13px; }
+ #reviewsSection .reviews-rating-summary-bar { flex-wrap:wrap; gap:18px; padding:20px !important; }
+ #reviewsSection .reviews-grid { grid-template-columns:minmax(0,1fr) !important; }
+ #freeHandbooksSection .free-card-body { flex-wrap:wrap; }
+}
+/* About LearnLytics: editorial learning story. */
+#aboutSection { max-width:1240px; margin:24px auto 64px; color:#241525; }
+#aboutSection * { box-sizing:border-box; }
+#aboutSection h2 { margin:12px 0 20px; font-size:clamp(26px,2.7vw,38px); line-height:1.18; letter-spacing:-.8px; color:#241525; }
+#aboutSection h3 { color:#241525; font-size:18px; line-height:1.4; margin:12px 0; }
+#aboutSection p { color:#665866; font-size:16px; line-height:1.75; margin:0 0 16px; }
+#aboutSection .about-eyebrow { color:#a00870; font-size:11px; letter-spacing:1.6px; font-weight:700; }
+.about-hero { display:grid; grid-template-columns:1.15fr 1fr; gap:40px; padding:48px; background:linear-gradient(125deg,#fff,#faedf5); border:1px solid #e7dce5; border-radius:24px; align-items:center; }
+#aboutSection .about-hero h2 { font-size:clamp(34px,3.5vw,52px); letter-spacing:-1.5px; }
+.about-hero em { color:#a00870; font-style:normal; }
+#aboutSection .about-intro { font-size:14px; }
+.about-primary,.about-secondary { font:inherit; font-size:14px; font-weight:600; padding:14px 20px; border-radius:10px; border:1px solid #241525; background:#241525; color:#fff; cursor:pointer; line-height:1.5; }
+.about-primary:hover { background:#5d244d; }
+.about-secondary { background:#fff; color:#85205f; border-color:#dec5d6; }
+.about-goal { background:#fff; border:1px solid #e8d6e3; border-radius:20px; padding:32px; box-shadow:0 12px 28px rgba(65,25,50,.04); }
+.about-start { margin-top:28px; padding:16px; border-radius:10px; background:#f7f2f6; color:#766774; font-size:18px; }
+.about-goal-arrow { padding:12px 16px; color:#b40982; font-size:26px; }
+.about-goal blockquote { margin:0; padding:0 0 20px; font-size:clamp(22px,2vw,28px); line-height:1.45; font-weight:600; }
+.about-goal-caption { color:#a00870; font-size:13px; }
+.about-section { margin-top:56px; }
+.about-problem,.about-interview { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+.about-questions,.about-answer { padding:28px; border:1px solid #e7dce5; background:#fff; border-radius:18px; }
+.about-questions ul { padding-left:20px; margin-bottom:0; }
+.about-questions li { padding:7px 0; color:#665866; line-height:1.5; }
+.about-questions li::marker { color:#b40982; }
+.about-philosophy { text-align:center; padding:36px 24px; border-block:1px solid #e6d9e2; }
+.about-process { padding:0; list-style:none; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; margin:30px 0 20px; }
+.about-process li { font-size:14px; line-height:1.5; }
+.about-process span { display:flex; align-items:center; justify-content:center; width:42px; height:42px; margin:0 auto 12px; border-radius:50%; color:#a00870; background:#f3dfea; font-weight:700; }
+#aboutSection .about-process-note { font-size:14px; margin-bottom:0; }
+.about-section-heading { max-width:700px; }
+.about-framework { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:28px; }
+.about-framework article { background:#fff; border:1px solid #e7dce5; border-radius:16px; padding:24px; }
+.about-framework article>span { color:#b40982; font-size:13px; font-weight:700; }
+#aboutSection .about-framework p { font-size:14px; margin:0; }
+.about-answer { background:#f9eaf3; }
+.about-answer ol { padding-left:24px; margin:20px 0 0; }
+.about-answer li { padding:12px 0 12px 6px; line-height:1.5; border-bottom:1px solid #e7cfdf; }
+.about-answer li:last-child { border:0; }
+.about-answer li::marker { color:#a00870; font-weight:700; }
+.about-roadmap { background:#fff; border:1px solid #e7dce5; border-radius:20px; padding:36px; }
+.about-roadmap p { max-width:760px; }
+.about-roadmap ol { list-style:none; counter-reset:journey; padding:0; display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 0; }
+.about-roadmap li { counter-increment:journey; background:#f7f0f5; border-radius:10px; padding:14px; font-size:14px; }
+.about-roadmap li::before { content:counter(journey,decimal-leading-zero) ' / '; color:#a00870; font-weight:700; }
+.about-vision-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+.about-vision-grid article { padding:12px 0; }
+.about-mission { margin-top:48px; padding:44px 24px; text-align:center; background:#f3e4ee; border:1px solid #e3cddd; border-radius:24px; }
+.about-mission>div { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:24px; }
+#aboutSection button:focus-visible { outline:3px solid #b40982; outline-offset:4px; }
+@media(max-width:1000px) { .about-framework { grid-template-columns:repeat(2,minmax(0,1fr)); } .about-hero { padding:28px; gap:24px; } }
+@media(max-width:768px) {
+ #aboutSection { margin-top:16px; }
+ .about-hero,.about-problem,.about-interview,.about-vision-grid { grid-template-columns:1fr; gap:24px; }
+ .about-hero { padding:24px 20px; }
+ .about-goal { padding:24px; }
+ .about-section { margin-top:36px; }
+ .about-process { grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px 10px; }
+ .about-philosophy { padding:28px 0; }
+ .about-framework { gap:12px; }
+ .about-framework article { padding:18px; }
+ .about-roadmap { padding:24px; }
+ .about-roadmap ol { display:grid; grid-template-columns:1fr; }
+ .about-mission>div { flex-direction:column; }
+}
+@media(max-width:400px) { .about-framework { grid-template-columns:1fr; } }
+.discount-section { max-width:640px; margin:28px auto 60px; }
+.discount-card { background:#fff; border:1px solid #e7dce5; border-radius:22px; padding:36px; color:#241525; }
+.discount-card h2 { font-size:32px; margin:12px 0; }
+.discount-card p { color:#665866; line-height:1.65; }
+.discount-card form { margin-top:24px; }
+.discount-card label { display:block; font-size:14px; font-weight:600; margin:18px 0 8px; }
+.discount-card label span { font-weight:400; color:#776977; }
+.discount-card :is(input,select) { width:100%; box-sizing:border-box; padding:12px 14px; font:inherit; font-size:16px; color:#241525; background:#fdfbfc; border:1px solid #decfda; border-radius:9px; }
+.discount-card :is(input,select):focus { outline:2px solid #b40982; outline-offset:2px; }
+.discount-card .discount-consent { font-size:12px; margin:18px 0; }
+.discount-card .about-primary { display:block; width:100%; box-sizing:border-box; text-align:center; text-decoration:none; }
+.discount-card button:disabled { opacity:.6; cursor:wait; }
+#discountError { color:#a01b40; }
+#discountSuccess { margin-top:28px; padding:24px; border-radius:14px; background:#f9edf5; }
+.discount-course-button { display:block; width:fit-content; max-width:100%; margin:14px auto; border:1px solid #d8b9ce; border-radius:10px; padding:12px 18px; background:#faedf5; color:#95206f; font:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+.discount-course-button:hover { background:#f2ddeb; }
+@media(max-width:768px) { .discount-card { padding:24px 20px; } .discount-section { margin-top:16px; } }
+@media(max-width:768px) { .discount-course-button { order:9 !important; } }
+/* Compact single-row company panel. */
+:is(#course-data-analyst,#course-ai-automation) .dakit-trusted-logos {
+  width: min(100%, 900px) !important;
+  max-width: 900px !important;
+  height: auto !important;
+  max-height: 180px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  margin: 12px auto !important;
+}
+@media(max-width:768px) {
+ :is(#course-data-analyst,#course-ai-automation) .dakit-trusted-logos {
+  max-height: 110px !important;
+ }
+}
