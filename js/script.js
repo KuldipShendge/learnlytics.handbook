@@ -276,7 +276,7 @@ function closeDetail() {
 
   // NEW: Remove the hash from the URL when going back home
 
-  window.history.replaceState(null, null, window.location.pathname);
+  window.history.replaceState(null, null, window.location.pathname + window.location.search);
 
   var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = '';
 
@@ -3819,7 +3819,7 @@ function safePushState(url) {
   }
 }
 
-function handleRouting(path) {
+function handleRouting(path, restoreSavedPath = true) {
   isNavigatingFromRouter = true;
   try {
     let checkPath = path;
@@ -3834,13 +3834,15 @@ function handleRouting(path) {
           checkPath = '/course-bundles/machine-learning-interview-kit';
         } else if (hash === 'data-science' || hash === 'data-scientist-genai-engineer-bundle') {
           checkPath = '/course-bundles/data-scientist-genai-engineer-bundle';
+        } else if (hash === 'register') {
+          checkPath = '/register';
         } else if (hash === 'free' || hash === 'free-handbooks' || hash === 'free-download') {
           checkPath = '/free-download';
         } else if (hash === 'reviews' || hash === 'review') {
           checkPath = '/review';
         }
       }
-      if (!checkPath || checkPath === '/' || checkPath === '/index.html') {
+      if (restoreSavedPath && (!checkPath || checkPath === '/' || checkPath === '/index.html')) {
         try {
           const saved = sessionStorage.getItem('lastLearnyticsUrl');
           if (saved && saved !== '/' && saved !== '/index.html') {
@@ -3852,7 +3854,7 @@ function handleRouting(path) {
 
     const cleanPath = (checkPath || '').replace(/\/index\.html$/, '') || '/';
     const decodedPath = decodeURIComponent(cleanPath);
-    const normalizedPath = decodedPath.toLowerCase().trim().replace(/\s+/g, '-');
+    const normalizedPath = decodedPath.toLowerCase().trim().replace(/\s+/g, '-').replace(/\/+$/, '') || '/';
     
     if (
       normalizedPath === '/course-bundles/data-bi-analyst-complete-bundle' ||
@@ -3885,6 +3887,8 @@ function handleRouting(path) {
       normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle/interview-questions'
     ) {
       openDetail('data-science-questions');
+    } else if (normalizedPath === '/register') {
+      showSection('register');
     } else if (normalizedPath === '/help') {
       openDetail('help');
     } else if (
@@ -3956,6 +3960,8 @@ if (typeof showSection === 'function') {
       safePushState('/whats-inside');
     } else if (section === 'tools') {
       safePushState('/tools-tech');
+    } else if (section === 'register') {
+      safePushState('/register');
     } else if (section === 'free') {
       safePushState('/free-download');
     } else if (section === 'reviews') {
@@ -4070,7 +4076,8 @@ closeHandlers.forEach(handlerName => {
 
 // Setup popstate and DOMContentLoaded routing listeners
 window.addEventListener('popstate', () => {
-  handleRouting(window.location.pathname);
+  // History navigation must render its URL instead of reopening the last section.
+  handleRouting(window.location.pathname, false);
 });
 
 // Perform routing on initial load
