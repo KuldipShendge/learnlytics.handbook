@@ -1,0 +1,44 @@
+.new-free-book-card { min-width: 0; display: flex; align-items: center; gap: 18px; padding: 20px; border: 1px solid #e8dce5; border-radius: 16px; background: white; }
+.new-free-book-card > img { width: 112px; height: 168px; object-fit: contain; border-radius: 8px; flex-shrink: 0; }
+.new-free-book-copy { min-width: 0; }
+.new-free-book-copy > span { display: inline-block; padding: 3px 8px; border-radius: 99px; background: #eaf7ef; color: #237344; font-size: 10px; font-weight: 800; }
+.new-free-book-copy h3 { color: #241525; font-size: 17px; line-height: 1.4; margin: 10px 0; overflow-wrap: anywhere; }
+.new-free-book-copy p { color: #746474; font-size: 12px; line-height: 1.6; margin: 0 0 14px; }
+.new-free-book-copy button, #freeHandbooksSection .free-resource-download { border: 0; border-radius: 8px; padding: 11px 13px; background: #713255; color: white; font: inherit; font-size: 12px; font-weight: 750; cursor: pointer; }
+.new-free-book-copy button:focus-visible, #freeHandbooksSection .free-resource-download:focus-visible { outline: 3px solid #b40982; outline-offset: 3px; }
+#freeResourcesSection .new-free-book-card { padding: 18px; gap: 14px; }
+#freeResourcesSection .new-free-book-card > img { width: 76px; height: 114px; }
+#freeResourcesSection .new-free-book-copy h3 { font-size: 15px; }
+#freeResourcesSection .new-free-book-copy p { display: none; }
+#freeHandbooksSection .free-handbooks-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)) !important; }
+@media (max-width: 480px) {
+  .new-free-book-card { padding: 16px; gap: 14px; }
+  .new-free-book-card > img { width: 84px; height: 126px; }
+  .new-free-book-copy h3 { font-size: 15px; }
+  #freeResourcesSection .free-resources-grid { grid-template-columns: 1fr !important; }
+}
+
+#freeHandbooksSection .free-card-body { grid-template-columns: 80px minmax(0, 1fr); }
+#freeHandbooksSection .free-resource-download { margin-top: 12px; }
+#freeHandbooksSection .free-resource-download span { display: inline; color: inherit; font: inherit; margin: 0; }
+
+/* Dashboard download actions match the View Bundle buttons. */
+#freeResourcesSection :is(button, .dashboard-free-download) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0 !important;
+  border-radius: 8px;
+  padding: 11px 13px !important;
+  background: #241525 !important;
+  color: #fff !important;
+  font: inherit;
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: pointer;
+}
+#freeResourcesSection :is(button, .dashboard-free-download):hover { background: #4c2344 !important; }
+#freeResourcesSection :is(button, .dashboard-free-download):focus-visible { outline: 3px solid #b40982; outline-offset: 3px; }
