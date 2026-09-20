@@ -228,7 +228,7 @@ function openDetail(courseId) {
       } else if (courseId === 'ai-automation') {
         title = 'Machine Learning Engineer Complete Kit';
       } else if (courseId === 'ds-genai-ml') {
-        title = 'DS + Gen AI + ML Complete Kit';
+        title = 'Data Science + Gen AI + ML Engineer Complete Kit';
       } else if (courseId === 'data-science') {
         title = 'Data Scientist & Gen AI Complete Kit';
       }
@@ -2638,7 +2638,7 @@ function applyDaKitPricing(countryCode) {
       upgradeDescHTML: 'Upgrade to the <strong>Complete Kit</strong> at no extra cost',
       totalDisplay: '$8.99',
       offLabel: '64% OFF',
-      kitLink: 'https://rzp.io/rzp/kGokl24y',
+      kitLink: 'https://rzp.io/rzp/ro1v8df',
       bundleLink: 'https://rzp.io/rzp/ro1v8df',
       bundleCardPrice: '$8.99',
       bundleCardStrike: '$29.99',
@@ -3216,7 +3216,7 @@ function applyAiAutomationPricing(countryCode) {
 
 const SCIENCE_KIT_CHECKOUT = {
   'data-science': { india: 'https://rzp.io/rzp/fain7HM', international: 'https://rzp.io/rzp/jJvaGhJy', inr: '₹499', usd: '$8.99', title: 'Data Scientist & Gen AI Complete Kit' },
-  'ds-genai-ml': { india: 'https://rzp.io/rzp/qLYK5iB', international: 'https://rzp.io/rzp/ZoRK2ea', inr: '₹899', usd: '$14.99', title: 'DS + Gen AI + ML Complete Kit' }
+  'ds-genai-ml': { india: 'https://rzp.io/rzp/qLYK5iB', international: 'https://rzp.io/rzp/ZoRK2ea', inr: '₹899', usd: '$14.99', title: 'Data Science + Gen AI + ML Engineer Complete Kit' }
 };
 let scienceKitCountry = 'IN';
 function getScienceKitCheckout(courseId) {
@@ -3577,7 +3577,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const SEARCH_INDEX = [
   {
-    name: "DS + Gen AI + ML Complete Kit",
+    name: "Data Science + Gen AI + ML Engineer Complete Kit",
     keywords: ["ds", "gen ai", "ml", "complete kit", "storytelling", "communication", "domain knowledge"],
     category: "Course Bundle", categoryClass: "cat-bundle", price: "₹899",
     icon: "📦", iconClass: "type-bundle", type: "bundle",

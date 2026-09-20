@@ -77,12 +77,12 @@
       </div>
       <div class="related-course-content">
         <p class="related-course-category">COMPLETE KIT</p>
-        <h3>DS + Gen AI + ML Complete Kit</h3>
+        <h3>Data Science + Gen AI + ML Engineer Complete Kit</h3>
         <p class="related-course-description">Explore data science, Generative AI and machine learning in one complete kit.</p>
         <ul class="related-course-stats"><li>9 Modules</li><li>80 Resources</li></ul>
         <div class="related-course-footer">
           <div class="related-course-price"><strong>\u20B9899</strong><span>One-time payment</span></div>
-          <a class="related-course-link" href="index.html#ds-genai-ml" aria-label="Explore DS + Gen AI + ML Complete Kit">Explore Kit <span aria-hidden="true">&rarr;</span></a>
+          <a class="related-course-link" href="index.html#ds-genai-ml" aria-label="Explore Data Science + Gen AI + ML Engineer Complete Kit">Explore Kit <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>`;
     const price = document.querySelector('.card-combo .bundle-price-large');
