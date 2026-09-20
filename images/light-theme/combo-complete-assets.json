@@ -2,9 +2,9 @@
   "tool": "Built-in image_gen",
   "files": [
     {
-      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-01390f3e-4d66-4820-b086-b7bf8885d458.png",
-      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-01-v1.webp",
-      "prompt": "Use case: text-localization. Edit the supplied reference book image for a website hero carousel. Replace the front and spine title MACHINE LEARNING ENGINEER COMPLETE KIT with exact 'DS + Gen AI + ML Complete Kit', arranged in bold readable lines. Keep 2026 EDITION, LearnLytics logo, neural illustration, and all three stacked books and their labels unchanged. Preserve original portrait 2:3 framing, complete uncropped book, pink/white background, black and magenta typography, book perspective and lighting. No new labels or UI controls. High quality readable text.",
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-36701527-e69b-4d0d-8a19-65f7e432f22f.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-01-v2.webp",
+      "prompt": "Replace front and spine title with Data Science + Gen AI + ML Engineer Complete Kit; preserve all other book artwork, supporting text, palette and composition.",
       "reference": "ml-complete-kit-slide-01-v4.webp"
     },
     {
