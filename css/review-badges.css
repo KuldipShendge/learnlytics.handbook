@@ -1,0 +1,9 @@
+#reviewsSection .sample-reviews { margin-top: 40px; }
+#reviewsSection .sample-reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px; }
+#reviewsSection .sample-review-card { background: #fff; border: 1px solid #ead8e3; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+#reviewsSection .review-bundle-badge { align-self: flex-start; display: inline-block; background: #241525; color: #fff; padding: 9px 13px; border-radius: 9px; font-size: 12px; line-height: 1.4; font-weight: 700; }
+#reviewsSection .sample-review-label { margin: 0; color: #713255; font-size: 12px; font-weight: 700; }
+#reviewsSection .sample-review-card .review-text { flex: 1; margin: 0; color: #241525; font-size: 15px; line-height: 1.65; }
+#reviewsSection .sample-review-language { color: #665866; font-size: 12px; line-height: 1.5; }
+
+#reviewsSection .review-card:not(.sample-review-card) > .review-bundle-badge { margin-bottom: 16px; }
