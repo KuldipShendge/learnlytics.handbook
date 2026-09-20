@@ -1,0 +1,33 @@
+{
+  "tool": "Built-in image_gen",
+  "files": [
+    {
+      "name": "da-complete-genai-slide-01-v3",
+      "reference": "da-interview-kit-slide-01.webp",
+      "changes": "Replace front cover title 'DATA ANALYST INTERVIEW KIT' with exact 'DATA ANALYST COMPLETE KIT' and a clearly readable separate line 'WITH GEN AI'. Keep 2026 EDITION and the three supporting books and their labels unchanged. Remove the four small carousel dots at bottom; keep plain blush background there.",
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-45a09b55-1995-451b-880b-2d6fbb3e5cf9.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/da-complete-genai-slide-01-v3.webp"
+    },
+    {
+      "name": "da-complete-genai-slide-02-v3",
+      "reference": "da-handbooks-book-slide.webp",
+      "changes": "Change only 'You get 08' to 'You get 09'. Keep all other text including '800+ topics', illustration, book geometry and design unchanged.",
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-e7cce90b-0b2d-4921-9154-e19924153c4b.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/da-complete-genai-slide-02-v3.webp"
+    },
+    {
+      "name": "da-complete-genai-slide-03-v3",
+      "reference": "da-practice-workbooks-book-slide.webp",
+      "changes": "Change 'You get 08' to 'You get 09'; change '2,000+ Real Interview Questions' to '2,200+ Real Interview Questions'; change '1200+ Technical & 800+ Scenario-Based' to '1300+ Technical & 900+ Scenario-Based'. Keep other illustration, book geometry, typography style and design unchanged.",
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-7cfec604-83bd-45a3-acde-4d1f921a19a5.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/da-complete-genai-slide-03-v3.webp"
+    },
+    {
+      "name": "da-complete-genai-slide-04-v3",
+      "reference": "da-solution-manual-book-slide.webp",
+      "changes": "Change only 'You get 08' to 'You get 09'. Preserve all other text, open-book illustration and layout unchanged.",
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-d465407e-b6a6-4bac-bb76-a81dd6ab3b4e.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/da-complete-genai-slide-04-v3.webp"
+    }
+  ]
+}

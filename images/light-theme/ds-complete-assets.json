@@ -1,0 +1,73 @@
+{
+  "tool": "Built-in image_gen",
+  "prompts": [
+    {
+      "name": "ds-complete-hero-v2",
+      "prompt": "Edit the reference product image. Preserve its white book, plum-pink palette, LearnLytics branding, network illustration and polished 3D product style. Add and prominently arrange exact front-cover title 'DATA SCIENTIST & GEN AI' and 'COMPLETE KIT', small '2026 EDITION'. Never use Interview Kit or MLOps. Portrait 2:3 canvas with pale blush background and full book visible. No counts.",
+      "referenced_image_paths": [
+        "D:/learnlytics.handbook-main/images/light-theme/data-science-genai.webp"
+      ]
+    },
+    {
+      "name": "ds-handbooks-slide-v2",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: '20' large magenta, 'Comprehensive Handbooks', small 'Data Science & Generative AI'. Illustration of charts and connected nodes. No MLOps."
+    },
+    {
+      "name": "ds-workbooks-slide-v2",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: '20' large magenta, 'Interview Practice Workbooks', '3,680+ Practice Questions'. Illustration of Q and A speech bubbles. No MLOps."
+    },
+    {
+      "name": "ds-solutions-slide-v2",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: '20' large magenta, 'Detailed Solution Manuals', 'Step-by-Step Explanations'. Illustration of a checklist and lightbulb. No MLOps."
+    },
+    {
+      "name": "free-eda-handbook-v1",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: 'EXPLORATORY DATA ANALYSIS', 'PART-01', 'Handbook + Interview QS'. Illustration of a scatter plot, histogram and magnifying glass. A single standalone book, no other text."
+    },
+    {
+      "name": "free-big-data-handbook-v1",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: 'BIG DATA MANAGEMENT & ANALYTICS', small 'HANDBOOK'. Illustration of connected data storage cylinders and a bar chart. A single standalone book, no other text."
+    },
+    {
+      "name": "free-analytics-ground-zero-v1",
+      "prompt": "Use case: product-mockup. Create one polished LearnLytics 3D handbook product image for a website, portrait 2:3, pale blush pink background, white hardback book at slight three-quarter angle, deep plum and magenta typography, soft shadow, restrained pink geometric waves, generous margins, book fully visible. Brand exactly 'LearnLytics'. No badges or invented page/question counts. Crisp readable title. Exact cover text: 'ANALYTICS \u2014 GROUND ZERO', small 'HANDBOOK'. Illustration of three ascending bars, a compass and a simple line chart, symbolizing analytics foundations. A single standalone book, no other text."
+    }
+  ],
+  "files": [
+    {
+      "name": "ds-complete-hero-v2",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-c6d2bc30-10fa-4e95-bea5-98622d0a09c0.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\ds-complete-hero-v2.webp"
+    },
+    {
+      "name": "ds-handbooks-slide-v2",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-e2bc9003-489a-41b2-ac66-eb2d5d6cb18d.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\ds-handbooks-slide-v2.webp"
+    },
+    {
+      "name": "ds-workbooks-slide-v2",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-81170689-0cfc-459c-93c6-6919abe43600.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\ds-workbooks-slide-v2.webp"
+    },
+    {
+      "name": "ds-solutions-slide-v2",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-c0f57f74-807f-400c-89ca-5d61931bb863.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\ds-solutions-slide-v2.webp"
+    },
+    {
+      "name": "free-eda-handbook-v1",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-d4ea916d-a659-47e0-9804-4821a8f94cfa.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\free-eda-handbook-v1.webp"
+    },
+    {
+      "name": "free-big-data-handbook-v1",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-deca5979-eacb-4416-81e2-2d21a5591009.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\free-big-data-handbook-v1.webp"
+    },
+    {
+      "name": "free-analytics-ground-zero-v1",
+      "path": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-6943ccee-9a6a-46a3-9095-21e1fed1cf12.png",
+      "saved_path": "D:\\learnlytics.handbook-main\\images\\light-theme\\free-analytics-ground-zero-v1.webp"
+    }
+  ]
+}

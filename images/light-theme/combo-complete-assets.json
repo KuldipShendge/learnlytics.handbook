@@ -1,0 +1,29 @@
+{
+  "tool": "Built-in image_gen",
+  "files": [
+    {
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-01390f3e-4d66-4820-b086-b7bf8885d458.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-01-v1.webp",
+      "prompt": "Use case: text-localization. Edit the supplied reference book image for a website hero carousel. Replace the front and spine title MACHINE LEARNING ENGINEER COMPLETE KIT with exact 'DS + Gen AI + ML Complete Kit', arranged in bold readable lines. Keep 2026 EDITION, LearnLytics logo, neural illustration, and all three stacked books and their labels unchanged. Preserve original portrait 2:3 framing, complete uncropped book, pink/white background, black and magenta typography, book perspective and lighting. No new labels or UI controls. High quality readable text.",
+      "reference": "ml-complete-kit-slide-01-v4.webp"
+    },
+    {
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-316830ae-c96f-482f-ab69-621d9cfce451.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-02-v1.webp",
+      "prompt": "Use case: text-localization. Edit the supplied reference book image for a website hero carousel. Replace 22 with 24 on both front cover and spine. Replace '1,500+ Topics Covered' with '2,200+ Topics Covered'. Keep all other text exactly unchanged including DEFINITION, WHY IT MATTERS FOR ML, REAL-WORLD ANALOGY, SYNTAX & EXAMPLE, INDUSTRY USE CASE. Preserve original portrait 2:3 framing, complete uncropped book, pink/white background, black and magenta typography, book perspective and lighting. No new labels or UI controls. High quality readable text.",
+      "reference": "ml-engineer-kit-slide-02-v3.webp"
+    },
+    {
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-0659f233-57ee-4725-a0be-7c521feeaf95.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-03-v1.webp",
+      "prompt": "Use case: text-localization. Edit the supplied reference book image for a website hero carousel. Replace 22 with 24 on both front cover and spine. Keep exact supporting text '3,600+ Real Interview Questions' and '2,000+ Technical & 1,600+ Scenario-Based'. Keep Interview Practice Workbooks title, logo and illustrations unchanged. Preserve original portrait 2:3 framing, complete uncropped book, pink/white background, black and magenta typography, book perspective and lighting. No new labels or UI controls. High quality readable text.",
+      "reference": "ml-engineer-kit-slide-03-v3.webp"
+    },
+    {
+      "source": "C:\\Users\\kuldi\\.codex\\generated_images\\01a0b82c-61d0-7980-beb1-2bcca9acb06d\\exec-0c9ecce1-0e9a-4352-b39a-99343797f5d3.png",
+      "saved_path": "D:/learnlytics.handbook-main/images/light-theme/combo-complete-slide-04-v1.webp",
+      "prompt": "Use case: text-localization. Edit the supplied reference book image for a website hero carousel. Replace 22 with 24 on both front cover and spine. Keep 'Solution Manuals', 'Detailed Interview-Style Answers', 'Based on Interview Practice Workbooks' and all other artwork unchanged. Preserve original portrait 2:3 framing, complete uncropped book, pink/white background, black and magenta typography, book perspective and lighting. No new labels or UI controls. High quality readable text.",
+      "reference": "ml-engineer-kit-slide-04-v3.webp"
+    }
+  ]
+}
