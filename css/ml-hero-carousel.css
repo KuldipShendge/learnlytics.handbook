@@ -1,0 +1,80 @@
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-carousel {
+  width: 100%;
+  max-width: 390px;
+  min-width: 0;
+  margin: 0 auto 12px;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-slides {
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fceff6;
+  touch-action: pan-y;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-slide { width: 100%; height: 100%; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-slide[hidden] { display: none; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls,
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls { margin-top: 8px; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #713255;
+  font: inherit;
+  font-size: 28px;
+  cursor: pointer;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls button:hover { background: #f3deeb; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls .ml-hero-play { font-size: 15px; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-dots button span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cba6bf;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-dots button[aria-current="true"] span {
+  width: 22px;
+  border-radius: 8px;
+  background: #b40982;
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-carousel:focus-visible,
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-controls button:focus-visible { outline: 2px solid #b40982; outline-offset: 2px; }
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+:is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .dakit-sql-addon-btn span { min-width: 0; white-space: normal; }
+@media (max-width: 768px) {
+  :is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-carousel { max-width: 350px; }
+  :is(#course-ai-automation, #course-data-science, #course-data-analyst, #course-ds-genai-ml) .ml-hero-dots button { width: 36px; }
+}
+
+@container ml-preparation (min-width: 801px) {
+  #course-data-science .ml-module-grid > .ml-module-card:last-child {
+    grid-column: 1 / -1; justify-self: center; width: calc((100% - 22px) / 2);
+  }
+}
+#course-data-science .ml-pdf-subject-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 768px) {
+  #course-data-science .ml-pdf-subject-grid { grid-template-columns: 1fr; }
+}
