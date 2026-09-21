@@ -1,9 +1,7 @@
-/* In-page reader: unchanged Drive PDFs are served as static assets to avoid function response limits. */
+/* Read public Drive samples inside the course page, without proxying PDF bytes. */
 (() => {
   'use strict';
 
-  const assets = new URL('vendor/pdfjs/', document.currentScript.src);
-  const sampleAssets = new URL('../pdfs/chapter-samples/', document.currentScript.src);
   const samples = {
   "ds-python-handbook": {
     "file": "ds-python-handbook-v2.pdf",
@@ -152,294 +150,94 @@
 };
   const dialog = document.getElementById('mlPdfPreview');
   if (!dialog) return;
-  const scroller = dialog.querySelector('.ml-pdf-scroll');
-  const pages = dialog.querySelector('.ml-pdf-pages');
+  const viewer = dialog.querySelector('.ml-pdf-drive-viewer');
   const status = dialog.querySelector('.ml-pdf-status');
-  const retry = dialog.querySelector('.ml-pdf-retry');
-  const description = document.getElementById('mlPdfPreviewDescription');
-  const zoomOut = document.getElementById('mlPdfZoomOut');
-  const zoomIn = document.getElementById('mlPdfZoomIn');
-  const zoomValue = document.getElementById('mlPdfZoomValue');
-  let library;
+  const driveLink = document.getElementById('mlPdfDriveLink');
   let active = null;
-
-  function loadLibrary() {
-    if (!library) {
-      library = import(new URL('pdf.min.mjs', assets).href).then(pdfjs => {
-        pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdf.worker.min.mjs', assets).href;
-        return pdfjs;
-      }).catch(error => {
-        library = null;
-        throw error;
-      });
-    }
-    return library;
-  }
 
   function dispose(session) {
     if (!session) return;
-    session.cancelled = true;
-    session.observer?.disconnect();
-    session.resize?.disconnect();
-    clearTimeout(session.resizeTimer);
-    session.tasks.forEach(task => task.cancel());
-    session.loading?.destroy().catch(() => {});
-    session.records.forEach(record => {
-      const canvas = record.sheet.querySelector('canvas');
-      if (canvas) canvas.width = canvas.height = 0;
-    });
+    clearTimeout(session.timer);
+    session.frame?.remove();
   }
 
-  function current(session) {
-    return active === session && !session.cancelled && dialog.open;
-  }
-
-  function release(record) {
-    record.generation++;
-    record.task?.cancel();
-    const canvas = record.sheet.querySelector('canvas');
-    if (canvas) canvas.width = canvas.height = 0;
-    record.sheet.replaceChildren();
-    record.state = 'idle';
-  }
-
-  function enqueue(session, record) {
-    if (!current(session) || !record.near || record.state !== 'idle') return;
-    record.state = 'queued';
-    session.queue.push(record);
-    pump(session);
-  }
-
-  async function pump(session) {
-    if (session.busy) return;
-    session.busy = true;
-    while (current(session) && session.queue.length) {
-      const record = session.queue.shift();
-      if (!record.near || record.state !== 'queued') continue;
-      record.state = 'rendering';
-      const generation = record.generation;
-      const usable = () => current(session) && record.near && record.generation === generation;
-      let pdfPage;
-      let renderTask;
-      try {
-        pdfPage = await session.document.getPage(record.number);
-        if (!usable()) continue;
-        const natural = pdfPage.getViewport({ scale: 1 });
-        const width = record.sheet.clientWidth;
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.75);
-        const viewport = pdfPage.getViewport({ scale: width / natural.width });
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.ceil(viewport.width * ratio);
-        canvas.height = Math.ceil(viewport.height * ratio);
-        canvas.setAttribute('aria-hidden', 'true');
-        renderTask = pdfPage.render({
-          canvasContext: canvas.getContext('2d'),
-          viewport,
-          transform: ratio === 1 ? null : [ratio, 0, 0, ratio, 0, 0]
-        });
-        record.task = renderTask;
-        session.tasks.add(renderTask);
-        await renderTask.promise;
-        if (!usable()) continue;
-        const text = await pdfPage.getTextContent();
-        if (!usable()) continue;
-        const accessibleText = document.createElement('p');
-        accessibleText.className = 'ml-pdf-accessible-text';
-        accessibleText.textContent = text.items.map(item => item.str || '').join(' ');
-        record.sheet.replaceChildren(canvas, accessibleText);
-        record.state = 'ready';
-      } catch (error) {
-        if (usable() && error.name !== 'RenderingCancelledException') {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'ml-pdf-page-retry';
-          button.textContent = 'This page could not load. Try again.';
-          button.addEventListener('click', () => {
-            release(record);
-            enqueue(session, record);
-          });
-          record.sheet.replaceChildren(button);
-          record.state = 'error';
-        }
-      } finally {
-        if (renderTask) session.tasks.delete(renderTask);
-        record.task = null;
-        pdfPage?.cleanup();
-        if (record.state === 'rendering') record.state = 'idle';
-      }
-    }
-    session.busy = false;
-  }
-
-  function updatePageLabel() {
-    if (!active?.document || !active.records.length) return;
-    const top = scroller.getBoundingClientRect().top;
-    const record = active.records.find(item => item.slot.getBoundingClientRect().bottom > top + 30);
-    if (record) description.textContent = `Page ${record.number} of ${active.document.numPages} · Scroll to read the sample`;
-  }
-
-  async function loadSample(session) {
+  function loadSample(session) {
+    dispose(session);
     status.hidden = false;
     status.textContent = 'Loading your Chapter 1 sample…';
-    retry.hidden = true;
-    pages.replaceChildren();
-    scroller.scrollTop = 0;
-    scroller.setAttribute('aria-busy', 'true');
-    if (window.location.protocol === 'file:') {
-      scroller.removeAttribute('aria-busy');
-      status.textContent = 'PDF previews cannot load when this page is opened directly from a local file. Please open it through a local preview server or the hosted website.';
-      return;
-    }
-    try {
-      const pdfjs = await loadLibrary();
-      if (!current(session)) return;
-      session.loading = pdfjs.getDocument({
-        url: new URL(session.sample.file, sampleAssets).href,
-        disableRange: true,
-        cMapUrl: new URL('cmaps/', assets).href,
-        cMapPacked: true,
-        standardFontDataUrl: new URL('standard_fonts/', assets).href,
-        wasmUrl: new URL('wasm/', assets).href,
-        isEvalSupported: false
-      });
-      session.document = await session.loading.promise;
-      const first = await session.document.getPage(1);
-      if (!current(session)) return;
-      const natural = first.getViewport({ scale: 1 });
-      const fragment = document.createDocumentFragment();
-      for (let number = 1; number <= session.document.numPages; number++) {
-        const slot = document.createElement('section');
-        slot.className = 'ml-pdf-page';
-        slot.setAttribute('aria-label', `PDF page ${number}`);
-        const label = document.createElement('p');
-        label.className = 'ml-pdf-page-label';
-        label.textContent = `Page ${number} of ${session.document.numPages}`;
-        const sheet = document.createElement('div');
-        sheet.className = 'ml-pdf-sheet';
-        sheet.style.aspectRatio = `${natural.width} / ${natural.height}`;
-        slot.append(label, sheet);
-        fragment.append(slot);
-        session.records.push({ number, slot, sheet, near: false, state: 'idle', task: null, generation: 0 });
-      }
+    viewer.setAttribute('aria-busy', 'true');
+    const frame = document.createElement('iframe');
+    session.frame = frame;
+    frame.className = 'ml-pdf-drive-frame';
+    frame.title = `${session.sample.subject} — ${session.sample.kind} — Chapter 1 PDF sample`;
+    frame.allowFullscreen = true;
+    const current = () => active === session && session.frame === frame && dialog.open;
+    frame.addEventListener('load', () => {
+      if (!current()) return;
+      clearTimeout(session.timer);
+      // Cross-origin navigation cannot confirm whether Google's PDF rendered.
       status.hidden = true;
-      pages.append(fragment);
-      scroller.removeAttribute('aria-busy');
-      // Open on the chapter content shown in the preview. Front matter remains above.
-      const initial = session.records[Math.min(session.sample.firstPage, session.document.numPages) - 1];
-      scroller.scrollTop = initial.slot.offsetTop - session.records[0].slot.offsetTop;
-      const byElement = new Map(session.records.map(record => [record.slot, record]));
-      session.observer = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          const record = byElement.get(entry.target);
-          record.near = entry.isIntersecting;
-          if (record.near) enqueue(session, record);
-          else release(record);
-        }
-      }, { root: scroller, rootMargin: '450px 0px' });
-      session.records.forEach(record => session.observer.observe(record.slot));
-      let previousWidth = pages.clientWidth;
-      session.resize = new ResizeObserver(() => {
-        if (pages.clientWidth === previousWidth) return;
-        previousWidth = pages.clientWidth;
-        clearTimeout(session.resizeTimer);
-        session.resizeTimer = setTimeout(() => {
-          if (!current(session)) return;
-          session.records.filter(record => record.near).forEach(record => {
-            release(record);
-            enqueue(session, record);
-          });
-        }, 150);
-      });
-      session.resize.observe(pages);
-      updatePageLabel();
-    } catch (error) {
-      if (!current(session)) return;
-      scroller.removeAttribute('aria-busy');
-      status.textContent = 'This sample could not load right now. Please try again, or return to your course.';
-      console.error('PDF sample loading failed:', error);
+      viewer.removeAttribute('aria-busy');
+    });
+    const showHelp = () => {
+      if (!current()) return;
+      clearTimeout(session.timer);
+      viewer.removeAttribute('aria-busy');
       status.hidden = false;
-      retry.hidden = false;
-    }
+      status.textContent = 'Preview taking too long? Try Reload preview. If needed, use Open separately below.';
+    };
+    frame.addEventListener('error', showHelp);
+    session.timer = setTimeout(showHelp, 15000);
+    frame.src = session.sample.driveUrl.replace(/\/view$/, '/preview');
+    viewer.replaceChildren(frame);
   }
 
   function openSample(key, trigger) {
+    if (!Object.hasOwn(samples, key)) return;
     const sample = samples[key];
-    if (!sample) return;
     const oldOverflow = active ? active.oldOverflow : document.body.style.overflow;
     dispose(active);
-    active = { key, sample, trigger, oldOverflow, cancelled: false, records: [], tasks: new Set(), queue: [], busy: false, zoom: 1 };
-    pages.style.width = '';
-    pages.style.maxWidth = '';
-    zoomValue.value = '100%';
-    zoomOut.disabled = true;
-    zoomIn.disabled = false;
+    active = { key, sample, trigger, oldOverflow, frame: null, timer: null };
     const subject = trigger.closest('.ml-pdf-subject')?.querySelector('h3')?.textContent.trim() || sample.subject;
     document.getElementById('mlPdfPreviewTitle').textContent = `${subject} — ${sample.kind}`;
     document.getElementById('mlPdfPreviewMeta').textContent = `${sample.part} · Chapter 1 sample`;
-    description.textContent = 'Scroll through the sample below.';
+    document.getElementById('mlPdfPreviewDescription').textContent = `Chapter 1 starts on PDF page ${sample.firstPage}. Scroll and zoom in the reader below.`;
+    driveLink.href = sample.driveUrl;
     document.body.style.overflow = 'hidden';
     if (!dialog.open) dialog.showModal();
     dialog.querySelector('.ml-pdf-close').focus({ preventScroll: true });
     loadSample(active);
   }
 
-  document.querySelectorAll('[data-ml-pdf]').forEach(button => {
-    button.addEventListener('click', () => openSample(button.dataset.mlPdf, button));
+  document.querySelectorAll('[data-ml-pdf]').forEach(trigger => {
+    // Also handle older cached anchor markup in-page during a rollout.
+    trigger.addEventListener('click', event => {
+      event.preventDefault();
+      openSample(trigger.dataset.mlPdf, trigger);
+    });
   });
   dialog.querySelector('.ml-pdf-close').addEventListener('click', () => dialog.close());
   dialog.querySelector('.ml-pdf-back').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('keydown', event => {
-    if (event.key !== 'Tab') return;
-    const controls = [...dialog.querySelectorAll('button:not([disabled]), [tabindex="0"]')]
-      .filter(element => element.getClientRects().length && !element.hidden);
-    const first = controls[0];
-    const last = controls[controls.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last?.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first?.focus();
-    }
-  });
-  // Close only an actual backdrop click, not a drag that started inside the reader.
   let backdropPointer = false;
   dialog.addEventListener('pointerdown', event => { backdropPointer = event.target === dialog; });
   dialog.addEventListener('click', event => {
-    if (event.target === dialog && backdropPointer) {
-      const box = dialog.getBoundingClientRect();
-      if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
-    }
+    if (event.target !== dialog || !backdropPointer) return;
+    const box = dialog.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
   });
   dialog.addEventListener('close', () => {
     if (dialog.open) return;
     const session = active;
     active = null;
     dispose(session);
-    pages.replaceChildren();
+    viewer.removeAttribute('aria-busy');
+    driveLink.removeAttribute('href');
     document.body.style.overflow = session?.oldOverflow || '';
     session?.trigger?.focus({ preventScroll: true });
   });
-  retry.addEventListener('click', () => {
-    if (active) {
-      const key = Object.keys(samples).find(item => samples[item] === active.sample);
-      openSample(key, active.trigger);
-    }
+  dialog.querySelector('.ml-pdf-retry').addEventListener('click', () => {
+    if (active) loadSample(active);
   });
-  scroller.addEventListener('scroll', updatePageLabel, { passive: true });
-  function changeZoom(delta) {
-    if (!active?.document) return;
-    const previous = active.zoom;
-    active.zoom = Math.min(2, Math.max(1, previous + delta));
-    pages.style.maxWidth = `${720 * active.zoom}px`;
-    pages.style.width = `${active.zoom * 100}%`;
-    scroller.scrollTop *= active.zoom / previous;
-    zoomValue.value = `${Math.round(active.zoom * 100)}%`;
-    zoomOut.disabled = active.zoom === 1;
-    zoomIn.disabled = active.zoom === 2;
-  }
-  zoomOut.addEventListener('click', () => changeZoom(-.25));
-  zoomIn.addEventListener('click', () => changeZoom(.25));
   document.getElementById('mlPdfBuy').addEventListener('click', () => {
     dialog.close();
     if (document.querySelector('#course-ds-genai-ml.active')) window.openCombinedKitCheckout();
