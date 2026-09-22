@@ -13,3 +13,44 @@
 .combined-kit-info .combined-kit-eyebrow { color: #8c3269; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
 .combined-kit-info button { width: 100%; margin-top: 16px; padding: 14px; border: 0; border-radius: 10px; background: #241525; color: white; font: inherit; cursor: pointer; }
 .combined-kit-info button:focus-visible { outline: 3px solid #b40982; outline-offset: 3px; }
+
+/* Analytics bonus included with the combined kit. */
+#course-ds-genai-ml .combo-bonus-highlight {
+  display: block; margin-top: 18px; padding: 16px 18px;
+  border: 1px solid #241525; border-radius: 14px;
+  background: #241525; color: #fff; font-size: 17px; font-weight: 800; line-height: 1.5;
+}
+#course-ds-genai-ml .combo-bonus-label {
+  display: block; margin-bottom: 6px; color: #fff;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.4px; line-height: 1.5;
+}
+#course-ds-genai-ml .combo-bonus-note {
+  display: block; margin-top: 4px; color: #fff; font-size: 13px; font-weight: 500;
+}
+#course-ds-genai-ml .combo-analytics-bonus {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 32px; align-items: center; margin: 28px 0; padding: 32px;
+  background: #241525; border: 1px solid #241525; border-radius: 20px;
+}
+#course-ds-genai-ml .combo-bonus-heading h3 {
+  margin: 8px 0 12px; color: #fff; font-size: clamp(23px, 2.5vw, 30px); line-height: 1.25;
+}
+#course-ds-genai-ml .combo-bonus-heading p {
+  margin: 0; color: #fff; font-size: 15px; line-height: 1.7;
+}
+#course-ds-genai-ml .combo-bonus-topics {
+  display: grid; gap: 10px; list-style: none; margin: 0; padding: 0;
+}
+#course-ds-genai-ml .combo-bonus-topics li {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  border: 1px solid #ebdce6; border-radius: 10px; background: #fff;
+  color: #241525; font-size: 14px; font-weight: 700; line-height: 1.5;
+}
+#course-ds-genai-ml .combo-bonus-topics li > span {
+  flex: 0 0 30px; display: grid; place-items: center; width: 30px; height: 30px;
+  border-radius: 8px; background: #f7e8f1; color: #922067; font-size: 12px;
+}
+@media (max-width: 768px) {
+  #course-ds-genai-ml .combo-analytics-bonus { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 22px 18px; }
+  #course-ds-genai-ml .combo-bonus-highlight { padding: 14px; }
+}
