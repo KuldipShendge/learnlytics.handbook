@@ -312,7 +312,7 @@ oaiq("init",{pixelId:"7MTSVZmCSWPM7Szx3Z9tA8",debug:true});
 </script>
 
 <link rel="stylesheet" href="css/style.css?v=combo-1">
-<link rel="stylesheet" href="css/light-theme.css?v=combo-1">
+<link rel="stylesheet" href="css/light-theme.css?v=kit-payment-buttons-3">
 
 <!-- Meta Pixel Code -->
 <script>
@@ -324,7 +324,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1441817607724869');
+// Visitor details become available only after an opted-in form submission.
+fbq('init', '1441817607724869', {});
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -581,6 +582,7 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
       <label for="discountPhone">WhatsApp number (with country code)</label><input id="discountPhone" name="phone" type="tel" autocomplete="tel" required maxlength="25" placeholder="+91 98765 43210">
       <label for="discountCourse">Which kit are you interested in?</label><select id="discountCourse" name="course" required><option value="">Choose your kit</option><option value="ds-genai-ml">Data Science + Gen AI + ML Engineer Complete Kit</option><option value="data-science">Data Scientist &amp; Gen AI Complete Kit</option><option value="ai-automation">Machine Learning Engineer Complete Kit</option><option value="data-analyst">Data &amp; BI Analyst with Gen AI Complete kit</option></select>
       <label for="discountReason">What’s holding you back? <span>(optional)</span></label><select id="discountReason" name="reason"><option value="">Select a reason</option><option>Price / budget</option><option>Not sure which kit is right for me</option><option>Want to see more sample material</option><option>Payment issue</option><option>Planning to buy later</option><option>Something else</option></select>
+      <label class="meta-matching-consent"><input type="checkbox" id="discountMetaConsent"> I agree to share my hashed email and phone with Meta for ad matching and measurement (optional).</label>
       <p class="discount-consent">By submitting, you agree to be contacted about your discount request, course material and payment link via WhatsApp or email.</p>
       <p id="discountError" role="alert" hidden></p>
       <button type="submit" class="about-primary">Unlock My Discount &rarr;</button>
@@ -1157,7 +1159,7 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
               </div>
 
               <div class="dakit-hero-cta-wrap">
-                <button type="button" class="dakit-hero-cta dakit-hero-cta-styled" onclick="openDaCheckout()">GET INSTANT ACCESS <span class="cta-price">&#x20B9;499</span> <span class="cta-arrow">&rarr;</span></button>
+                <button id="daRegionalCheckout" type="button" class="dakit-hero-cta dakit-hero-cta-styled" onclick="openDaCheckout()">GET INSTANT ACCESS <span class="cta-price">&#x20B9;499</span> <span class="cta-arrow">&rarr;</span></button>
                 <span class="dakit-hero-secure">&#x1F512; Secure Razorpay Checkout</span>
               </div>
 
@@ -1491,10 +1493,7 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
           kitLink: 'https://rzp.io/rzp/S2y4eZ3',
           bundleLink: 'https://rzp.io/rzp/S2y4eZ3'
         };
-        function openDaCheckout() {
-          var link = (daKitConfig && daKitConfig.kitLink) ? daKitConfig.kitLink : 'https://rzp.io/rzp/S2y4eZ3';
-          window.open(link, '_blank');
-        }
+        function openDaCheckout() { return window.openKitPayment('data-analyst'); }
         function closeDaCheckout() {}
         </script>
 
@@ -2097,10 +2096,7 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
           kitLink: 'https://rzp.io/rzp/6j2zp8fF',
           bundleLink: 'https://rzp.io/rzp/6j2zp8fF'
         };
-        function openMlCheckout() {
-          var link = 'https://rzp.io/rzp/6j2zp8fF';
-          window.open(link, '_blank');
-        }
+        function openMlCheckout() { return window.openKitPayment('ai-automation'); }
         function closeMlCheckout() {}
         </script>
 
@@ -4564,7 +4560,8 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
 
       <button class="modal-submit" onclick="submitModalForm()">Unlock My PDF</button>
 
-      <p class="modal-privacy">Your info is securely stored and only used to send course updates.</p>
+      <p class="modal-privacy">Your details are used to send your requested resources and course updates.</p>
+      <label class="meta-matching-consent"><input type="checkbox" id="freeMetaConsent"> I agree to share my hashed email and phone with Meta for ad matching and measurement (optional).</label>
 
     </div>
 
@@ -4670,7 +4667,9 @@ src="https://www.facebook.com/tr?id=1441817607724869&ev=PageView&noscript=1"
   <button class="dakit-social-toast-close" id="dakitToastClose" aria-label="Close">&times;</button>
 </div>
 
-<script src="js/script.js?v=5.0"></script>
+<script src="js/kit-payments.js?v=1.0"></script>
+<script src="js/meta-matching.js?v=1.0"></script>
+<script src="js/script.js?v=5.2"></script>
 
 
 <!-- Google Drive supplies the PDF inside this course-page reader. -->

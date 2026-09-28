@@ -1,5 +1,12 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "functions": {
+    "api/razorpay-webhook.mjs": { "maxDuration": 15 }
+  },
+  "routes": [
+    { "src": "/(?:server|scripts|tests|docs)(?:/.*)?", "status": 404 },
+    { "src": "/\\.(?!well-known(?:/|$)).*", "status": 404 },
+    { "handle": "filesystem" },
+    { "src": "/api(?:/.*)?", "status": 404 },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
