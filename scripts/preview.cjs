@@ -9,10 +9,18 @@ const port = Number(process.env.PORT || 8766);
 http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, 'http://localhost');
+    if (url.pathname === '/api/razorpay-webhook') {
+      const { default: webhook } = await import('../api/razorpay-webhook.mjs');
+      const request = new Request(url, { method: req.method, headers: req.headers,
+        ...(!['GET', 'HEAD'].includes(req.method) ? { body: req, duplex: 'half' } : {}) });
+      const result = await webhook.fetch(request);
+      res.writeHead(result.status, Object.fromEntries(result.headers));
+      return res.end(Buffer.from(await result.arrayBuffer()));
+    }
     if (url.pathname === '/api/pdf-sample') return await pdfSample(req, res);
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405); return res.end(); }
     const pathname = decodeURIComponent(url.pathname);
-    if (/^\/(api|scripts|tests)(\/|$)/.test(pathname)) { res.writeHead(404); return res.end(); }
+    if (/^\/(api|server|scripts|tests|docs|private)(\/|$)/.test(pathname) || /(^|\/)\./.test(pathname)) { res.writeHead(404); return res.end(); }
     let file = path.resolve(root, '.' + pathname);
     if (file !== root && !file.startsWith(root + path.sep)) { res.writeHead(403); return res.end(); }
     if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
