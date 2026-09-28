@@ -2251,6 +2251,8 @@ function closeModal() {
     document.getElementById('inp-name').value = '';
 
     document.getElementById('inp-email').value = '';
+    const matchingConsent = document.getElementById('freeMetaConsent');
+    if (matchingConsent) matchingConsent.checked = false;
 
     document.getElementById('inp-wa').value = '';
 
@@ -2304,6 +2306,7 @@ function submitModalForm() {
 
     if (!response.ok) throw new Error('Server error');
 
+    window.submitMetaMatching({ email, phone: wa, consent: document.getElementById('freeMetaConsent')?.checked === true });
     document.getElementById('modal-form-content').style.display = 'none';
 
     document.getElementById('modal-success').style.display = 'block';
@@ -2627,45 +2630,21 @@ function applyDaKitPricing(countryCode) {
 
   var tier;
 
-  if (countryCode === 'US' || EUROPE_COUNTRY_CODES.has(countryCode)) {
-
-    // Fixed USD pricing for the United States and European markets.
     tier = {
-      kitDisplay: '$8.99',
+      kitDisplay: '$14.99',
       kitStrikeDisplay: '$24.99',
       upgradeDisplay: '+ $0.00',
       upgradeStrikeDisplay: '$19.99',
       upgradeDescHTML: 'Upgrade to the <strong>Complete Kit</strong> at no extra cost',
-      totalDisplay: '$8.99',
-      offLabel: '64% OFF',
+      totalDisplay: '$14.99',
+      offLabel: '40% OFF',
       kitLink: 'https://rzp.io/rzp/ro1v8df',
       bundleLink: 'https://rzp.io/rzp/ro1v8df',
-      bundleCardPrice: '$8.99',
+      bundleCardPrice: '$14.99',
       bundleCardStrike: '$29.99',
-      bundleCardOff: '70% OFF',
-      perResourceDisplay: 'Less than $0.38 per resource • One-time payment'
+      bundleCardOff: '50% OFF',
+      perResourceDisplay: 'Less than $0.63 per resource • One-time payment'
     };
-
-  } else {
-
-    // Tier 2: Other international markets
-    tier = {
-      kitDisplay: '$7.99',
-      kitStrikeDisplay: '$24.99',
-      upgradeDisplay: '+ $3.99',
-      upgradeStrikeDisplay: '$19.99',
-      upgradeDescHTML: 'Add <strong>8 Premium Handbooks</strong> in Just $3.99',
-      totalDisplay: '$11.98',
-      offLabel: '68% OFF',
-      kitLink: 'https://rzp.io/rzp/jQi4GPl',
-      bundleLink: 'https://rzp.io/rzp/D7r6WGq',
-      bundleCardPrice: '$11.99',
-      bundleCardStrike: '$24.99',
-      bundleCardOff: '52% OFF',
-      perResourceDisplay: 'Less than $0.50 per resource • One-time payment'
-    };
-
-  }
 
   // Update the global config so toggleDaUpgrade() uses correct values
   if (typeof daKitConfig !== 'undefined') {
@@ -2749,7 +2728,7 @@ function applyDaKitPricing(countryCode) {
   }
 
   window.openDaCompleteCheckout = function() {
-    window.open(tier.bundleLink, '_blank');
+    return window.openKitPayment('data-analyst');
   };
 
   // The Interview Kit hero and sticky CTA prices do not have individual IDs.
@@ -3169,9 +3148,9 @@ function applyDataScienceMarket(useAsianCheckout) {
 function applyAiAutomationPricing(countryCode) {
   if (countryCode !== 'US' && !EUROPE_COUNTRY_CODES.has(countryCode)) return;
 
-  const price = '$8.99';
+  const price = '$14.99';
   const strike = '$24.99';
-  const discount = '64% OFF';
+  const discount = '40% OFF';
 
   ['ai-automation'].forEach(courseId => {
   const aiCardButton = document.querySelector('.course-bundle-card button[onclick*="' + courseId + '"]');
@@ -3205,7 +3184,7 @@ function applyAiAutomationPricing(countryCode) {
     mlKitConfig.bundleLink = checkoutLink;
   }
   window.openMlCheckout = function() {
-    window.open(checkoutLink, '_blank');
+    return window.openKitPayment('ai-automation');
   };
 
   if (typeof SEARCH_INDEX !== 'undefined') {
@@ -3215,8 +3194,8 @@ function applyAiAutomationPricing(countryCode) {
 }
 
 const SCIENCE_KIT_CHECKOUT = {
-  'data-science': { india: 'https://rzp.io/rzp/fain7HM', international: 'https://rzp.io/rzp/jJvaGhJy', inr: '₹499', usd: '$8.99', title: 'Data Scientist & Gen AI Complete Kit' },
-  'ds-genai-ml': { india: 'https://rzp.io/rzp/qLYK5iB', international: 'https://rzp.io/rzp/ZoRK2ea', inr: '₹899', usd: '$14.99', title: 'Data Science + Gen AI + ML Engineer Complete Kit' }
+  'data-science': { india: 'https://rzp.io/rzp/fain7HM', international: 'https://rzp.io/rzp/jJvaGhJy', inr: '₹499', usd: '$14.99', title: 'Data Scientist & Gen AI Complete Kit' },
+  'ds-genai-ml': { india: 'https://rzp.io/rzp/qLYK5iB', international: 'https://rzp.io/rzp/ZoRK2ea', inr: '₹899', usd: '$24.99', title: 'Data Science + Gen AI + ML Engineer Complete Kit' }
 };
 let scienceKitCountry = 'IN';
 function getScienceKitCheckout(courseId) {
@@ -3224,10 +3203,10 @@ function getScienceKitCheckout(courseId) {
   return scienceKitCountry === 'IN' ? kit.india : kit.international;
 }
 function openDsCheckout() {
-  window.open(getScienceKitCheckout('data-science'), '_blank', 'noopener,noreferrer');
+  return window.openKitPayment('data-science');
 }
 function openCombinedKitCheckout() {
-  window.open(getScienceKitCheckout('ds-genai-ml'), '_blank', 'noopener,noreferrer');
+  return window.openKitPayment('ds-genai-ml');
 }
 function applyScienceKitPricing(countryCode) {
   scienceKitCountry = countryCode || 'IN';
@@ -3241,7 +3220,7 @@ function applyScienceKitPricing(countryCode) {
     if (cardPrice) cardPrice.textContent = price;
     if (id === 'data-science') {
       const strike = international ? '$24.99' : '₹1,499';
-      const discount = international ? '64% OFF' : '67% OFF';
+      const discount = international ? '40% OFF' : '67% OFF';
       root?.querySelectorAll('.dakit-hero-pricing-old, .dakit-cta-pricing del, .dakit-sticky-price del').forEach(el => el.textContent = strike);
       root?.querySelectorAll('.dakit-hero-pricing-badge, .dakit-off-badge, .dakit-sticky-price .sticky-off').forEach(el => el.textContent = discount);
       if (card?.querySelector('.bundle-price-strike')) card.querySelector('.bundle-price-strike').textContent = strike;
@@ -3277,7 +3256,7 @@ async function detectCountryCode() {
 
     try {
 
-      const response = await fetch(provider.url);
+      const response = await fetch(provider.url, { signal: AbortSignal.timeout(4000) });
 
       if (!response.ok) continue;
 
@@ -3319,7 +3298,9 @@ async function localizePrices() {
 
   const countryCode = getLocalCountryOverride() || await detectCountryCode();
 
-  // A failed lookup keeps the safer INR defaults and existing Asian links.
+  window.configureKitPayments(countryCode || 'IN', ASIA_COUNTRY_CODES, AFRICA_COUNTRY_CODES, EUROPE_COUNTRY_CODES);
+
+  // A failed lookup keeps INR defaults and the India payment buttons.
 
   if (!countryCode) return;
 
@@ -3361,7 +3342,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Detect location and swap currency
 
-  localizePrices();
+  window.checkoutRegionReady = localizePrices();
 
 });
 
@@ -4706,6 +4687,7 @@ async function submitDiscountForm(event) {
       const result = await response.json();
       if (result.success === false || result.status === 'error' || result.result === 'error') throw new Error('Submission failed');
     }
+    window.submitMetaMatching({ email, phone, consent: document.getElementById('discountMetaConsent')?.checked === true });
     document.getElementById('discountWhatsApp').href = chatLink;
     form.hidden = true;
     const success = document.getElementById('discountSuccess');
