@@ -645,3 +645,10 @@
 
 /* Data Science uses the existing matching book artwork. */
 :is(#course-data-science, #course-ds-genai-ml) .dakit-hero-image { object-fit: contain !important; animation: none !important; }
+
+/* Razorpay controls stay hidden; existing course CTAs launch checkout. */
+.kit-payment-host { display: none !important; }
+.kit-payment-status { color: #665866; font-size: 13px; line-height: 1.5; text-align: center; }
+.kit-payment-status:empty { display: none; }
+.meta-matching-consent { display: flex !important; align-items: flex-start; gap: 8px; margin: 14px 0; color: #665866; font-size: 12px !important; font-weight: 400 !important; line-height: 1.5; }
+.meta-matching-consent input { width: auto !important; flex: 0 0 auto; margin-top: 3px; }
