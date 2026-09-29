@@ -49,3 +49,25 @@ export function shapeOf(value, prefix = '', paths = [], depth = 0) {
   } else paths.push(`${prefix}:${Array.isArray(value) ? 'array' : value === null ? 'null' : typeof value}`);
   return paths;
 }
+
+// Report only exact merchant-supplied button IDs, never arbitrary note/customer values.
+// A candidate is evidence to review, not an automatically trusted product mapping.
+export function inspectionCandidates(context) {
+  const known = new Set([...Object.keys(buttonProducts), 'pl_ThbXIYIhe7fFeO']);
+  const found = [];
+  let visited = 0;
+  function walk(value, path = '', depth = 0) {
+    if (++visited > 500 || depth > 8 || found.length >= 20) return;
+    if (typeof value === 'string' && known.has(value)) {
+      found.push({ path, button_id: value });
+    } else if (value && typeof value === 'object') {
+      for (const [key, child] of Object.entries(value)) {
+        // Do not expose arbitrary note keys; only known metadata keys are safe to print.
+        if (path.endsWith('/notes') && !['payment_button_id', 'payment_link_id', 'button_id', 'product_id', 'reference_id', 'learnlytics_product'].includes(key)) continue;
+        if (/^[A-Za-z_][A-Za-z_0-9]{0,40}$/.test(key)) walk(child, `${path}/${key}`, depth + 1);
+      }
+    }
+  }
+  walk(context);
+  return found;
+}

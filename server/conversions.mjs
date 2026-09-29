@@ -1,5 +1,5 @@
 import { createHash, createHmac, timingSafeEqual, randomUUID } from 'node:crypto';
-import { identifyProduct, shapeOf } from './products.mjs';
+import { identifyProduct, shapeOf, inspectionCandidates } from './products.mjs';
 
 const MAX_BODY = 256 * 1024;
 const DAY = 86400;
@@ -125,10 +125,38 @@ export function createWebhookHandler({ env = process.env, fetcher = fetch, store
       log('payment_captured', { payment_ref: reference });
       const cfg = config(env);
       if (env.RAZORPAY_ACCOUNT_ID && webhook.account_id !== env.RAZORPAY_ACCOUNT_ID) return response(403, 'account_mismatch');
+      const api = async (resource, id, prefix) => {
+        if (typeof id !== 'string' || !new RegExp(`^${prefix}_[A-Za-z0-9]+$`).test(id)) fail('missing_resource_id');
+        const res = await fetcher(`https://api.razorpay.com/v1/${resource}/${id}`, { redirect: 'error', signal,
+          headers: { Authorization: 'Basic ' + Buffer.from(`${env.RAZORPAY_KEY_ID}:${env.RAZORPAY_KEY_SECRET}`).toString('base64') } });
+        if (!res.ok) {
+          log('razorpay_api_error', { resource, status: res.status });
+          fail('razorpay_fetch_failed');
+        }
+        const data = await res.json();
+        if (data.id !== id) fail('resource_id_mismatch');
+        return data;
+      };
       if (cfg.mode === 'inspect') {
         log('payload_inspected', { payment_ref: reference, paths: shapeOf(webhook),
           has_email: !!original.email, has_contact: !!original.contact, has_order: !!original.order_id,
           has_customer: !!original.customer_id, has_notes: !!Object.keys(original.notes || {}).length });
+        if (env.RAZORPAY_KEY_ID || env.RAZORPAY_KEY_SECRET) {
+          // Only Test Mode credentials are allowed for this diagnostic path.
+          if (!env.RAZORPAY_KEY_ID?.startsWith('rzp_test_') || !env.RAZORPAY_KEY_SECRET) fail('test_mode_required');
+          const payment = await api('payments', original.id, 'pay');
+          if (payment.status !== 'captured' || payment.captured !== true || payment.amount !== original.amount ||
+              payment.currency !== original.currency || payment.order_id !== original.order_id) fail('payment_mismatch');
+          const context = { payment };
+          if (payment.order_id) context.order = await api('orders', payment.order_id, 'order');
+          const matching = matchingData(payment);
+          log('api_inspected', { payment_ref: reference, paths: shapeOf(context),
+            identifier_candidates: inspectionCandidates(context),
+            order_fetched: !!context.order, receipt_present: !!context.order?.receipt,
+            payment_notes_count: Object.keys(payment.notes || {}).length,
+            order_notes_count: Object.keys(context.order?.notes || {}).length,
+            email_usable: !!matching.em, phone_usable: !!matching.ph });
+        }
         // Explicitly acknowledged inspection only; re-deliver after configuring the real mapping.
         return response(200, 'inspected_no_conversion_sent');
       }
@@ -140,15 +168,6 @@ export function createWebhookHandler({ env = process.env, fetcher = fetch, store
       acquired = true;
       let plan = await store.getPlan(key);
       if (!plan) {
-        const api = async (resource, id, prefix) => {
-          if (typeof id !== 'string' || !new RegExp(`^${prefix}_[A-Za-z0-9]+$`).test(id)) fail('missing_resource_id');
-          const res = await fetcher(`https://api.razorpay.com/v1/${resource}/${id}`, { redirect: 'error', signal,
-            headers: { Authorization: 'Basic ' + Buffer.from(`${env.RAZORPAY_KEY_ID}:${env.RAZORPAY_KEY_SECRET}`).toString('base64') } });
-          if (!res.ok) fail('razorpay_fetch_failed');
-          const data = await res.json();
-          if (data.id !== id) fail('resource_id_mismatch');
-          return data;
-        };
         // Fetch with test/live credentials to verify mode. Never trust a guessed `livemode` field.
         const payment = await api('payments', original.id, 'pay');
         if (payment.status !== 'captured' || payment.captured !== true || payment.amount !== original.amount || payment.currency !== original.currency || payment.order_id !== original.order_id) fail('payment_mismatch');
