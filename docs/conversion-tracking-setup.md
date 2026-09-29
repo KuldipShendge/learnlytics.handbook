@@ -1,8 +1,31 @@
 # LearnLytics Razorpay → Meta Purchase tracking
 
+## Current setup progress (29 September)
+
+The user has deployed the webhook and verified a real Test Mode capture: HTTP 200 with
+`signature_valid`, `payment_captured`, and `payload_inspected`. The real payment had email,
+contact and an order ID, but empty payment notes; the order dashboard showed email/phone
+notes only. No reliable product mapping has been established. Test button ID:
+`pl_ThbXIYIhe7fFeO`. Existing six hosted Payment Pages have browser Pixel tracking;
+the existing server Purchase integration has not been identified. Keep `CAPI_MODE=inspect`.
+
+With the latest inspection update, setting both Test API credentials in inspection mode
+fetches the signed payment and its linked order. It logs `api_inspected` with response
+schema, usable matching flags, note counts, receipt presence, and exact known button-ID
+candidates. No raw notes, contact values, receipt values or credentials are logged.
+Candidates do not configure mapping automatically. Without API keys, inspection remains
+webhook-only. Live keys are rejected in this diagnostic flow. API failures return 503
+with numeric provider status in `razorpay_api_error`, allowing a retry.
+
+Push the updated `server/conversions.mjs`, `server/products.mjs`, test and this guide;
+wait for deployment Ready, then make one new Test Mode payment. Open its Vercel
+`api_inspected` log. An empty `identifier_candidates` list is a valid diagnostic result,
+not a mapping success. Further private API inspection or a supported merchant reference
+mechanism may still be required. This step never contacts Meta or the idempotency store.
+
 ## Status and scope
 
-Code and local automated tests are implemented. **No real Razorpay → Meta test has run, no deployment was made, and production CAPI is not enabled.** Account credentials, a real Payment Button payload, the product identity field, and Meta receipt still need verification.
+Code and local automated tests are implemented. **No complete Razorpay → Meta test has run and production CAPI is not enabled.** The initial webhook deployment and signed test capture were verified by the user; the latest API inspection update still needs deploying. Product identity and Meta receipt remain unverified.
 
 Repository: `D:\learnlytics.handbook-main`. Canonical site found in `index.html`, `robots.txt`, and `sitemap.xml`: **https://learnlyticshandbook.shop**. There is no `.vercel/project.json` or Git remote in this source folder, so the Vercel project name/account could not be established locally. In Vercel, select the existing project whose Domains list contains this domain. Do not create another production project accidentally.
 
