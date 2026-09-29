@@ -166,7 +166,19 @@ test('explicit inspected order/customer enrichment supplies identity and missing
 test('inspection without API keys remains webhook-only', async () => {
   const s = setup({ env: { CAPI_MODE: 'inspect', RAZORPAY_KEY_ID: '', RAZORPAY_KEY_SECRET: '' } }); const r = await s.makeHandler()(s.request());
   assert.equal((await r.json()).result, 'inspected_no_conversion_sent'); assert.equal(s.calls.length, 0); assert.equal(s.store.records.size, 0);
-  assert.ok(!JSON.stringify(s.logs).includes('fixture_button'));
+    assert.ok(!JSON.stringify(s.logs).includes('fixture_button'));
+    assert.equal(s.logs.find(l => l.stage === 'payload_inspected').account_id, 'acc_Fixture123');
+  });
+
+test('inspection never exposes malformed or unsigned account identifiers', async () => {
+  const s = setup({ env: { CAPI_MODE: 'inspect', RAZORPAY_ACCOUNT_ID: '', RAZORPAY_KEY_ID: '', RAZORPAY_KEY_SECRET: '' } });
+  const e = event(); e.account_id = 'private@example.org';
+  assert.equal((await s.makeHandler()(s.request(e))).status, 200);
+  assert.equal(s.logs.find(l => l.stage === 'payload_inspected').account_id, null);
+  assert.ok(!JSON.stringify(s.logs).includes(e.account_id));
+  s.logs.length = 0;
+  assert.equal((await s.makeHandler()(s.request(event(), 'bad'))).status, 401);
+  assert.ok(!s.logs.some(l => l.stage === 'payload_inspected'));
 });
 
 test('inspection with test keys fetches payment and linked order, never Meta or storage', async () => {
