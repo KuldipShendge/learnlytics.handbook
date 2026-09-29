@@ -53,7 +53,7 @@ function config(env) {
   if (!['inspect', 'test', 'live'].includes(mode)) fail('invalid_mode');
   if (mode === 'inspect') return { mode };
   const required = ['RAZORPAY_ACCOUNT_ID', 'RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET',
-    'RAZORPAY_PRODUCT_ID_PATH', 'META_PIXEL_ID', 'META_CAPI_ACCESS_TOKEN',
+    'META_PIXEL_ID', 'META_CAPI_ACCESS_TOKEN',
     'META_GRAPH_API_VERSION', 'SITE_URL', 'UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'];
   if (required.some(key => !env[key])) fail('configuration_incomplete');
   if (!/^\d+$/.test(env.META_PIXEL_ID) || !/^v\d+\.0$/.test(env.META_GRAPH_API_VERSION)) fail('invalid_meta_config');
@@ -176,30 +176,34 @@ export function createWebhookHandler({ env = process.env, fetcher = fetch, store
           context[kind] = kind === 'order' ? await api('orders', payment.order_id, 'order') : await api('customers', payment.customer_id, 'cust');
         }));
         let product;
-        try { product = identifyProduct(context, env); }
-        catch (error) { log('product_unresolved', { payment_ref: reference, paths: shapeOf(context) }); throw error; }
-        log('product_identified', { payment_ref: reference, product: product.id });
+        if (env.RAZORPAY_PRODUCT_ID_PATH) {
+          try { product = identifyProduct(context, env); }
+          catch (error) { log('product_unresolved', { payment_ref: reference, paths: shapeOf(context) }); throw error; }
+          log('product_identified', { payment_ref: reference, product: product.id });
+        } else log('product_mapping_skipped', { payment_ref: reference });
         // Only currencies sold by this storefront are supported; both have 2 decimal minor units.
         if (!['INR', 'USD'].includes(payment.currency) || !Number.isSafeInteger(payment.amount) || payment.amount <= 0) fail('invalid_amount_currency');
         const eventTime = webhook.created_at; // Capture event time, not payment authorization/creation time.
         if (!Number.isSafeInteger(eventTime) || eventTime > now() + 60 || eventTime < now() - 7 * DAY) fail('invalid_event_time');
         const userData = matchingData(payment, context.customer);
-        if (!Object.keys(userData).length) fail('customer_matching_missing');
+        // Current merchant requirement: both fields must be valid, never fabricated.
+        if (!userData.em || !userData.ph) fail('customer_matching_missing');
         log('matching_prepared', { email_hashed: !!userData.em, phone_hashed: !!userData.ph });
         plan = { first_attempt: now(), event: {
           event_name: 'Purchase', event_id: `razorpay:${cfg.mode}:${original.id}`, event_time: eventTime,
-          action_source: 'website', event_source_url: `${env.SITE_URL.replace(/\/$/, '')}/#${product.page}`,
+          action_source: 'website', event_source_url: `${env.SITE_URL.replace(/\/$/, '')}/${product ? '#' + product.page : ''}`,
           user_data: userData,
-          custom_data: { value: payment.amount / 100, currency: payment.currency, content_ids: [product.id],
-            content_name: product.name, content_type: 'product', num_items: 1 }
+          custom_data: { value: payment.amount / 100, currency: payment.currency,
+            ...(product ? { content_ids: [product.id], content_name: product.name, content_type: 'product', num_items: 1 } : {}) }
         } };
         await store.savePlan(key, plan);
       }
       // A network timeout may hide a successful Meta receipt. Keep retries within its dedup window;
       // older uncertain attempts need reconciliation, never a new event_id or blind late replay.
       if (now() - plan.first_attempt >= DAY) fail('reconciliation_required');
+      if (!plan.event.user_data.em?.length || !plan.event.user_data.ph?.length) fail('customer_matching_missing');
       const payload = { data: [plan.event], ...(cfg.mode === 'test' ? { test_event_code: env.META_TEST_EVENT_CODE } : {}) };
-      log('capi_request_sent', { payment_ref: reference, mode: cfg.mode, product: plan.event.custom_data.content_ids[0],
+      log('capi_request_sent', { payment_ref: reference, mode: cfg.mode, product: plan.event.custom_data.content_ids?.[0] || null,
         value: plan.event.custom_data.value, currency: plan.event.custom_data.currency });
       const meta = await fetcher(`https://graph.facebook.com/${env.META_GRAPH_API_VERSION}/${env.META_PIXEL_ID}/events`, {
         method: 'POST', redirect: 'error', signal,
