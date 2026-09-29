@@ -1,5 +1,45 @@
 # LearnLytics Razorpay → Meta Purchase tracking
 
+## Current scope: Purchase totals and customer matching, no product mapping
+
+The merchant has deferred product mapping. Leave `RAZORPAY_PRODUCT_ID_PATH` and
+`RAZORPAY_ENRICH_RESOURCES` unset/blank for the current flow. Payment Buttons and the
+existing download/email experience remain unchanged; no Standard Checkout migration
+or private-file storage migration is needed for this scope.
+
+After signed `payment.captured` verification and authenticated payment fetch, the event
+contains `Purchase`, the payment's actual amount/currency, SHA-256 normalized email and
+phone, capture event timestamp, and stable `razorpay:<mode>:<payment_id>` event ID.
+No content IDs/name/type are invented. Both usable email AND phone are now required;
+missing/ambiguous fields return `customer_matching_missing` without sending an incomplete
+Purchase. This intentionally trades missing-event retries for matching-field accuracy.
+If a product path is explicitly configured later, the original strict mapping still applies.
+
+The original product-mapping investigation below is historical/optional; it no longer
+blocks testing this reduced scope. Test/live credential gates, durable Redis locking,
+stored immutable retries, sent markers and reconciliation limits remain required.
+
+Next setup: deploy the updated server file, keep inspection mode until configuring
+`RAZORPAY_ACCOUNT_ID`, `META_PIXEL_ID`, `META_CAPI_ACCESS_TOKEN`, `META_GRAPH_API_VERSION`,
+`META_TEST_EVENT_CODE`, `SITE_URL`, `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+The Razorpay Test API credentials/webhook secret are already added by the user.
+Then use `CAPI_MODE=test`, redeploy, capture a new Test Mode payment, verify its exact
+amount/currency and matching fields in Meta Test Events, and redeliver the same event.
+Do not set live approval until the full test passes.
+
+**Cross-integration duplication is unresolved:** the account already receives browser
+and server Purchase events associated with older hosted Payment Pages. This generic
+account webhook cannot distinguish those purchases from Payment Button purchases when
+neither has a verified product/source identifier. Its durable ledger prevents its OWN
+repeat deliveries, not events from another integration with a different ID. Before live
+activation, reconcile the existing server Purchase sender and either exclude overlapping
+transactions reliably or arrange one authoritative sender. Do not disable unrelated
+PageView/Lead tracking. No unconditional end-to-end exactly-once guarantee is claimed.
+
+Validation: 36 local automated tests pass, including unmapped Purchase values/hashes,
+duplicate deliveries, ambiguous response retries and missing-field rejection. Actual
+Meta receipt and durable store deployment are still pending.
+
 ## Current setup progress (29 September)
 
 The user has deployed the webhook and verified a real Test Mode capture: HTTP 200 with
