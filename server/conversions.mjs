@@ -137,8 +137,9 @@ export function createWebhookHandler({ env = process.env, fetcher = fetch, store
         if (data.id !== id) fail('resource_id_mismatch');
         return data;
       };
-      if (cfg.mode === 'inspect') {
-        log('payload_inspected', { payment_ref: reference, paths: shapeOf(webhook),
+        if (cfg.mode === 'inspect') {
+          log('payload_inspected', { payment_ref: reference, paths: shapeOf(webhook),
+            account_id: typeof webhook.account_id === 'string' && /^acc_[A-Za-z0-9]{1,64}$/.test(webhook.account_id) ? webhook.account_id : null,
           has_email: !!original.email, has_contact: !!original.contact, has_order: !!original.order_id,
           has_customer: !!original.customer_id, has_notes: !!Object.keys(original.notes || {}).length });
         if (env.RAZORPAY_KEY_ID || env.RAZORPAY_KEY_SECRET) {
