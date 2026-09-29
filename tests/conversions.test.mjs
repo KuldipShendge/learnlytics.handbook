@@ -113,6 +113,41 @@ test('unknown product does not guess by price or send a conversion', async () =>
   assert.equal(r.status, 503); assert.equal((await r.json()).result, 'product_unresolved'); assert.equal(s.metaEvents.length, 0);
 });
 
+test('unmapped captured purchase sends exact value, both hashes and stable ID without content fields', async () => {
+  const p = payment(); p.notes = {};
+  const s = setup({ payment: p, env: { RAZORPAY_PRODUCT_ID_PATH: '' } });
+  assert.equal((await s.makeHandler()(s.request())).status, 200);
+  const e = s.metaEvents[0].data[0];
+  assert.deepEqual(e.custom_data, { value: 14.99, currency: 'USD' });
+  assert.deepEqual(e.user_data, { em: [hash('buyer@example.org')], ph: [hash('919876543210')] });
+  assert.equal(e.event_id, 'razorpay:test:pay_Fixture123');
+  assert.equal(e.event_source_url, 'https://learnlyticshandbook.shop/');
+  assert.equal(s.calls.filter(c => c.url.includes('/orders/')).length, 0);
+  assert.equal((await s.makeHandler()(s.request())).status, 200);
+  assert.equal(s.metaEvents.length, 1);
+});
+
+test('unmapped purchases fail closed when either matching field is missing or ambiguous', async () => {
+  for (const fields of [{ email: '' }, { contact: '' }, { email: 'email@email.com' }, { contact: '9876543210' }]) {
+    const s = setup({ payment: { ...payment(), ...fields }, env: { RAZORPAY_PRODUCT_ID_PATH: '' } });
+    const r = await s.makeHandler()(s.request());
+    assert.equal(r.status, 503); assert.equal((await r.json()).result, 'customer_matching_missing');
+    assert.equal(s.metaEvents.length, 0);
+  }
+});
+
+test('unmapped retries after ambiguous Meta response retain exact purchase and event ID', async () => {
+  let attempt = 0;
+  const s = setup({ env: { RAZORPAY_PRODUCT_ID_PATH: '' }, meta: () => {
+    if (++attempt === 1) throw new Error('response lost');
+    return Response.json({ events_received: 1 });
+  } });
+  assert.equal((await s.makeHandler()(s.request())).status, 503);
+  assert.equal((await s.makeHandler()(s.request())).status, 200);
+  assert.deepEqual(s.metaEvents[0], s.metaEvents[1]);
+  await s.makeHandler()(s.request()); assert.equal(s.metaEvents.length, 2);
+});
+
 test('API failures, amount mismatch and account mismatch fail closed', async () => {
   for (const opts of [{ apiStatus: 401 }, { env: { RAZORPAY_ACCOUNT_ID: 'acc_Other' } }]) {
     const s = setup(opts); assert.notEqual((await s.makeHandler()(s.request())).status, 200); assert.equal(s.metaEvents.length, 0);
