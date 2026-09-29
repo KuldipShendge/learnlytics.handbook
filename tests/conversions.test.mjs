@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHmac, createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { createWebhookHandler, matchingData, verifySignature, createRedisStore } from '../server/conversions.mjs';
-import { buttonProducts } from '../server/products.mjs';
+import { buttonProducts, inspectionCandidates } from '../server/products.mjs';
 
 // Synthetic fixture based on documented payment entity fields. fixture_button is deliberately
 // invented for the test adapter; it is NOT a claim about real Payment Button payloads.
@@ -128,10 +128,39 @@ test('explicit inspected order/customer enrichment supplies identity and missing
   assert.deepEqual(s.metaEvents[0].data[0].user_data, { em: [hash('fallback@example.org')], ph: [hash('14155552671')] });
 });
 
-test('inspection mode acknowledges a signed event but never fetches, stores or sends customer data', async () => {
-  const s = setup({ env: { CAPI_MODE: 'inspect' } }); const r = await s.makeHandler()(s.request());
+test('inspection without API keys remains webhook-only', async () => {
+  const s = setup({ env: { CAPI_MODE: 'inspect', RAZORPAY_KEY_ID: '', RAZORPAY_KEY_SECRET: '' } }); const r = await s.makeHandler()(s.request());
   assert.equal((await r.json()).result, 'inspected_no_conversion_sent'); assert.equal(s.calls.length, 0); assert.equal(s.store.records.size, 0);
   assert.ok(!JSON.stringify(s.logs).includes('fixture_button'));
+});
+
+test('inspection with test keys fetches payment and linked order, never Meta or storage', async () => {
+  const s = setup({ env: { CAPI_MODE: 'inspect' } });
+  assert.equal((await s.makeHandler()(s.request())).status, 200);
+  assert.equal(s.calls.length, 2); assert.equal(s.metaEvents.length, 0); assert.equal(s.store.records.size, 0);
+  assert.ok(s.calls[0].url.includes('/payments/pay_Fixture123'));
+  assert.ok(s.calls[1].url.includes('/orders/order_Fixture123'));
+  const entry = s.logs.find(l => l.stage === 'api_inspected');
+  assert.equal(entry.order_fetched, true); assert.equal(entry.email_usable, true); assert.equal(entry.phone_usable, true);
+  for (const value of ['BUYER@example.org', '98765', 'synthetic-api-secret', 'fixture_button']) assert.ok(!JSON.stringify(s.logs).includes(value));
+});
+
+test('inspection rejects unsigned requests, live keys and failed API authentication', async () => {
+  const s = setup({ env: { CAPI_MODE: 'inspect' } });
+  assert.equal((await s.makeHandler()(s.request(event(), 'bad'))).status, 401); assert.equal(s.calls.length, 0);
+  const live = setup({ env: { CAPI_MODE: 'inspect', RAZORPAY_KEY_ID: 'rzp_live_fixture' } });
+  assert.equal((await live.makeHandler()(live.request())).status, 503); assert.equal(live.calls.length, 0);
+  const bad = setup({ env: { CAPI_MODE: 'inspect' }, apiStatus: 401 });
+  assert.equal((await bad.makeHandler()(bad.request())).status, 503);
+  assert.ok(bad.logs.some(l => l.stage === 'razorpay_api_error' && l.status === 401));
+  assert.ok(!bad.logs.some(l => l.stage === 'api_inspected')); assert.equal(bad.metaEvents.length, 0);
+});
+
+test('diagnostics reveal only known button candidates, never contact or arbitrary note values', () => {
+  assert.deepEqual(inspectionCandidates({ payment: { notes: { button_id: 'pl_ThbXIYIhe7fFeO',
+    email: 'person@example.org', phone: '919999999999', customerName: 'pl_ThbXIYIhe7fFeO' } },
+    order: { receipt: 'private-receipt', other_id: 'pl_Unknown' } }),
+    [{ path: '/payment/notes/button_id', button_id: 'pl_ThbXIYIhe7fFeO' }]);
 });
 
 test('test/live gates prevent accidental production sends', async () => {
