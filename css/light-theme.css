@@ -1,24 +1,24 @@
 /* Editorial eyebrow must stay readable on the pink note. */
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-eyebrow {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-eyebrow {
   color: #713255 !important;
   opacity: 1 !important;
   font-weight: 600;
 }
 
 /* Both interview pages use one shared Inside layout. */
-:is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside {
+:is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside {
   padding: 24px 52px !important;
 }
-:is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid {
+:is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 16px !important;
 }
-:is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-card {
+:is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-card {
   padding: 24px !important;
   text-align: left !important;
 }
-:is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-icon {
+:is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,19 +27,19 @@
   margin: 0 0 14px !important;
   border-radius: 12px;
 }
-:is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside > .dakit-section-title {
+:is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside > .dakit-section-title {
   white-space: normal !important;
   line-height: 1.3 !important;
   margin: 0 auto 24px !important;
 }
 @media (max-width: 768px) {
-  :is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside { padding: 20px 12px !important; }
-  :is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
-  :is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-card { padding: 16px !important; }
-  :is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside > .dakit-section-title { max-width: 340px !important; font-size: 21px !important; }
+  :is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside { padding: 20px 12px !important; }
+  :is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  :is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-card { padding: 16px !important; }
+  :is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside > .dakit-section-title { max-width: 340px !important; font-size: 21px !important; }
 }
 @media (max-width: 400px) {
-  :is(#course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  :is(#course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inside-grid { grid-template-columns: minmax(0, 1fr) !important; }
 }
 
 /* Complete Kit uses its own hero and curriculum markup. */
@@ -148,80 +148,80 @@
 }
 .bundle-btn:not(:disabled):hover { background: #4c2344 !important; }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-section-title, .da-section h2, .dakit-inside-card h3, .da-get-grid h3, .dakit-testimonial-name, .dakit-faq-question, .da-faq-section summary) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-section-title, .da-section h2, .dakit-inside-card h3, .da-get-grid h3, .dakit-testimonial-name, .dakit-faq-question, .da-faq-section summary) {
   color: var(--ll-ink) !important;
   font-weight: 600 !important;
   text-shadow: none !important;
   letter-spacing: -.25px;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-inside-card p, .da-get-grid p, .dakit-testimonial-quote, .dakit-testimonial-role, .dakit-faq-answer, .da-section-subcopy, .dakit-comparison-subcopy, .da-faq-section .faq-content) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-inside-card p, .da-get-grid p, .dakit-testimonial-quote, .dakit-testimonial-role, .dakit-faq-answer, .da-section-subcopy, .dakit-comparison-subcopy, .da-faq-section .faq-content) {
   color: var(--ll-copy) !important;
   font-weight: 400 !important;
   line-height: 1.65;
   text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-stat-card, .dakit-inside-card, .dakit-testimonial-card, .dakit-faq-item, .da-get-grid > div, .da-get-grid > button, .da-faq-section .faq-item, .dakit-comp-table-wrap) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-stat-card, .dakit-inside-card, .dakit-testimonial-card, .dakit-faq-item, .da-get-grid > div, .da-get-grid > button, .da-faq-section .faq-item, .dakit-comp-table-wrap) {
   background: #fff !important;
   border: 1px solid var(--ll-line) !important;
   border-radius: 14px;
   box-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-faq-item.active, .dakit-inside-card:hover, .da-get-grid > button:hover, .da-get-grid > div:hover) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-faq-item.active, .dakit-inside-card:hover, .da-get-grid > button:hover, .da-get-grid > div:hover) {
   border-color: #d19abe !important;
   box-shadow: 0 4px 16px rgba(36, 21, 37, .04) !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-section-title::before, .dakit-section-title::after) { background: #dccbd6 !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-section-title::before, .dakit-section-title::after) { background: #dccbd6 !important; }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.da-section-kicker, .dakit-comparison-kicker) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.da-section-kicker, .dakit-comparison-kicker) {
   color: var(--ll-accent) !important;
   font-weight: 600 !important;
   letter-spacing: 1.3px;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-stat-icon, .dakit-inside-icon, .da-get-grid > div > span:not(.da-get-bonus-badge), .da-get-grid > button > span:not(.da-get-bonus-badge)) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-stat-icon, .dakit-inside-icon, .da-get-grid > div > span:not(.da-get-bonus-badge), .da-get-grid > button > span:not(.da-get-bonus-badge)) {
   color: var(--ll-accent) !important;
   background: #fceff8 !important;
   border-color: #f1e1eb !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-table th {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-table th {
   background: #f7f2f5 !important;
   color: var(--ll-ink) !important;
   font-weight: 600;
 }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-table td {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-table td {
   background: #fff !important;
   color: var(--ll-copy) !important;
   border-color: var(--ll-line) !important;
 }
 
 /* Keep headings crisp while reducing the heavy sales-page typography. */
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero {
   background: linear-gradient(135deg, #fff 0%, #fcf4f9 65%, #f9edf4 100%) !important;
   border-color: #e9dce5 !important;
   box-shadow: 0 8px 24px rgba(36, 21, 37, .05) !important;
 }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-title {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-title {
   color: var(--ll-ink) !important;
   font-weight: 700 !important;
   letter-spacing: -.8px;
   text-shadow: none !important;
 }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-highlight { color: var(--ll-accent) !important; }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-desc { color: var(--ll-copy) !important; text-shadow: none !important; }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-subtitle {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-highlight { color: var(--ll-accent) !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-desc { color: var(--ll-copy) !important; text-shadow: none !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-subtitle {
   background: #fbeaf5 !important;
   color: #930b6b !important;
   border-color: #ecd3e2 !important;
   box-shadow: none !important;
 }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-pricing-new { color: var(--ll-accent) !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-pricing-new { color: var(--ll-accent) !important; }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary) {
   background: #241525 !important;
   color: #fff !important;
   border-color: #241525 !important;
@@ -229,8 +229,8 @@
   font-weight: 600 !important;
   text-shadow: none !important;
 }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary):hover { background: #4c2344 !important; }
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-cta .cta-price { color: #fff !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-hero-cta, .dakit-sticky-btn, .dakit-btn-primary):hover { background: #4c2344 !important; }
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-cta .cta-price { color: #fff !important; }
 
 .dashboard-main :is(button, a, summary):focus-visible {
   outline: 2px solid #b40982;
@@ -244,7 +244,7 @@
 @media (max-width: 768px) {
   .dashboard-main { width: 100%; max-width: 100%; padding-inline: 12px !important; }
   #detail-view { padding-inline: 0 !important; min-width: 0; }
-  .detail-inner:has(:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))).active) {
+  .detail-inner:has(:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))).active) {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -253,121 +253,121 @@
 }
 
 /* Complete the plum and pink palette across offers, notes and value cards. */
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge {
   background: #f3e3ed !important; border-color: #e3c7d8 !important; color: #3e2036 !important; box-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge .path-step,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge .path-arrow {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge .path-step,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-path-badge .path-arrow {
   color: #3e2036 !important; text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-badge,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-title,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-close button {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-title,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-close button {
   background: #241525 !important; color: #fff !important; border-color: #241525 !important; box-shadow: none !important; animation: none !important; text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn span,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn svg {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn span,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-sql-addon-btn svg {
   color: #fff !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-pricing-badge,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-off-badge,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .sticky-off,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .da-get-bonus-badge,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-inline-bonus,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-best-badge {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-pricing-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-off-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .sticky-off,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .da-get-bonus-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-inline-bonus,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-best-badge {
   background: #f2d6e8 !important; color: #751051 !important; border-color: #e6bfd7 !important; box-shadow: none !important; text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-timer,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-mobile-offer-timer {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-hero-timer,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-mobile-offer-timer {
   background: #f2dce9 !important; border-color: #dfb9d1 !important; color: #54213f !important; box-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-label,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-text,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-bottom,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-val,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-label,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-sep,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-mobile-offer-timer strong {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-label,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-text,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-timer-bottom,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-val,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-label,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-sep,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-mobile-offer-timer strong {
   color: #54213f !important; text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-card {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-card {
   background: #faf1f7 !important; border: 1px solid #e5cddc !important; box-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-list li {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-list li {
   color: #483442 !important; border-color: #e5cddc !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-list li svg {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-comp-list li svg {
   color: #a80b79 !important; stroke: currentColor !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-author-note-card {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-author-note-card {
   background: #f0dce8 !important; color: #3c2735 !important; border-color: #dec1d3 !important; box-shadow: 0 6px 20px rgba(70, 30, 55, .04) !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-author-note-card::before {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-author-note-card::before {
   background: #b66b9b !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-header {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-header {
   border-color: #dcbfd1 !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-badge,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-lang-tab.active {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-badge,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-lang-tab.active {
   background: #713255 !important; color: #fff !important; box-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-badge svg {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-badge svg {
   color: #fff !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-lang-switcher {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-lang-switcher {
   background: #e7cddb !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-lang-tab {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-lang-tab {
   color: #54213f;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-main-title,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-main-title span,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-intro strong,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps strong,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-close p strong {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-main-title,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-main-title span,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-intro strong,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps strong,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-close p strong {
   color: #3c2032 !important; text-shadow: none !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-content p,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-content .ll-note-subheading {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-content p,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-content .ll-note-subheading {
   color: #614556 !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps > div,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-step-card,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps > div,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-step-card,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method {
   background: #fbf4f8 !important; border-color: #e3c8d8 !important; color: #54213f !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps span,
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method span {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-steps span,
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method span {
   background: #ecd0e1 !important; color: #713255 !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method b {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .ll-note-compact-method b {
   color: #a80b79 !important;
 }
 
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-unit :is(.dakit-val, small) {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-countdown-unit :is(.dakit-val, small) {
   color: #54213f !important;
   text-shadow: none !important;
 }
@@ -439,7 +439,7 @@
 }
 
 /* Four-slide hero GIFs stay still as a frame while their contents animate. */
-:is(#course-data-analyst-complete, #course-data-analyst, :is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) img[src$="-hero.gif"] {
+:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) img[src$="-hero.gif"] {
   animation: none !important;
   object-fit: contain !important;
   object-position: left center !important;
@@ -448,10 +448,10 @@
 }
 
 /* Leave room for the download button after removing the ML trust strip. */
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .dakit-hero-image-col > .dakit-hero-image {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .dakit-hero-image-col > .dakit-hero-image {
   margin-bottom: 12px !important;
 }
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .dakit-sql-addon-btn {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .dakit-sql-addon-btn {
   margin-top: 12px !important;
   flex-shrink: 0;
 }
@@ -468,20 +468,20 @@
   color: #85205f !important; background: #fff !important; border: 1px solid #dcbfd3 !important;
   text-shadow: none !important;
 }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta {
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta {
   background: linear-gradient(120deg,#fff 0%,#f9edf5 100%) !important;
   border: 1px solid #e3cfde !important; box-shadow: 0 8px 24px rgba(50,20,40,.05) !important;
   color: #241525 !important;
 }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta :is(h2,p,span,strong) {
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta :is(h2,p,span,strong) {
   color: #241525 !important; text-shadow: none !important;
 }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta svg { stroke: #b40982 !important; }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta del { color: #776977 !important; }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta .dakit-btn-primary {
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta svg { stroke: #b40982 !important; }
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta del { color: #776977 !important; }
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta .dakit-btn-primary {
   background: #241525 !important; color: #fff !important; border-color: #241525 !important; box-shadow: none !important;
 }
-:is(#course-data-analyst-complete,#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta .dakit-off-badge {
+:is(#course-data-analyst-complete,#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-bottom-cta .dakit-off-badge {
   background: #f5dfed !important; color: #a00870 !important;
 }
 #freeHandbooksSection .free-card, #reviewsSection .review-card, #reviewsSection .reviews-rating-summary-bar {
@@ -497,7 +497,7 @@
 #reviewsSection .stars { color: #b40982 !important; }
 #reviewsSection .btn-primary { background: #241525 !important; color: #fff !important; box-shadow: none !important; }
 #reviewsSection .reviews-rating-summary-bar > div > div > div:first-child { color: #b40982 !important; }
-:is(#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
+:is(#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
   width: min(100%,960px) !important; max-width: 960px !important; height: auto !important;
   max-height: none !important; object-fit: contain !important; filter: none !important; border-radius: 16px;
 }
@@ -597,7 +597,7 @@
 @media(max-width:768px) { .discount-card { padding:24px 20px; } .discount-section { margin-top:16px; } }
 @media(max-width:768px) { .discount-course-button { order:9 !important; } }
 /* Compact single-row company panel. */
-:is(#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
+:is(#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
   width: min(100%, 900px) !important;
   max-width: 900px !important;
   height: auto !important;
@@ -607,39 +607,39 @@
   margin: 12px auto !important;
 }
 @media(max-width:768px) {
- :is(#course-data-analyst,:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
+ :is(#course-data-analyst,:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) .dakit-trusted-logos {
   max-height: 110px !important;
  }
 }
 
 /* Match ML module and sample headings to the Get Instant Access button. */
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-card,
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-card,
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading {
   border-color: #241525;
 }
 
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-header,
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-header,
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading {
   background: #241525;
   color: #fff;
 }
 
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-header :is(.ml-module-title, .ml-module-kicker, .ml-module-kicker span, .ml-module-number, .ml-module-toggle),
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading :is(.ml-pdf-eyebrow, h3, p) {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-header :is(.ml-module-title, .ml-module-kicker, .ml-module-kicker span, .ml-module-number, .ml-module-toggle),
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-pdf-subject-heading :is(.ml-pdf-eyebrow, h3, p) {
   color: #fff;
 }
 
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-number,
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-kicker span {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-number,
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-kicker span {
   background: rgba(255, 255, 255, .09);
   border-color: rgba(255, 255, 255, .3);
 }
 
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-summary:hover .ml-module-header {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-summary:hover .ml-module-header {
   background: #4c2344;
 }
 
-:is(#course-ai-automation, :is(#course-data-science, #course-ds-genai-ml)) .ml-module-summary:focus-visible {
+:is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml)) .ml-module-summary:focus-visible {
   outline-color: #f0dce8;
 }
 

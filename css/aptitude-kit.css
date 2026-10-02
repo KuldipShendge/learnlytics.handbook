@@ -1,0 +1,46 @@
+#course-aptitude-kit { --ak-ink:#241525; --ak-muted:#665866; --ak-accent:#a80876; color:var(--ak-ink); font-family:'Manrope',sans-serif; }
+#course-aptitude-kit * { box-sizing:border-box; }
+body:has(#course-aptitude-kit.active) #dakitSocialToast { display:none !important; }
+#course-aptitude-kit .dakit-hero-title { font-size:clamp(32px,3.5vw,52px); line-height:1.16; }
+#course-aptitude-kit .dakit-hero-badge { text-transform:uppercase; }
+#course-aptitude-kit .dakit-hero-cta { white-space:normal; }
+#course-aptitude-kit .dakit-hero-badges { margin-top:24px; }
+#course-aptitude-kit .dakit-hero-secure { line-height:1.7; }
+#course-aptitude-kit .ak-subject-heading { margin:36px 0 22px; }
+#course-aptitude-kit .ak-subject-heading h2 { font-size:clamp(24px,3vw,34px); margin:10px 0; color:var(--ak-ink); }
+#course-aptitude-kit .ak-subject-heading > p:last-child { color:var(--ak-muted); line-height:1.8; font-size:14px; }
+#course-aptitude-kit .ak-expand { margin-left:auto; font-size:24px; color:var(--ak-accent); }
+#course-aptitude-kit .dakit-comp-list li { padding-left:0; }
+#course-aptitude-kit .dakit-sticky-price { display:flex; flex-direction:column; gap:3px; }
+#course-aptitude-kit .dakit-sticky-price strong { font-size:17px; }
+#course-aptitude-kit .dakit-sticky-price > span { font-size:10px; color:var(--ak-muted); }
+#course-aptitude-kit .dakit-sticky-btn { font-size:11px; max-width:58%; white-space:normal; }
+#course-aptitude-kit .ak-eyebrow { font-size:11px; font-weight:800; letter-spacing:1.4px; color:var(--ak-accent); }
+#course-aptitude-kit .ak-description { color:var(--ak-muted); font-size:14px; line-height:1.8; }
+#course-aptitude-kit .ak-dialog { width:min(520px,calc(100vw - 28px)); max-width:none; max-height:calc(100dvh - 32px); margin:auto; border:1px solid #e5cedd; border-radius:20px; background:#fffafd; padding:32px; color:var(--ak-ink); box-shadow:0 24px 80px #24152540; overscroll-behavior:contain; }
+#course-aptitude-kit .ak-dialog::backdrop { background:#24152599; }
+#course-aptitude-kit .ak-dialog h2 { font-size:28px; line-height:1.2; margin:18px 30px 14px 0; color:var(--ak-ink); }
+#course-aptitude-kit .ak-dialog-close { position:absolute; right:12px; top:12px; width:40px; height:40px; border:1px solid #e5cedd; border-radius:50%; color:var(--ak-ink); background:#fff; font-size:25px; cursor:pointer; }
+#course-aptitude-kit .ak-form { display:grid; gap:15px; margin-top:22px; }
+#course-aptitude-kit .ak-form[hidden], #course-aptitude-kit #ak-register-success[hidden] { display:none; }
+#course-aptitude-kit .ak-launch-date { display:block; margin-top:14px; color:var(--ak-accent); font-size:16px; font-weight:800; }
+#course-aptitude-kit .ak-success-date { margin:24px 0; padding:18px; border:1px solid #e5cedd; border-radius:12px; background:#f5e5f0; color:var(--ak-ink); font-size:14px; line-height:1.8; }
+#course-aptitude-kit #ak-register-success .ak-button { width:100%; }
+#course-aptitude-kit .ak-form > label { display:grid; gap:7px; font-size:12px; font-weight:700; }
+#course-aptitude-kit .ak-form input:not([type=checkbox]) { width:100%; min-width:0; min-height:46px; border:1px solid #d8cbd4; border-radius:8px; padding:10px 12px; background:#fff; color:var(--ak-ink); font:16px 'Manrope',sans-serif; }
+#course-aptitude-kit .ak-form > small { margin-top:-9px; font-size:11px; color:var(--ak-muted); }
+#course-aptitude-kit .ak-form .ak-consent { display:flex; align-items:flex-start; gap:10px; line-height:1.7; font-weight:400; color:var(--ak-muted); }
+#course-aptitude-kit .ak-consent input { width:17px; height:17px; margin-top:3px; flex-shrink:0; accent-color:var(--ak-accent); }
+#course-aptitude-kit .ak-button { min-height:48px; border:0; border-radius:10px; padding:14px 18px; background:var(--ak-ink); color:#fff; font:700 12px 'Manrope',sans-serif; cursor:pointer; }
+#course-aptitude-kit .ak-button:disabled { opacity:.65; cursor:wait; }
+#course-aptitude-kit .ak-status { font-size:13px; line-height:1.7; margin:0; color:#9b203f; }
+#course-aptitude-kit .ak-status[data-success=true] { color:#216147; }
+#course-aptitude-kit .ak-trap { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+#course-aptitude-kit :is(button,a,input,summary):focus-visible { outline:3px solid #a80876; outline-offset:3px; }
+#course-aptitude-kit .ak-pdf-dialog { width:min(980px,calc(100vw - 24px)); height:calc(100dvh - 40px); padding:22px; overflow:hidden; }
+#course-aptitude-kit .ak-pdf-dialog[open] { display:flex; flex-direction:column; }
+#course-aptitude-kit .ak-pdf-dialog h2 { font-size:20px; margin:0 40px 8px 0; }
+#course-aptitude-kit .ak-pdf-dialog > p { font-size:13px; line-height:1.6; margin:8px 0 16px; }
+#course-aptitude-kit .ak-pdf-dialog a { color:var(--ak-accent); text-decoration:underline; }
+#course-aptitude-kit .ak-pdf-dialog iframe { width:100%; flex:1; min-height:0; border:1px solid #e5cedd; background:#fff; }
+@media(max-width:600px) { #course-aptitude-kit .ak-dialog { padding:24px 20px; } #course-aptitude-kit .ak-dialog h2 { font-size:25px; } #course-aptitude-kit .ak-pdf-dialog { padding:16px; } }
