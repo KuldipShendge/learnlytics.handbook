@@ -185,7 +185,7 @@ function openDetail(courseId) {
     const helpNavItem = Array.from(document.querySelectorAll('.dashboard-nav-item'))
       .find(item => item.textContent.includes('Help & FAQ') || item.textContent.includes('Help &amp; FAQ'));
     if (helpNavItem) helpNavItem.classList.add('active');
-  } else if (courseId === 'ds-genai-ml' || courseId === 'data-science') {
+  } else if (courseId === 'ds-genai-ml' || courseId === 'data-science' || courseId === 'aptitude-kit') {
     const scienceNavItem = document.querySelector('.dashboard-nav-item[data-course="' + courseId + '"]');
     if (scienceNavItem) scienceNavItem.classList.add('active');
   } else if (courseId === 'data-analyst-complete') {
@@ -221,8 +221,8 @@ function openDetail(courseId) {
           <span style="color:var(--navy);font-weight:700;">Help &amp; FAQ</span>
         </div>
       `;
-    } else if (courseId === 'data-analyst' || courseId === 'data-analyst-complete' || courseId === 'ai-automation' || courseId === 'data-science' || courseId === 'ds-genai-ml') {
-      let title = 'Data &amp; BI Analyst Interview Kit';
+    } else if (courseId === 'aptitude-kit' || courseId === 'data-analyst' || courseId === 'data-analyst-complete' || courseId === 'ai-automation' || courseId === 'data-science' || courseId === 'ds-genai-ml') {
+      let title = courseId === 'aptitude-kit' ? 'Aptitude Kit' : 'Data &amp; BI Analyst Interview Kit';
       if (courseId === 'data-analyst-complete') {
         title = 'Data &amp; BI Analyst Complete Kit';
       } else if (courseId === 'ai-automation') {
@@ -288,15 +288,15 @@ function scrollDashboardTop() {
 
 }
 
-var allSectionIds = ['aboutSection', 'registerSection', 'coursesMenuSection', 'freeHandbooksSection', 'reviewsSection', 'course-data-analyst', 'course-data-science-questions', 'course-data-science', 'course-ds-genai-ml', 'course-ai-automation', 'course-data-engineering', 'course-download', 'course-help'];
+var allSectionIds = ['course-aptitude-kit', 'aboutSection', 'registerSection', 'coursesMenuSection', 'freeHandbooksSection', 'reviewsSection', 'course-data-analyst', 'course-data-science-questions', 'course-data-science', 'course-ds-genai-ml', 'course-ai-automation', 'course-data-engineering', 'course-download', 'course-help'];
 
 function hideAllSections() {
-  allSectionIds.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) {
-      el.style.display = 'none';
-      el.classList.remove('active');
-    }
+  // Discover course pages too, so newly added kits cannot remain above the next page.
+  var selectors = allSectionIds.map(function(id) { return '#' + id; });
+  selectors.push('.course-container');
+  document.querySelectorAll(selectors.join(',')).forEach(function(el) {
+    el.style.display = 'none';
+    el.classList.remove('active');
   });
 }
 
@@ -3557,6 +3557,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================== */
 
 const SEARCH_INDEX = [
+  { name: 'Aptitude Kit For Placement', keywords: ['aptitude', 'placement', 'reasoning', 'coding', '43 subjects', '43 handbooks', 'early access', 'assessment', 'technical assessment'], category: 'Coming Soon', categoryClass: 'cat-bundle', price: 'Coming Soon', icon: '📋', iconClass: 'type-bundle', type: 'coming', action: function() { openDetail('aptitude-kit'); } },
   {
     name: "Data Science + Gen AI + ML Engineer Complete Kit",
     keywords: ["ds", "gen ai", "ml", "complete kit", "storytelling", "communication", "domain knowledge"],
@@ -3598,18 +3599,7 @@ const SEARCH_INDEX = [
     type: "bundle",
     action: function() { openDetail('data-science'); }
   },
-  {
-    name: "Data Engineer Bundle",
-    keywords: ["data engineer", "de bundle", "engineer bundle", "data engineering", "pipeline", "etl"],
-    category: "Course Bundle",
-    categoryClass: "cat-bundle",
-    price: "Coming Soon",
-    icon: "📦",
-    iconClass: "type-bundle",
-    type: "coming",
-    action: function() { showDashboard(); }
-  },
-  {
+{
     name: "Free Resources",
     keywords: ["free", "resources", "download", "free handbooks", "free resources", "sql free", "ml free", "samples", "sample handbooks", "free sql", "free ml"],
     category: "Free Resources",
@@ -3876,6 +3866,8 @@ function handleRouting(path, restoreSavedPath = true) {
       normalizedPath === '/course-bundles/data-scientist-genai-engineer-bundle/interview-questions'
     ) {
       openDetail('data-science-questions');
+    } else if (normalizedPath === '/aptitude-kit') {
+      openDetail('aptitude-kit');
     } else if (normalizedPath === '/register') {
       showSection('register');
     } else if (normalizedPath === '/help') {
@@ -3928,7 +3920,9 @@ if (typeof openDetail === 'function') {
   openDetail = function(courseId, ...args) {
     if (courseId === 'data-analyst-complete') courseId = 'data-analyst';
     originalOpenDetail.apply(this, [courseId, ...args]);
-    if (courseId === 'data-analyst') {
+    if (courseId === 'aptitude-kit') {
+      safePushState('/aptitude-kit');
+    } else if (courseId === 'data-analyst') {
       safePushState('/course-bundles/data-bi-analyst-interview-kit');
     } else if (courseId === 'data-analyst-complete') {
       safePushState('/course-bundles/data-bi-analyst-complete-bundle');
