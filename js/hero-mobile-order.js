@@ -1,6 +1,6 @@
 (() => {
   const mobile = window.matchMedia('(max-width: 768px)');
-  const courses = ['data-analyst', 'ai-automation', 'data-science', 'ds-genai-ml'];
+  const courses = ['aptitude-kit', 'data-analyst', 'ai-automation', 'data-science', 'ds-genai-ml'];
   courses.forEach(id => {
     const root = document.getElementById('course-' + id);
     const inner = root?.querySelector('.dakit-hero-inner');

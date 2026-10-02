@@ -1,7 +1,7 @@
 /* Enhance module summaries into accessible, in-page previews. */
 (() => {
   if (typeof HTMLDialogElement === 'undefined') return;
-  document.querySelectorAll(':is(#course-ai-automation, #course-data-science, #course-ds-genai-ml) .ml-preparation-system').forEach(section => {
+  document.querySelectorAll(':is(#course-aptitude-kit, #course-ai-automation, #course-data-science, #course-ds-genai-ml) .ml-preparation-system').forEach(section => {
     const titleId = section.closest('.course-container').id + '-module-preview-title';
     const dialog = document.createElement('dialog');
     dialog.className = 'ml-module-dialog';
@@ -9,6 +9,7 @@
     dialog.innerHTML = '<header class="ml-module-dialog-heading"><div><p class="ml-module-dialog-meta"></p><h2></h2></div><button type="button" class="ml-module-dialog-close" aria-label="Close module details" autofocus>&times;</button></header><div class="ml-module-dialog-content" tabindex="0" role="document" aria-label="Module resources"></div><footer class="ml-module-dialog-action"><button type="button">Get the Complete Kit <span aria-hidden="true">&rarr;</span></button></footer>';
     dialog.querySelector('h2').id = titleId;
     section.append(dialog);
+    if (section.closest('#course-aptitude-kit')) dialog.querySelector('.ml-module-dialog-action button').textContent = 'REGISTER EARLY TO GET DISCOUNT';
     const content = dialog.querySelector('.ml-module-dialog-content');
     let active;
     let previousOverflow;
@@ -42,6 +43,11 @@
       active = null;
     });
     dialog.querySelector('.ml-module-dialog-action button').addEventListener('click', () => {
+      if (section.closest('#course-aptitude-kit')) {
+        dialog.addEventListener('close', () => window.openAptitudeRegistration(), {once:true});
+        dialog.close();
+        return;
+      }
       dialog.close();
       if (section.closest('#course-ds-genai-ml')) window.openCombinedKitCheckout();
       else if (section.closest('#course-data-science')) window.openDsCheckout();
