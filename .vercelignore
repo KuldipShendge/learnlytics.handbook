@@ -6,3 +6,4 @@ private
 tests
 docs
 *.webhook.json
+tmp
