@@ -1,103 +1,62 @@
 (() => {
-  const catalog = {
-    da: {
-      id: 'data-analyst', source: '.card-da-interview',
-      title: 'Data & BI Analyst Interview Kit', category: 'DATA ANALYTICS',
-      description: 'Prepare for analytics interviews with technical questions, scenarios and detailed answers.',
-      stats: ['8 Subjects', '2200+ Interview QS'],
-    },
-    ds: {
-      id: 'data-science', source: '.card-ds',
-      title: 'Data Scientist & Gen AI Complete Kit', category: 'DATA SCIENCE & GEN AI',
-      description: 'Prepare for data science interviews, from core foundations to Generative AI.',
-      stats: ['7 Modules', '60 Resources'],
-    },
-    ml: {
-      id: 'ai-automation', source: '.card-mle',
-      title: 'Machine Learning Engineer Complete Kit', category: 'MACHINE LEARNING',
-      description: 'Learn, practise and prepare with handbooks, workbooks and solution manuals.',
-      stats: ['7 Modules', '60 Resources'],
-    },
-  };
+  const catalog = window.LearnlyticsCatalog;
   const destinations = {
-    'ai-automation': ['da', 'ds'],
-    'data-science': ['da', 'ml'],
-    'ds-genai-ml': ['da', 'ds', 'ml'],
-    'data-analyst': ['ml', 'ds'],
+    'ai-automation': ['data-analyst', 'data-science', 'ds-genai-ml'],
+    'data-science': ['data-analyst', 'ai-automation', 'ds-genai-ml'],
+    'ds-genai-ml': ['data-analyst', 'data-science', 'ai-automation'],
+    'data-analyst': ['ai-automation', 'data-science', 'ds-genai-ml'],
   };
-
-  function courseCard(key) {
-    const course = catalog[key];
-    const source = document.querySelector(course.source);
+  function courseCard(id) {
+    const course = catalog.get(id);
+    const combo = id === 'ds-genai-ml';
+    const title = course.relatedTitle || course.title;
     const article = document.createElement('article');
-    article.className = 'related-course-card';
+    article.className = 'related-course-card' + (combo ? ' related-course-combo' : '');
     article.innerHTML = `
-      <div class="related-course-art"></div>
+      <div class="related-course-art${combo ? ' related-combo-art' : ''}"></div>
       <div class="related-course-content">
-        <p class="related-course-category">${course.category}</p>
-        <h3>${course.title}</h3>
-        <p class="related-course-description">${course.description}</p>
-        <ul class="related-course-stats">${course.stats.map(stat => `<li>${stat}</li>`).join('')}</ul>
+        <p class="related-course-category"></p><h3></h3>
+        <p class="related-course-description"></p><ul class="related-course-stats"></ul>
         <div class="related-course-footer">
-          <div class="related-course-price"><strong></strong><span>One-time payment</span></div>
+          <div class="related-course-price"><strong data-catalog-price="${id}"></strong><span>One-time payment</span></div>
           <a class="related-course-link">Explore Kit <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>`;
-    const sourceImage = source?.querySelector('.bundle-card-illustration img');
-    if (sourceImage) {
-      const image = sourceImage.cloneNode(false);
-      image.alt = course.title;
+    article.querySelector('.related-course-category').textContent = combo ? 'COMPLETE KIT' : course.category;
+    article.querySelector('h3').textContent = title;
+    article.querySelector('.related-course-description').textContent = course.description;
+    const stats = course.stats.slice(0, 2);
+    if (id === 'data-analyst') stats[1] = '2200+ Interview QS';
+    stats.forEach(stat => {
+      const item = document.createElement('li');
+      item.textContent = stat;
+      article.querySelector('ul').append(item);
+    });
+    const art = article.querySelector('.related-course-art');
+    if (course.image) {
+      const image = document.createElement('img');
+      image.src = course.image;
+      image.alt = title;
       image.loading = 'lazy';
-      article.querySelector('.related-course-art').append(image);
+      image.width = course.width;
+      image.height = course.height;
+      art.append(image);
+    } else {
+      art.setAttribute('aria-hidden', 'true');
+      art.innerHTML = '<span class="related-combo-badge">ALL-IN-ONE COMPLETE KIT</span><div class="related-combo-books"><span>DS<small>Data Science</small></span><span>GEN AI<small>Generative AI</small></span><span>ML<small>Machine Learning</small></span></div>';
     }
-    const price = source?.querySelector('.bundle-price-large');
-    const updatePrice = () => {
-      article.querySelector('.related-course-price strong').textContent = price?.textContent.trim() || '\u20B9499';
-    };
-    updatePrice();
-    if (price) new MutationObserver(updatePrice).observe(price, { childList: true, characterData: true, subtree: true });
     const link = article.querySelector('a');
-    link.href = new URL(`index.html#${course.id}`, document.baseURI).href;
-    link.setAttribute('aria-label', `Explore ${course.title}`);
+    link.href = catalog.href(id);
+    link.setAttribute('aria-label', `Explore ${title}`);
     link.addEventListener('click', event => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
       event.preventDefault();
-      openDetail(course.id);
+      openDetail(id);
     });
+    catalog.syncPrices(article);
     return article;
   }
-
-  function combinedCard() {
-    const article = document.createElement('article');
-    article.className = 'related-course-card related-course-combo';
-    article.innerHTML = `
-      <div class="related-course-art related-combo-art" aria-hidden="true">
-        <span class="related-combo-badge">ALL-IN-ONE COMPLETE KIT</span>
-        <div class="related-combo-books"><span>DS<small>Data Science</small></span><span>GEN AI<small>Generative AI</small></span><span>ML<small>Machine Learning</small></span></div>
-      </div>
-      <div class="related-course-content">
-        <p class="related-course-category">COMPLETE KIT</p>
-        <h3>Data Science + Gen AI + ML Engineer Complete Kit</h3>
-        <p class="related-course-description">Explore data science, Generative AI and machine learning in one complete kit.</p>
-        <ul class="related-course-stats"><li>9 Modules</li><li>80 Resources</li></ul>
-        <div class="related-course-footer">
-          <div class="related-course-price"><strong>\u20B9899</strong><span>One-time payment</span></div>
-          <a class="related-course-link" href="index.html#ds-genai-ml" aria-label="Explore Data Science + Gen AI + ML Engineer Complete Kit">Explore Kit <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>`;
-    const price = document.querySelector('.card-combo .bundle-price-large');
-    const updatePrice = () => { article.querySelector('.related-course-price strong').textContent = price?.textContent.trim() || '₹899'; };
-    updatePrice();
-    if (price) new MutationObserver(updatePrice).observe(price, {childList: true, characterData: true, subtree: true});
-    article.querySelector('a').addEventListener('click', event => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
-      event.preventDefault();
-      openDetail('ds-genai-ml');
-    });
-    return article;
-  }
-
-  Object.entries(destinations).forEach(([id, keys]) => {
+  Object.entries(destinations).forEach(([id, ids]) => {
     const root = document.getElementById(`course-${id}`);
     if (!root) return;
     const section = document.createElement('section');
@@ -105,8 +64,7 @@
     section.setAttribute('aria-labelledby', `related-${id}-title`);
     section.innerHTML = `<header class="related-courses-heading"><span>CONTINUE YOUR LEARNING</span><h2 id="related-${id}-title">Explore Other Courses</h2><p>Find your next kit, or bring more skills together.</p></header><div class="related-courses-grid"></div>`;
     const grid = section.querySelector('.related-courses-grid');
-    keys.forEach(key => grid.append(courseCard(key)));
-    if (id !== 'ds-genai-ml') grid.append(combinedCard());
+    ids.forEach(courseId => grid.append(courseCard(courseId)));
     root.append(section);
   });
 })();
