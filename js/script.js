@@ -1,157 +1,7 @@
-// -- SLIDER ------------------------------
-
-const totalCourses = document.querySelectorAll('#track > .slide').length; 
-
-let current = 0, locked = false;
-
-const track = document.getElementById('track');
-
-const detailView = document.getElementById('detail-view');
-
-const homeFooter = document.getElementById('homeFooter');
-
-function buildDots() {
-
-  const dotsEl = document.getElementById('dots');
-
-  if (!dotsEl) return;
-
-  dotsEl.innerHTML = '';
-
-  for(let i=0; i<totalCourses; i++) {
-
-    const d = document.createElement('div');
-
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-
-    d.onclick = () => goTo(i);
-
-    dotsEl.appendChild(d);
-
-  }
-
-}
-
-function goTo(n) {
-
-  if (!track || !detailView) return;
-
-  if (locked) return;
-
-  if (detailView.classList.contains('open')) return;
-
-  locked = true;
-
-  current = Math.max(0, Math.min(totalCourses - 1, n));
-
-  track.style.transform = `translateY(-${current * 100}%)`;
-
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
-
-  const scrollHint = document.getElementById('scrollHint');
-
-  if(scrollHint) scrollHint.style.opacity = current === totalCourses - 1 ? '0' : '1';
-
-  setTimeout(() => locked = false, 800);
-
-}
-
-let wheelThrottled = false;
-window.addEventListener('wheel', e => {
-
-  if (wheelThrottled) return;
-  if (!track || !detailView) return;
-
-  if (detailView.classList.contains('open') || document.getElementById('coursesMenuSection')?.style.display === 'block') return;
-
-  wheelThrottled = true;
-  setTimeout(() => { wheelThrottled = false; }, 100);
-  goTo(current + (e.deltaY > 0 ? 1 : -1));
-
-}, { passive: true });
-
-let touchStartY = 0;
-
-window.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY, { passive: true });
-
-window.addEventListener('touchend', e => {
-
-  if (!track || !detailView) return;
-
-  if (detailView.classList.contains('open') || document.getElementById('coursesMenuSection')?.style.display === 'block') return;
-
-  const dy = touchStartY - e.changedTouches[0].clientY;
-
-  if (Math.abs(dy) > 40) goTo(current + (dy > 0 ? 1 : -1));
-
-}, { passive: true });
-
-buildDots();
-
-// -- FULL WEBSITE MENU & DETAIL VIEWS --
+// -- SHARED PAGE NAVIGATION --
 
 function openCoursesMenu() {
   showDashboard();
-}
-
-function closeCoursesMenu() {
-  showDashboard();
-}
-
-// -- HANDBOOK DROPDOWN LOGIC --
-
-function toggleHandbookDropdown(e) {
-
-  e.stopPropagation();
-
-  var dd = document.getElementById('handbookDropdown');
-
-  if (!dd) return;
-
-  dd.classList.toggle('open');
-
-}
-
-function closeHandbookDropdown() {
-
-  var dd = document.getElementById('handbookDropdown');
-
-  if (dd) dd.classList.remove('open');
-
-}
-
-// Close dropdown when clicking outside
-
-document.addEventListener('click', function(e) {
-
-  var wrap = document.querySelector('.handbook-dropdown-wrap');
-
-  if (wrap && !wrap.contains(e.target)) {
-
-    closeHandbookDropdown();
-
-  }
-
-});
-
-function goToFreeSQL() {
-
-  openDetail('data-analyst');
-
-  // Scroll to the free SQL handbook button after the detail view opens
-
-  setTimeout(function() {
-
-    var btn = document.querySelector('#course-data-analyst .form-submit-full');
-
-    if (btn) btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-  }, 500);
-
-}
-
-function goToFreeML() {
-  openModal('ds-handbook');
 }
 
 function openDetail(courseId) {
@@ -258,28 +108,7 @@ function openDetail(courseId) {
     }
   }
 
-  var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'instant' });
-}
-
-function closeDetail() {
-
-  document.body.classList.remove('standalone-da-page');
-
-  if (!detailView) return;
-
-  detailView.classList.remove('open');
-
-  if (homeFooter) homeFooter.style.display = 'flex';
-
-  document.body.style.overflow = 'auto';
-
-  // NEW: Remove the hash from the URL when going back home
-
-  window.history.replaceState(null, null, window.location.pathname + window.location.search);
-
-  var sh = document.getElementById('sideHighlights'); if (sh) sh.style.display = '';
-
 }
 
 function scrollDashboardTop() {
@@ -291,6 +120,8 @@ function scrollDashboardTop() {
 var allSectionIds = ['course-aptitude-kit', 'aboutSection', 'registerSection', 'coursesMenuSection', 'freeHandbooksSection', 'reviewsSection', 'course-data-analyst', 'course-data-science-questions', 'course-data-science', 'course-ds-genai-ml', 'course-ai-automation', 'course-data-engineering', 'course-download', 'course-help'];
 
 function hideAllSections() {
+  const topbarCopy = document.querySelector('.dashboard-topbar > div:first-child');
+  if (topbarCopy) topbarCopy.hidden = false;
   // Discover course pages too, so newly added kits cannot remain above the next page.
   var selectors = allSectionIds.map(function(id) { return '#' + id; });
   selectors.push('.course-container');
@@ -303,9 +134,6 @@ function hideAllSections() {
 function showDashboard() {
   document.body.classList.remove('standalone-da-page');
 
-  if (typeof closeDetail === 'function') {
-    closeDetail();
-  }
 
   hideAllSections();
 
@@ -319,14 +147,9 @@ function showDashboard() {
   var firstNav = document.querySelector('.dashboard-nav-item');
   if (firstNav) firstNav.classList.add('active');
 
-  // Set topbar header text
+  // The homepage owns its heading, including on mobile.
   var topbarLeft = document.querySelector('.dashboard-topbar > div:first-child');
-  if (topbarLeft) {
-    topbarLeft.innerHTML = `
-      <h1>Welcome to Learn<span class="brand-lytics">lytics</span></h1>
-      <p>Build the skills. Practise the questions. <strong>Prepare with confidence.</strong></p>
-    `;
-  }
+  if (topbarLeft) topbarLeft.hidden = true;
 
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -339,9 +162,7 @@ var sectionConfig = {
 };
 
 function showSection(section) {
-  if (typeof closeDetail === 'function') {
-    closeDetail();
-  }
+  document.body.classList.remove('standalone-da-page');
 
   var config = sectionConfig[section];
   if (!config) return;
@@ -2251,8 +2072,6 @@ function closeModal() {
     document.getElementById('inp-name').value = '';
 
     document.getElementById('inp-email').value = '';
-    const matchingConsent = document.getElementById('freeMetaConsent');
-    if (matchingConsent) matchingConsent.checked = false;
 
     document.getElementById('inp-wa').value = '';
 
@@ -2306,7 +2125,6 @@ function submitModalForm() {
 
     if (!response.ok) throw new Error('Server error');
 
-    window.submitMetaMatching({ email, phone: wa, consent: document.getElementById('freeMetaConsent')?.checked === true });
     document.getElementById('modal-form-content').style.display = 'none';
 
     document.getElementById('modal-success').style.display = 'block';
@@ -2413,46 +2231,11 @@ function submitReviewForm() {
 
 }
 
-window.addEventListener('keydown', e => {
-
-  if (e.key === 'Escape') {
-
-    if (document.getElementById('modal').classList.contains('open')) {
-
-      closeModal();
-
-    } else if (document.getElementById('review-modal') && document.getElementById('review-modal').classList.contains('open')) {
-
-      closeReviewModal();
-
-    } else if (document.getElementById('coursesMenuSection')?.style.display === 'block') {
-
-      closeCoursesMenu();
-
-    } else if (detailView && detailView.classList.contains('open')) {
-
-      closeDetail();
-
-    }
-
-  }
-
-  // FIX: added review-modal and coursesMenuSection to guard -- previously arrow keys could navigate slides while modal was open
-
-  const reviewModal = document.getElementById('review-modal');
-
-  const coursesSection = document.getElementById('coursesMenuSection');
-
-  const isCoursesOpen = coursesSection && coursesSection.style.display === 'block';
-
-  if ((detailView && detailView.classList.contains('open')) || document.getElementById('modal')?.classList.contains('open') || isCoursesOpen || (reviewModal && reviewModal.classList.contains('open'))) return;
-
-  if (!track) return;
-
-  if (e.key === 'ArrowDown') goTo(current + 1);
-
-  if (e.key === 'ArrowUp') goTo(current - 1);
-
+// Escape continues to close the shared lead and review dialogs.
+window.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  if (document.getElementById('modal')?.classList.contains('open')) closeModal();
+  else if (document.getElementById('review-modal')?.classList.contains('open')) closeReviewModal();
 });
 
 const REGIONAL_CHECKOUT = {
@@ -2587,13 +2370,6 @@ function applyDataAnalystMarket(useInternationalCheckout) {
 
   });
 
-  const heroOffer = document.querySelector('.conversion-copy span');
-
-  if (heroOffer) {
-
-    heroOffer.textContent = 'Market Value: $99. Launch Price: $19.';
-
-  }
 
   replacePaymentLink(
 
@@ -2693,25 +2469,8 @@ function applyDaKitPricing(countryCode) {
   var card = document.getElementById('daUpgradeCard');
   if (card) card.classList.remove('active');
 
-  // Update Course Bundles card (Home page)
-  var bundlePrice = document.getElementById('bundleDaPrice');
-  var bundleStrike = document.getElementById('bundleDaStrike');
-  var bundleBadge = document.getElementById('bundleDaBadge');
-  if (bundlePrice) bundlePrice.textContent = tier.kitDisplay;
-  if (bundleStrike) bundleStrike.textContent = tier.kitStrikeDisplay;
-  if (bundleBadge) bundleBadge.textContent = tier.offLabel;
-
-  // Complete Kit: update its home card, detail page, and checkout buttons.
-  var completeCardButton = document.querySelector('.course-bundle-card button[onclick*="data-analyst-complete"]');
-  var completeCard = completeCardButton && completeCardButton.closest('.course-bundle-card');
-  if (completeCard) {
-    var completeCardPrice = completeCard.querySelector('.bundle-price-large');
-    var completeCardStrike = completeCard.querySelector('.bundle-price-strike');
-    var completeCardBadge = completeCard.querySelector('.bundle-discount-badge');
-    if (completeCardPrice) completeCardPrice.textContent = tier.bundleCardPrice;
-    if (completeCardStrike) completeCardStrike.textContent = tier.bundleCardStrike;
-    if (completeCardBadge) completeCardBadge.textContent = tier.bundleCardOff;
-  }
+  // One price update reaches homepage and related-course cards.
+  window.LearnlyticsCatalog.setPrice('data-analyst', { price: tier.kitDisplay, strike: tier.kitStrikeDisplay, discount: tier.offLabel });
 
   var completeRoot = document.getElementById('course-data-analyst-complete');
   if (completeRoot) {
@@ -3153,16 +2912,7 @@ function applyAiAutomationPricing(countryCode) {
   const discount = '40% OFF';
 
   ['ai-automation'].forEach(courseId => {
-  const aiCardButton = document.querySelector('.course-bundle-card button[onclick*="' + courseId + '"]');
-  const aiCard = aiCardButton && aiCardButton.closest('.course-bundle-card');
-  if (aiCard) {
-    const cardPrice = aiCard.querySelector('.bundle-price-large');
-    const cardStrike = aiCard.querySelector('.bundle-price-strike');
-    const cardBadge = aiCard.querySelector('.bundle-discount-badge');
-    if (cardPrice) cardPrice.textContent = price;
-    if (cardStrike) cardStrike.textContent = strike;
-    if (cardBadge) cardBadge.textContent = discount;
-  }
+  window.LearnlyticsCatalog.setPrice(courseId, { price, strike, discount });
 
   const aiRoot = document.getElementById('course-' + courseId);
   if (aiRoot) {
@@ -3215,16 +2965,13 @@ function applyScienceKitPricing(countryCode) {
     const price = international ? kit.usd : kit.inr;
     const root = document.getElementById('course-' + id);
     root?.querySelectorAll('.dakit-hero-pricing-new, .cta-price, .dakit-cta-pricing strong, .dakit-sticky-price strong').forEach(el => el.textContent = price);
-    const card = document.querySelector('.course-bundle-card button[onclick*="' + id + '"]')?.closest('.course-bundle-card');
-    const cardPrice = card?.querySelector('.bundle-price-large');
-    if (cardPrice) cardPrice.textContent = price;
+    window.LearnlyticsCatalog.setPrice(id, { price });
     if (id === 'data-science') {
       const strike = international ? '$24.99' : '₹1,499';
       const discount = international ? '40% OFF' : '67% OFF';
       root?.querySelectorAll('.dakit-hero-pricing-old, .dakit-cta-pricing del, .dakit-sticky-price del').forEach(el => el.textContent = strike);
       root?.querySelectorAll('.dakit-hero-pricing-badge, .dakit-off-badge, .dakit-sticky-price .sticky-off').forEach(el => el.textContent = discount);
-      if (card?.querySelector('.bundle-price-strike')) card.querySelector('.bundle-price-strike').textContent = strike;
-      if (card?.querySelector('.bundle-discount-badge')) card.querySelector('.bundle-discount-badge').textContent = discount;
+      window.LearnlyticsCatalog.setPrice(id, { strike, discount });
     }
     if (typeof SEARCH_INDEX !== 'undefined') SEARCH_INDEX.filter(item => item.name === kit.title).forEach(item => item.price = price);
   });
@@ -3571,7 +3318,7 @@ const SEARCH_INDEX = [
     keywords: ["data analyst", "da bundle", "analyst bundle", "data analyst bundle", "bundle", "bi analyst", "data bi", "interview kit", "sql", "excel", "python", "power bi"],
     category: "Course Bundle",
     categoryClass: "cat-bundle",
-    price: "₹499",
+    price: "₹399",
     icon: "📦",
     iconClass: "type-bundle",
     type: "bundle",
@@ -3786,9 +3533,6 @@ function loadLazyIframe(id) {
 let isNavigatingFromRouter = false;
 
 function safePushState(url) {
-  try {
-    sessionStorage.setItem('lastLearnyticsUrl', url);
-  } catch (e) {}
   if (!isNavigatingFromRouter && window.location.pathname !== url) {
     try {
       window.history.pushState(null, '', url);
@@ -3796,10 +3540,10 @@ function safePushState(url) {
   }
 }
 
-function handleRouting(path, restoreSavedPath = true) {
+function handleRouting(path) {
   isNavigatingFromRouter = true;
   try {
-    let checkPath = path;
+    let checkPath = window.location.protocol === 'file:' ? '/' : path;
     if (!checkPath || checkPath === '/' || checkPath === '/index.html') {
       if (window.location.hash) {
         const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase().trim();
@@ -3813,6 +3557,10 @@ function handleRouting(path, restoreSavedPath = true) {
           checkPath = '/course-bundles/ds-genai-ml-complete-kit';
         } else if (hash === 'data-science' || hash === 'data-scientist-genai-engineer-bundle') {
           checkPath = '/course-bundles/data-scientist-genai-engineer-bundle';
+        } else if (hash === 'aptitude-kit') {
+          checkPath = '/aptitude-kit';
+        } else if (hash === 'help') {
+          checkPath = '/help';
         } else if (hash === 'register') {
           checkPath = '/register';
         } else if (hash === 'free' || hash === 'free-handbooks' || hash === 'free-download') {
@@ -3821,14 +3569,7 @@ function handleRouting(path, restoreSavedPath = true) {
           checkPath = '/review';
         }
       }
-      if (restoreSavedPath && (!checkPath || checkPath === '/' || checkPath === '/index.html')) {
-        try {
-          const saved = sessionStorage.getItem('lastLearnyticsUrl');
-          if (saved && saved !== '/' && saved !== '/index.html') {
-            checkPath = saved;
-          }
-        } catch (e) {}
-      }
+
     }
 
     const cleanPath = (checkPath || '').replace(/\/index\.html$/, '') || '/';
@@ -4066,7 +3807,7 @@ closeHandlers.forEach(handlerName => {
 // Setup popstate and DOMContentLoaded routing listeners
 window.addEventListener('popstate', () => {
   // History navigation must render its URL instead of reopening the last section.
-  handleRouting(window.location.pathname, false);
+  handleRouting(window.location.pathname);
 });
 
 // Perform routing on initial load
@@ -4078,32 +3819,6 @@ if (document.readyState === 'loading') {
   handleRouting(window.location.pathname);
 }
 
-// Automatically sync mobile home content visibility with stats-grid visibility
-document.addEventListener('DOMContentLoaded', function() {
-  var statsGrid = document.querySelector('.stats-grid');
-  var mobileHome = document.querySelector('.mobile-home-content');
-  if (statsGrid && mobileHome) {
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'style') {
-          if (statsGrid.style.display === 'none') {
-            mobileHome.classList.add('hide-mobile-home');
-          } else {
-            mobileHome.classList.remove('hide-mobile-home');
-          }
-        }
-      });
-    });
-    observer.observe(statsGrid, { attributes: true, attributeFilter: ['style'] });
-    
-    // Initial check in case stats-grid is already hidden
-    if (statsGrid.style.display === 'none') {
-      mobileHome.classList.add('hide-mobile-home');
-    }
-  }
-});
-
-// Function to update recent order dates dynamically relative to today's date
 function updateRecentOrderDates() {
   const months = [
     "January", "February", "March", "April", "May", "June",
@@ -4148,73 +3863,6 @@ if (document.readyState === 'loading') {
 }
 
 
-/* ═══ DA INTERVIEW KIT — 1-HOUR COUNTDOWN TIMER ═══ */
-(function() {
-  var STORAGE_KEY = 'dakit_countdown_end_60m';
-  var DURATION_MS = 60 * 60 * 1000;
-
-  function getEndTime() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      var endTime = parseInt(stored, 10);
-      if (endTime > Date.now()) return endTime;
-    }
-    var newEnd = Date.now() + DURATION_MS;
-    localStorage.setItem(STORAGE_KEY, newEnd.toString());
-    return newEnd;
-  }
-
-  function updateCountdown() {
-    var hrsEl = document.getElementById('dakitHrs');
-    var minsEl = document.getElementById('dakitMins');
-    var secsEl = document.getElementById('dakitSecs');
-    var daHrsEl = document.getElementById('daCompleteHrs');
-    var daMinsEl = document.getElementById('daCompleteMins');
-    var daSecsEl = document.getElementById('daCompleteSecs');
-    var mobileMinsEl = document.getElementById('dakitMobileMins');
-    var mobileSecsEl = document.getElementById('dakitMobileSecs');
-
-    var endTime = getEndTime();
-    var remaining = Math.max(0, endTime - Date.now());
-
-    if (remaining <= 0) {
-      localStorage.removeItem(STORAGE_KEY);
-      endTime = getEndTime();
-      remaining = Math.max(0, endTime - Date.now());
-    }
-
-    var totalSecs = Math.floor(remaining / 1000);
-    var hrs = Math.floor(totalSecs / 3600);
-    var mins = Math.floor((totalSecs % 3600) / 60);
-    var secs = totalSecs % 60;
-
-    var hrsStr = hrs.toString().padStart(2, '0');
-    var minsStr = mins.toString().padStart(2, '0');
-    var secsStr = secs.toString().padStart(2, '0');
-
-    if (hrsEl) hrsEl.textContent = hrsStr;
-    if (minsEl) minsEl.textContent = minsStr;
-    if (secsEl) secsEl.textContent = secsStr;
-
-    if (daHrsEl) daHrsEl.textContent = hrsStr;
-    if (daMinsEl) daMinsEl.textContent = minsStr;
-    if (daSecsEl) daSecsEl.textContent = secsStr;
-
-    if (mobileMinsEl) mobileMinsEl.textContent = Math.floor(totalSecs / 60).toString().padStart(2, '0');
-    if (mobileSecsEl) mobileSecsEl.textContent = secsStr;
-  }
-
-  function startCountdown() {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startCountdown);
-  } else {
-    startCountdown();
-  }
-})();
 
 
 /* ═══ DA INTERVIEW & COMPLETE KIT — UNIVERSAL AUTO-SCROLL TESTIMONIAL CAROUSEL ═══ */
@@ -4377,67 +4025,6 @@ function aiSlideTestimonials(direction) {
   }
 })();
 
-/* ═══ AI AUTOMATION BUNDLE — 1-HOUR COUNTDOWN TIMER ═══ */
-(function() {
-  var STORAGE_KEY = 'ai_countdown_end_60m';
-  var DURATION_MS = 60 * 60 * 1000;
-
-  function getEndTime() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      var endTime = parseInt(stored, 10);
-      if (endTime > Date.now()) return endTime;
-    }
-    var newEnd = Date.now() + DURATION_MS;
-    localStorage.setItem(STORAGE_KEY, newEnd.toString());
-    return newEnd;
-  }
-
-  function updateCountdown() {
-    var hrsEl = document.getElementById('aiHrs');
-    var minsEl = document.getElementById('aiMins');
-    var secsEl = document.getElementById('aiSecs');
-    var mobileMinsEl = document.getElementById('aiMobileMins');
-    var mobileSecsEl = document.getElementById('aiMobileSecs');
-    if (!hrsEl || !minsEl || !secsEl) return;
-
-    var endTime = getEndTime();
-    var remaining = Math.max(0, endTime - Date.now());
-
-    if (remaining <= 0) {
-      localStorage.removeItem(STORAGE_KEY);
-      endTime = getEndTime();
-      remaining = Math.max(0, endTime - Date.now());
-    }
-
-    var totalSecs = Math.floor(remaining / 1000);
-    var hrs = Math.floor(totalSecs / 3600);
-    var mins = Math.floor((totalSecs % 3600) / 60);
-    var secs = totalSecs % 60;
-
-    hrsEl.textContent = hrs.toString().padStart(2, '0');
-    minsEl.textContent = mins.toString().padStart(2, '0');
-    secsEl.textContent = secs.toString().padStart(2, '0');
-    if (mobileMinsEl) mobileMinsEl.textContent = Math.floor(totalSecs / 60).toString().padStart(2, '0');
-    if (mobileSecsEl) mobileSecsEl.textContent = secs.toString().padStart(2, '0');
-    ['Hrs', 'Mins', 'Secs', 'MobileMins', 'MobileSecs'].forEach(function(suffix) {
-      var source = document.getElementById('ai' + suffix);
-      var copy = document.getElementById('ds' + suffix);
-      if (source && copy) copy.textContent = source.textContent;
-    });
-  }
-
-  function startCountdown() {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startCountdown);
-  } else {
-    startCountdown();
-  }
-})();
 
 // ═══════════════════════════════════════════════
 // CRO CONVERSION OPTIMIZATION — ADDITIONS
@@ -4681,7 +4268,6 @@ async function submitDiscountForm(event) {
       const result = await response.json();
       if (result.success === false || result.status === 'error' || result.result === 'error') throw new Error('Submission failed');
     }
-    window.submitMetaMatching({ email, phone, consent: document.getElementById('discountMetaConsent')?.checked === true });
     document.getElementById('discountWhatsApp').href = chatLink;
     form.hidden = true;
     const success = document.getElementById('discountSuccess');
