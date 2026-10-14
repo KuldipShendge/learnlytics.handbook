@@ -1,0 +1,74 @@
+/* Homepage only. Base rules target phones; wider layouts progressively add columns. */
+.home-page {
+  --home-ink: #241525;
+  --home-copy: #665866;
+  --home-accent: #930b6b;
+  --home-line: #e9e1e7;
+  color: var(--home-ink);
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-block: 12px 32px;
+}
+.home-page :is(h1, h2, h3, p, ul) { margin: 0; }
+.home-page :is(a, button):focus-visible { outline: 3px solid var(--home-accent); outline-offset: 4px; }
+.home-page .home-eyebrow { color: var(--home-accent); font-size: 10px; font-weight: 800; letter-spacing: 1.2px; line-height: 1.5; }
+
+/* Introduction and section headings */
+.home-intro { padding: 18px 0 30px; }
+.home-intro h1 { margin-block: 12px 16px; font-size: clamp(30px, 4vw, 48px); line-height: 1.15; letter-spacing: -1.3px; font-weight: 800; }
+.home-intro h1 span { color: var(--home-accent); }
+.home-intro .home-intro-copy { max-width: 610px; color: var(--home-copy); font-size: 15px; line-height: 1.75; }
+.home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 22px; }
+.home-section { margin-block: 16px 36px; scroll-margin-top: 85px; }
+.home-section-heading { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.home-section-heading h2, .home-support h2 { margin-top: 6px; font-size: clamp(23px, 2.5vw, 30px); line-height: 1.25; letter-spacing: -.6px; }
+.home-section-heading > p, .home-support p { color: var(--home-copy); font-size: 14px; line-height: 1.65; }
+.home-button { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 46px; padding: 12px 18px; border: 1px solid var(--home-ink); border-radius: 10px; background: var(--home-ink); color: #fff; text-decoration: none; font-size: 13px; line-height: 1.5; font-weight: 700; }
+.home-button:hover { background: #4c2344; color: #fff; }
+.home-button-secondary { background: #fff; color: var(--home-ink); }
+.home-text-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--home-accent); font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+/* One reusable kit card */
+.home-kit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.home-kit { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 18px; background: #fff; border: 1px solid var(--home-line); border-radius: 16px; }
+.home-kit-art { display: flex; align-items: center; justify-content: center; align-self: start; min-width: 0; min-height: 84px; overflow: hidden; border-radius: 10px; background: #faf4f8; }
+.home-kit-art img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+.home-kit-copy { min-width: 0; }
+.home-kit h3 { margin-top: 7px; color: var(--home-ink); font-size: 17px; line-height: 1.4; letter-spacing: -.3px; }
+.home-kit .home-kit-description { margin-top: 10px; color: var(--home-copy); font-size: 13px; line-height: 1.65; }
+.home-kit .home-kit-facts { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
+.home-kit-facts li { padding: 6px 9px; border-radius: 6px; background: #faf4f8; color: #61314e; font-size: 11px; line-height: 1.5; font-weight: 600; }
+.home-kit-price { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 32px; }
+.home-price { color: var(--home-accent); font-size: 26px; line-height: 1.2; }
+.home-strike { color: var(--home-copy); font-size: 13px; }
+.home-discount, .home-availability { color: #76551c; background: #fff7e5; border-radius: 5px; padding: 5px 8px; font-size: 11px; font-weight: 700; }
+.home-kit > .home-button { grid-column: 1 / -1; }
+.home-combo-art { display: flex; gap: 3px; padding: 10px 4px; width: 100%; justify-content: center; }
+.home-combo-art span { display: grid; place-items: center; width: 30%; aspect-ratio: .65; border-radius: 2px 5px 5px 2px; background: #713255; color: white; font-size: 9px; font-weight: 800; }
+.home-combo-art span:nth-child(2) { background: #241525; }
+.home-combo-art span:nth-child(3) { background: #976b33; }
+
+/* Free-resource cards and support */
+.home-resource-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.home-resource { display: flex; align-items: center; gap: 16px; min-width: 0; padding: 16px; background: #fff; border: 1px solid var(--home-line); border-radius: 12px; }
+.home-resource img { width: 64px; height: 86px; object-fit: contain; flex-shrink: 0; border-radius: 5px; }
+.home-resource h3 { margin-top: 4px; font-size: 15px; line-height: 1.5; }
+.home-support { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 24px; border-radius: 16px; background: #f3e6ef; }
+.home-support p { margin-top: 10px; }
+@media (min-width: 600px) {
+  .home-kit-grid, .home-resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-kit { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto auto auto; gap: 16px; padding: 22px; }
+  .home-kit-art { height: 150px; }
+  .home-kit-art img { height: 100%; width: 100%; }
+  .home-kit h3 { font-size: 20px; }
+  .home-combo-art { max-width: 240px; gap: 8px; }
+  .home-combo-art span { max-height: 112px; font-size: 18px; }
+  .home-support { flex-direction: row; justify-content: space-between; align-items: center; }
+  .home-support > a { flex-shrink: 0; }
+}
+@media (min-width: 1200px) {
+  .home-intro { padding-block: 24px 36px; }
+  .home-kit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .home-section-heading { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 32px; }
+  .home-section-heading > p { max-width: 280px; }
+}

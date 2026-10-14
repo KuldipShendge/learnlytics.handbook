@@ -92,61 +92,17 @@
 }
 
 .dashboard-main { color: var(--ll-copy); }
-.dashboard-topbar h1 span,
-.courses-header-left h2 span { color: var(--ll-ink) !important; }
+.dashboard-topbar h1 span{ color: var(--ll-ink) !important; }
 .dashboard-topbar p,
 .dashboard-topbar p span,
 .dashboard-topbar p strong { color: var(--ll-copy) !important; }
 
-.courses-header-left h2,
-.courses-menu-title,
-.panel-heading h2,
-.course-bundle-card h3,
-.course-bundle-card h3 span {
+
+.panel-heading h2{
   color: var(--ll-ink) !important;
   font-weight: 600 !important;
   letter-spacing: -.4px;
 }
-
-.courses-header-left p,
-.bundle-features li,
-.bundle-stats-row div span {
-  color: var(--ll-copy) !important;
-  font-weight: 400;
-}
-
-.course-bundle-card,
-.header-stat-badge {
-  background: #fff !important;
-  border: 1px solid var(--ll-line) !important;
-  border-radius: 16px;
-  box-shadow: none !important;
-}
-
-.course-bundle-card:hover {
-  border-color: #d19abe !important;
-  box-shadow: 0 6px 20px rgba(36, 21, 37, .05) !important;
-}
-
-.bundle-stats-row {
-  background: #faf7f9 !important;
-  border-color: var(--ll-line) !important;
-}
-
-.bundle-stats-row div strong { color: var(--ll-ink) !important; font-weight: 600; }
-.bundle-price-large { color: var(--ll-accent) !important; font-weight: 700; }
-.bundle-price-strike { color: #817380 !important; }
-.bundle-eyebrow { color: var(--ll-accent) !important; font-weight: 600; }
-.bundle-discount-badge { background: #fbeaf5 !important; color: #930b6b !important; }
-.bundle-btn:not(:disabled) {
-  background: #241525 !important;
-  color: #fff !important;
-  border-color: #241525 !important;
-  box-shadow: none !important;
-  border-radius: 12px;
-  font-weight: 600;
-}
-.bundle-btn:not(:disabled):hover { background: #4c2344 !important; }
 
 :is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))) :is(.dakit-section-title, .da-section h2, .dakit-inside-card h3, .da-get-grid h3, .dakit-testimonial-name, .dakit-faq-question, .da-faq-section summary) {
   color: var(--ll-ink) !important;
@@ -237,19 +193,10 @@
   outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .course-bundle-card { transition: none !important; }
-}
-
 @media (max-width: 768px) {
   .dashboard-main { width: 100%; max-width: 100%; padding-inline: 12px !important; }
-  #detail-view { padding-inline: 0 !important; min-width: 0; }
-  .detail-inner:has(:is(#course-data-analyst-complete, #course-data-analyst, :is(:is(#course-ai-automation, #course-aptitude-kit), :is(#course-data-science, #course-ds-genai-ml))).active) {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    padding-inline: 0 !important;
-  }
+  
+  
 }
 
 /* Complete the plum and pink palette across offers, notes and value cards. */
@@ -377,7 +324,7 @@
 .dakit-social-toast *,
 .dakit-sticky-mobile-cta,
 .dakit-sticky-mobile-cta * {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 .dakit-social-toast {
   background: #faf1f7;
@@ -420,13 +367,8 @@
 }
 
 /* Matching product artwork: preserve portrait proportions in cards and heroes. */
-.course-bundle-card .bundle-card-illustration {
-  height: 210px !important;
-  width: 100% !important;
-}
-.course-bundle-card .bundle-card-illustration img[src*="images/light-theme/"] {
-  width: 100%; height: 100%; object-fit: contain; transform: none;
-}
+
+
 #course-data-analyst-complete .da-hero-art img[src*="images/light-theme/"] {
   width: min(100%, 390px) !important; height: auto !important;
   max-height: 600px; object-fit: contain; margin-inline: auto;
@@ -493,7 +435,7 @@
 #freeHandbooksSection .panel-heading button { color: #a00870 !important; }
 #freeHandbooksSection .download-button { background: #241525 !important; color: #fff !important; }
 #freeHandbooksSection .free-card-cover { object-fit: contain !important; border-radius: 10px; }
-.free-resource-card img { object-fit: contain !important; }
+
 #reviewsSection .stars { color: #b40982 !important; }
 #reviewsSection .btn-primary { background: #241525 !important; color: #fff !important; box-shadow: none !important; }
 #reviewsSection .reviews-rating-summary-bar > div > div > div:first-child { color: #b40982 !important; }
@@ -556,7 +498,7 @@
 .about-roadmap p { max-width:760px; }
 .about-roadmap ol { list-style:none; counter-reset:journey; padding:0; display:flex; flex-wrap:wrap; gap:12px; margin:24px 0 0; }
 .about-roadmap li { counter-increment:journey; background:#f7f0f5; border-radius:10px; padding:14px; font-size:14px; }
-.about-roadmap li::before { content:counter(journey,decimal-leading-zero) ' / '; color:#a00870; font-weight:700; }
+.about-roadmap li::before { content:counter(journey,decimal-leading-zero) " / "; color:#a00870; font-weight:700; }
 .about-vision-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; }
 .about-vision-grid article { padding:12px 0; }
 .about-mission { margin-top:48px; padding:44px 24px; text-align:center; background:#f3e4ee; border:1px solid #e3cddd; border-radius:24px; }
@@ -650,5 +592,3 @@
 .kit-payment-host { display: none !important; }
 .kit-payment-status { color: #665866; font-size: 13px; line-height: 1.5; text-align: center; }
 .kit-payment-status:empty { display: none; }
-.meta-matching-consent { display: flex !important; align-items: flex-start; gap: 8px; margin: 14px 0; color: #665866; font-size: 12px !important; font-weight: 400 !important; line-height: 1.5; }
-.meta-matching-consent input { width: auto !important; flex: 0 0 auto; margin-top: 3px; }
